@@ -1,0 +1,80 @@
+Experimenter Checklist
+======================
+
+Phase 1: 15 minutes before participant arrives:
+-----------------------------------------------
+1. Test run stimuli on the presentation computer.
+2. Check the projector to be sure it's in focus and the size is correct.
+3. Check that correct cabling is run through the wall. There should be one 8-channel cable and one 12-channel cable
+4. In scanner room, connect correct cables to correct peripherals. 8-channel cable connects to button box. 12-channel cable connects to trackball.
+5. In control room, connect correct cables to correct interface controllers. 8-channel cable connects to the 904 interface. 12-channel cable connects to the 932 interface.  
+6. Ensure 932 interface is set to ``HID TRACK COMP``
+7. Plug in 904 and 932 interfaces to stimulus presentation computer and ensure functioning. Does mouse move? Is the button box correctly keymapped?
+8. Run a phantom to ensure computer is receiving triggers. 
+
+Phase 2: When participant arrives:
+----------------------------------
+1. Greet the participant and bring them into the lab. Use roughly the following script:
+
+	"Welcome to the Brain Imaging Center. Today you'll be participating in a study investigating Neural Processing of Video Games. Thank you for coming. Before we get started, I'll have you fill out a brief form that will give you more details about the study today, as well as a screening form. If you have any questions, don't hestitate to let me or any of the other researchers know. As mentioned in the form, please let me or another researcher know if you are pregnant or believe that you may be pregnant."
+
+2. Seat participants and have them fill out the forms. Once they've filled out the forms, ask them if they have any questions. If they don't have questions, proceed to the following script:
+
+	"Thanks for filling out those forms. Now we'll have you change into some scrubs before you practice the video game. This ensures that you're comfortable and that there is no metal that may interact with the magnet in the scanner. As you change, be sure you remove all metal from your body, including jewelry, piercings, and other metal. If you're wearing any makeup, be sure to wash it off before entering the scanner."
+
+Ask the participant which size scrubs they'd prefer and direct them to the changing room. 
+
+Phase 3: Practice
+-----------------
+
+1. Once the participant has changed, they will practice the video game and the gambling task. They'll do this on the old stimulus presentation computer (Lenovo Thinkpad). 
+
+2. After they've practiced the game and the gambling task, proceed to the following script:
+
+	"Great! Now that you've practiced the tasks you'll be completing in the scanner, it's time to get you set up in the other room. Please follow me."
+
+Phase 4: Scanning
+-----------------
+
+1. Mario will assist in getting the participant situated in the scanner. Be helpful, competent, and calm as you assist him. Before the participant lays back into the head coil. be sure to show them the peripherals they will be using, pointing out the buttons and trackball. 
+
+2. Once the participant is comfortably positioned lying down on the table, place the memory foam pad on their stomach and secure the wooden platform on top of the pad. 
+
+	1. Place the trackball on the right side of the platform at a 45 degree angle and gently direct their hand to the trackball. 
+	2. Gently place the button box in their left hand.
+	3. Place the squeeze ball on their chest.
+
+3. Add additional foam padding to ensure participant comfort. One foam tube beneath each arm. Proceed to the following script:
+
+	"Okay, you are all set up. We will return to the other room to begin the study. Soon, you will see the first instruction screen for Asteroid Impact. If you need to communicate with us for any reason, just squeeze the ball. Are you ready to begin?"
+
+4. If the participant affirms, slide them into the scanner, return to the control room, and start the Asteroid Impact protocol.
+
+5. After the game is completed, change the projector input to ``2`` to darken the screen. Proceed to the following script: 
+
+	"You are all done with the first portion of the experiment. For the next ten minutes, all you need to do is relax and lay quietly. After that, you'll complete the gambling task to earn extra money."
+
+6. After structural scanning is complete, proceed to the following script:
+	
+	"Great! This portion of the experiment is now completed. Next, you will complete the gambling task to earn extra money. This will take around ten minutes. After that, you will be all done."
+
+Phase 5: Post-Scanning
+----------------------
+
+1. After the participant is done, thank them for their participation, and begin the process of getting them out of the scanner. 
+
+2. Direct the participant to the changing room, and allow them to change back into their street clothes. While the participant is changing, write their participant number on the compensation spreadsheet, as well as the amount they will be compensated (usually $60). Ensure that the CD of structural images is created.
+
+3. Once the participant returns to the room, proceed to the following script:
+
+	"On behalf of the Media Neuroscience Lab, I'd like to thank you again for participating in the study today. For your participation you have earned $60."
+
+Direct the participant to sign in the appropriate box, and hand them their debriefing form, an envelope containing their payment, and the CD of their brain scans. Thank them again for their participation and remind them how to exit the BIC. 
+
+Phase 6: Reset
+--------------
+
+After the participant has exited the BIC, reset the facility to the way it was when you entered. 
+
+
+
