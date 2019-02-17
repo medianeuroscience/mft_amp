@@ -1,4 +1,4 @@
-,word,category,correct_amp,correct_ldt,mask
+,word,category,correct_amp,correct_ldt,masks
 0,care,care.virtue,left,left,&&&&
 1,help,care.virtue,left,left,&&&&
 2,health,care.virtue,left,left,&&&&&&
