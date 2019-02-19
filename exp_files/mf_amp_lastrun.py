@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy3 Experiment Builder (v3.0.3),
-    on Sun Feb 17 22:14:08 2019
+    on Mon Feb 18 19:59:25 2019
 If you publish work using this script please cite the PsychoPy publications:
     Peirce, JW (2007) PsychoPy - Psychophysics software in Python.
         Journal of Neuroscience Methods, 162(1-2), 8-13.
@@ -220,8 +220,12 @@ gap = visual.TextStim(win=win, name='gap',
     depth=-1.0);
 import random 
 import pandas as pd
+import numpy as np
 
+# reading in the CSV so that I can generate the conditions file for the AMP
 words = pd.read_csv("words4exp.csv")
+
+# Here are the row indices for all of the words in the full CSV.
 
 full_list = list(range(0,341)) 
 care_virtue = list(range(0,12)) 
@@ -238,6 +242,8 @@ neutral = list(range(120,170))
 nonword = list(range(170,340)) 
 control = [340,341]
 
+# Taking a sample from each category for the AMP
+
 care_virtue_amp = random.sample(care_virtue, 7)  
 care_vice_amp = random.sample(care_vice, 7) 
 fair_virtue_amp = random.sample(fair_virtue, 7)  
@@ -251,7 +257,11 @@ sanc_vice_amp = random.sample(sanc_vice, 7)
 nonword_amp = random.sample(nonword, 72) 
 control_amp = control  
 
+# Concatenating all of these samples together for the final list.
+
 AMP_words = care_virtue_amp + care_vice_amp + fair_virtue_amp + fair_vice_amp + loyal_virtue_amp + loyal_vice_amp + auth_virtue_amp + auth_vice_amp + sanc_virtue_amp + sanc_vice_amp + control_amp
+
+# Now pulling the rows from the original CSV And putting them into a new CSV that will be original for each person.
 
 AMP_wordlist = words.loc[AMP_words].word.values 
 AMP_masklist = words.loc[nonword_amp].masks.values 
@@ -288,7 +298,20 @@ sanc_vice_LDT = list(set(sanc_vice).difference(sanc_vice_amp))
 nonword_LDT = list(set(nonword).difference(nonword_amp)) 
 neutral_LDT = neutral
 
+# Concatenating together all of the LDT words and then shuffling them for good measure.
+
 LDT_words = care_virtue_LDT + care_vice_LDT + fair_virtue_LDT + fair_vice_LDT + loyal_virtue_LDT + loyal_vice_LDT + auth_virtue_LDT + auth_vice_LDT + sanc_virtue_LDT + sanc_vice_LDT + nonword_LDT + neutral_LDT
+random.shuffle(LDT_words)
+
+# Generating a random selection of two words for the AMP practice.
+
+AMP_prac_selection = np.random.choice(10, 2)
+AMP_prac_selection.tolist()
+
+# Generating a random selection of three words for the LDT practice.
+
+LDT_prac_selection = np.random.choice(10, 3)
+LDT_prac_selection.tolist()
 
 # Initialize components for Routine "AMP_nonword_prac"
 AMP_nonword_pracClock = core.Clock()
@@ -731,8 +754,7 @@ while continueRoutine:
             # a response ends the routine
             continueRoutine = False
     keys = event.getKeys()
-    if 'j' in keys:
-            continueRoutine = False 
+    if 'j' in keys:         continueRoutine = False 
     
     # check for quit (typically the Esc key)
     if endExpNow or event.getKeys(keyList=["escape"]):
@@ -943,7 +965,7 @@ routineTimer.reset()
 # set up handler to look after randomisation of conditions etc
 AMP_prac_loop = data.TrialHandler(nReps=1, method='random', 
     extraInfo=expInfo, originPath=-1,
-    trialList=data.importConditions('AMP_conditions.csv', selection='[0,1]'),
+    trialList=data.importConditions('AMP_conditions.csv', selection=AMP_prac_selection),
     seed=None, name='AMP_prac_loop')
 thisExp.addLoop(AMP_prac_loop)  # add the loop to the experiment
 thisAMP_prac_loop = AMP_prac_loop.trialList[0]  # so we can initialise stimuli with some values
@@ -1312,23 +1334,23 @@ for thisComponent in instr_AMP_3Components:
 
 
 # set up handler to look after randomisation of conditions etc
-trials = data.TrialHandler(nReps=1, method='random', 
+AMP_trials = data.TrialHandler(nReps=1, method='random', 
     extraInfo=expInfo, originPath=-1,
     trialList=data.importConditions('AMP_conditions.csv', selection='0:3'),
-    seed=None, name='trials')
-thisExp.addLoop(trials)  # add the loop to the experiment
-thisTrial = trials.trialList[0]  # so we can initialise stimuli with some values
-# abbreviate parameter names if possible (e.g. rgb = thisTrial.rgb)
-if thisTrial != None:
-    for paramName in thisTrial:
-        exec('{} = thisTrial[paramName]'.format(paramName))
+    seed=None, name='AMP_trials')
+thisExp.addLoop(AMP_trials)  # add the loop to the experiment
+thisAMP_trial = AMP_trials.trialList[0]  # so we can initialise stimuli with some values
+# abbreviate parameter names if possible (e.g. rgb = thisAMP_trial.rgb)
+if thisAMP_trial != None:
+    for paramName in thisAMP_trial:
+        exec('{} = thisAMP_trial[paramName]'.format(paramName))
 
-for thisTrial in trials:
-    currentLoop = trials
-    # abbreviate parameter names if possible (e.g. rgb = thisTrial.rgb)
-    if thisTrial != None:
-        for paramName in thisTrial:
-            exec('{} = thisTrial[paramName]'.format(paramName))
+for thisAMP_trial in AMP_trials:
+    currentLoop = AMP_trials
+    # abbreviate parameter names if possible (e.g. rgb = thisAMP_trial.rgb)
+    if thisAMP_trial != None:
+        for paramName in thisAMP_trial:
+            exec('{} = thisAMP_trial[paramName]'.format(paramName))
     
     # ------Prepare to start Routine "AMP_word"-------
     t = 0
@@ -1500,15 +1522,15 @@ for thisTrial in trials:
            resp_AMP.corr = 1;  # correct non-response
         else:
            resp_AMP.corr = 0;  # failed to respond (incorrectly)
-    # store data for trials (TrialHandler)
-    trials.addData('resp_AMP.keys',resp_AMP.keys)
-    trials.addData('resp_AMP.corr', resp_AMP.corr)
+    # store data for AMP_trials (TrialHandler)
+    AMP_trials.addData('resp_AMP.keys',resp_AMP.keys)
+    AMP_trials.addData('resp_AMP.corr', resp_AMP.corr)
     if resp_AMP.keys != None:  # we had a response
-        trials.addData('resp_AMP.rt', resp_AMP.rt)
+        AMP_trials.addData('resp_AMP.rt', resp_AMP.rt)
     
     thisExp.nextEntry()
     
-# completed 1 repeats of 'trials'
+# completed 1 repeats of 'AMP_trials'
 
 
 # ------Prepare to start Routine "instr_LDT"-------
@@ -1688,7 +1710,7 @@ routineTimer.reset()
 # set up handler to look after randomisation of conditions etc
 LDT_prac_loop = data.TrialHandler(nReps=1, method='fullRandom', 
     extraInfo=expInfo, originPath=-1,
-    trialList=data.importConditions('words4exp.csv', selection='0:3'),
+    trialList=data.importConditions('words4exp.csv', selection=LDT_prac_selection),
     seed=None, name='LDT_prac_loop')
 thisExp.addLoop(LDT_prac_loop)  # add the loop to the experiment
 thisLDT_prac_loop = LDT_prac_loop.trialList[0]  # so we can initialise stimuli with some values
@@ -2312,7 +2334,7 @@ thisExp.nextEntry()
 routineTimer.reset()
 
 # set up handler to look after randomisation of conditions etc
-tweet_loop = data.TrialHandler(nReps=5, method='random', 
+tweet_loop = data.TrialHandler(nReps=1, method='random', 
     extraInfo=expInfo, originPath=-1,
     trialList=data.importConditions('tweets.xlsx'),
     seed=None, name='tweet_loop')
@@ -2416,7 +2438,7 @@ for thisTweet_loop in tweet_loop:
     routineTimer.reset()
     thisExp.nextEntry()
     
-# completed 5 repeats of 'tweet_loop'
+# completed 1 repeats of 'tweet_loop'
 
 
 
