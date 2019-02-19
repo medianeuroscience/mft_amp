@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Stimulus &mdash; cogperc_exp_1 1.0 documentation</title>
+  <title>Stimulus &mdash; mf_amp 1.0 documentation</title>
   
 
   
@@ -47,7 +47,7 @@
           
 
           
-            <a href="../index.html" class="icon icon-home"> cogperc_exp_1
+            <a href="../index.html" class="icon icon-home"> mf_amp
           
 
           
@@ -86,13 +86,7 @@
 <li class="toctree-l1"><a class="reference internal" href="protocol.html">Experimental Protocol</a></li>
 <li class="toctree-l1"><a class="reference internal" href="measures.html">Survey Measures</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Stimulus</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#conditions">Conditions</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#control-condition">Control Condition</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#high-perceptual-load-condition">High Perceptual Load Condition</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#high-cognitive-load-condition">High Cognitive Load Condition</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#secondary-task">Secondary Task</a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="#conditions">Conditions</a></li>
 </ul>
 </li>
 </ul>
@@ -109,7 +103,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../index.html">cogperc_exp_1</a>
+          <a href="../index.html">mf_amp</a>
         
       </nav>
 
@@ -161,47 +155,10 @@
             
   <div class="section" id="stimulus">
 <h1>Stimulus<a class="headerlink" href="#stimulus" title="Permalink to this headline">¶</a></h1>
-<p>Asteroid Impact is a point-and-click style video game where subjects use a cursor to collect crystal-shaped targets that are displayed at different locations while avoiding asteroids that bounce around the screen. Game difficulty is manipulated by altering the number of targets a subject needs to collect, the number of objects to be avoided, and the rate at which these objects move. The stimulus provides tremendous experimental control in that all random aspects of the game are removed; any differences in game experience are the result of player intervention. To help resolve this potential confound, the stimulus provides a high resolution content analysis of all events in the game (e.g., when a crystal is collected, x/y position of the player’s cursor, time when player dies) with a 16ms temporal resolution. This content analysis is exported to a .csv file that allows for subsequent computation using a wide variety of analysis packages.</p>
-<p>In terms of experimental manipulation, researchers can specify different levels of difficulty a priori as well as a time duration for how long a given level will last. Asteroid Impact also features an adaptive mode where the game automatically increases or decreases in difficulty depending on player performance. Each of these game states can be separated by a black screen or set of instructions. These different game states can be scripted together in any sequence the researcher may choose, thereby allowing the development of sophisticated experimental paradigms. The game’s artwork can easily be manipulated and the game scales to fit in both full-screen and windowed modes across a variety of screen resolutions. The game is also designed to interface with TTL triggers, a feature which allows for synchronizing game states with psychophysiological and neurophysiological measurement equipment.</p>
-<p>Asteroid Impact is written in Python and carries a fully open source license (CC BY-SA 4.0). This means that the game can be modified to suit the needs of any given research lab. Moreover, the game is platform agnostic and can be used on Windows, OS X, or Linux (see known bugs below). The game requires minimal computational power and can run on low-cost computer systems. Taken together, these features provide the research community with a highly flexible tool that overcomes the issues discussed earlier. Moreover, the game conforms to the latest trends in open-science by providing a free tool that allows for replication.</p>
+<p>Talk a little more at length here about the AMP, LDT, and Tweet Rating task. Not more than a paragraph or two per measure.</p>
 <div class="section" id="conditions">
 <h2>Conditions<a class="headerlink" href="#conditions" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="control-condition">
-<h3>Control Condition<a class="headerlink" href="#control-condition" title="Permalink to this headline">¶</a></h3>
-<p>In the control condition, participants will play Asteroid Impact without any modulations to cognitive or perceptual load.</p>
-<div class="align-center figure" id="id1">
-<a class="reference internal image-reference" href="../_images/main.png"><img alt="alternate text" src="../_images/main.png" style="width: 100%;" /></a>
-<p class="caption"><span class="caption-text">Main gameplay for Asteroid Impact</span></p>
-</div>
-</div>
-<div class="section" id="high-perceptual-load-condition">
-<h3>High Perceptual Load Condition<a class="headerlink" href="#high-perceptual-load-condition" title="Permalink to this headline">¶</a></h3>
-<p>In the high perceptual load condition, the opacity of the foreground elements is reduced by 75%, increasing the effort required to identify stimuli and removing the ability to attend to motion in the periphery.</p>
-<div class="align-center figure" id="id2">
-<a class="reference internal image-reference" href="../_images/perc_inst.png"><img alt="alternate text" src="../_images/perc_inst.png" style="width: 100%;" /></a>
-<p class="caption"><span class="caption-text">Instruction screen preceding the high perceptual load condition</span></p>
-</div>
-<div class="align-center figure" id="id3">
-<a class="reference internal image-reference" href="../_images/percload.png"><img alt="alternate text" src="../_images/percload.png" style="width: 100%;" /></a>
-<p class="caption"><span class="caption-text">High perceptual load condition</span></p>
-</div>
-</div>
-<div class="section" id="high-cognitive-load-condition">
-<h3>High Cognitive Load Condition<a class="headerlink" href="#high-cognitive-load-condition" title="Permalink to this headline">¶</a></h3>
-<p>In the high cogntive load condition, participants are required to maintain the last crystal they collected in working memory. Collecting two of the same color crystal in a row results in a loss of 1000 points.</p>
-<div class="align-center figure" id="id4">
-<a class="reference internal image-reference" href="../_images/cog_inst.png"><img alt="alternate text" src="../_images/cog_inst.png" style="width: 100%;" /></a>
-<p class="caption"><span class="caption-text">Instruction screen preceding the high cognitive load condition</span></p>
-</div>
-<div class="align-center figure" id="id5">
-<a class="reference internal image-reference" href="../_images/cogload.png"><img alt="alternate text" src="../_images/cogload.png" style="width: 100%;" /></a>
-<p class="caption"><span class="caption-text">High cognitive load condition</span></p>
-</div>
-</div>
-<div class="section" id="secondary-task">
-<h3>Secondary Task<a class="headerlink" href="#secondary-task" title="Permalink to this headline">¶</a></h3>
-<p>During gameplay, participants also responded to a secondary task, in which they were asked to press the spacebar whenever they saw an image of a white star appear on the screen. The white star was presented at a random location on the screen and at a random time point within each 6-second block of game play. Probes remained on screen for 6 seconds before disappearing. The onset of the probe was accompanied by a 440Hz auditory tone.</p>
-</div>
+<p>Should fill in conditions here.</p>
 </div>
 </div>
 
@@ -223,7 +180,7 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2018, Fisher, Jacob T., &amp; Weber, Rene.
+        &copy; Copyright 2019, Hopp, Frederoc R., Fisher, Jacob T., &amp; Weber, Rene.
 
     </p>
   </div>
