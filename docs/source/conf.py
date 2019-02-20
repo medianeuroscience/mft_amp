@@ -48,9 +48,9 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = 'cogperc_exp_1'
-copyright = '2018, Fisher, Jacob T., & Weber, Rene'
-author = 'Fisher, Jacob T., & Weber, Rene'
+project = 'mf_amp'
+copyright = '2019, Hopp, Frederoc R., Fisher, Jacob T., & Weber, Rene'
+author = 'Hopp, Frederic R., Fisher, Jacob T., & Weber, Rene'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -115,7 +115,7 @@ html_sidebars = {
 # -- Options for HTMLHelp output ------------------------------------------
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'cogperc_fmri_1doc'
+htmlhelp_basename = 'mf_amp_docs'
 
 
 # -- Options for LaTeX output ---------------------------------------------
@@ -141,18 +141,13 @@ latex_elements = {
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
-latex_documents = [
-    (master_doc, 'cogperc_fmri_1.tex', 'cogperc\\_fmri\\_1 Documentation',
-     'Fisher, Jacob T., \\& Weber, Rene', 'manual'),
-]
-
 
 # -- Options for manual page output ---------------------------------------
 
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'cogperc_fmri_1', 'cogperc_fmri_1 Documentation',
+    (master_doc, 'mf_amp_docs', 'MF-AMP & LDT Documentation',
      [author], 1)
 ]
 
@@ -163,10 +158,7 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (master_doc, 'cogperc_fmri_1', 'cogperc_fmri_1 Documentation',
-     author, 'cogperc_fmri_1', 'One line description of project.',
+    (master_doc, 'mf_amp', 'MF AMP & LDT Documentation',
+     author, 'mp_amp', 'One line description of project.',
      'Miscellaneous'),
 ]
-
-
-
