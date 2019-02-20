@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-This experiment was created using PsychoPy3 Experiment Builder (v3.0.3),
-    on Sun Feb 17 22:14:08 2019
+This experiment was created using PsychoPy3 Experiment Builder (v3.0.4),
+    on Mon Feb 18 21:31:25 2019
 If you publish work using this script please cite the PsychoPy publications:
     Peirce, JW (2007) PsychoPy - Psychophysics software in Python.
         Journal of Neuroscience Methods, 162(1-2), 8-13.
@@ -27,7 +27,7 @@ _thisDir = os.path.dirname(os.path.abspath(__file__))
 os.chdir(_thisDir)
 
 # Store info about the experiment session
-psychopyVersion = '3.0.3'
+psychopyVersion = '3.0.4'
 expName = 'mf_amp'  # from the Builder filename that created this script
 expInfo = {'participant': '', 'session': '001'}
 dlg = gui.DlgFromDict(dictionary=expInfo, title=expName)
@@ -43,7 +43,7 @@ filename = _thisDir + os.sep + u'data/%s_%s_%s' % (expInfo['participant'], expNa
 # An ExperimentHandler isn't essential but helps with data saving
 thisExp = data.ExperimentHandler(name=expName, version='',
     extraInfo=expInfo, runtimeInfo=None,
-    originPath='/Users/jacobfisher/projects/inprogress/mf_amp/exp_files/mf_amp_lastrun.py',
+    originPath='/Users/Wasp/GitHub/mf_amp/exp_files/mf_amp_lastrun.py',
     savePickle=True, saveWideText=True,
     dataFileName=filename)
 # save a log file for detail verbose info
@@ -731,8 +731,7 @@ while continueRoutine:
             # a response ends the routine
             continueRoutine = False
     keys = event.getKeys()
-    if 'j' in keys:
-            continueRoutine = False 
+    if 'j' in keys:         continueRoutine = False 
     
     # check for quit (typically the Esc key)
     if endExpNow or event.getKeys(keyList=["escape"]):
