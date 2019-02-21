@@ -107,39 +107,18 @@
       </TextComponent>
     </Routine>
     <Routine name="AMP_nonword">
-      <TextComponent name="AMP_nonwordstim">
-        <Param name="color" updates="constant" val="#212121" valType="str"/>
-        <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
-        <Param name="durationEstim" updates="None" val="" valType="code"/>
-        <Param name="flip" updates="constant" val="" valType="str"/>
-        <Param name="font" updates="constant" val="Verdana" valType="str"/>
-        <Param name="languageStyle" updates="None" val="LTR" valType="str"/>
-        <Param name="letterHeight" updates="constant" val="0.05" valType="code"/>
-        <Param name="name" updates="None" val="AMP_nonwordstim" valType="code"/>
-        <Param name="opacity" updates="constant" val="1" valType="code"/>
-        <Param name="ori" updates="constant" val="0" valType="code"/>
-        <Param name="pos" updates="constant" val="(0, 0)" valType="code"/>
-        <Param name="startEstim" updates="None" val="" valType="code"/>
-        <Param name="startType" updates="None" val="time (s)" valType="str"/>
-        <Param name="startVal" updates="None" val="0.0" valType="code"/>
-        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
-        <Param name="stopVal" updates="constant" val=".75" valType="code"/>
-        <Param name="text" updates="set every repeat" val="$nonwords" valType="str"/>
-        <Param name="units" updates="None" val="from exp settings" valType="str"/>
-        <Param name="wrapWidth" updates="constant" val="" valType="code"/>
-      </TextComponent>
       <KeyboardComponent name="resp_AMP">
         <Param name="allowedKeys" updates="constant" val="'left','right',&quot;escape&quot;,&quot;n&quot;" valType="code"/>
         <Param name="correctAns" updates="constant" val="$corr_ans" valType="str"/>
         <Param name="discard previous" updates="constant" val="True" valType="bool"/>
-        <Param name="durationEstim" updates="None" val="" valType="code"/>
+        <Param name="durationEstim" updates="None" val="5" valType="code"/>
         <Param name="forceEndRoutine" updates="constant" val="True" valType="bool"/>
         <Param name="name" updates="None" val="resp_AMP" valType="code"/>
         <Param name="startEstim" updates="None" val="" valType="code"/>
         <Param name="startType" updates="None" val="time (s)" valType="str"/>
         <Param name="startVal" updates="None" val="0.0" valType="code"/>
         <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
-        <Param name="stopVal" updates="constant" val="4" valType="code"/>
+        <Param name="stopVal" updates="constant" val="" valType="code"/>
         <Param name="store" updates="constant" val="first key" valType="str"/>
         <Param name="storeCorrect" updates="constant" val="True" valType="bool"/>
         <Param name="syncScreenRefresh" updates="constant" val="True" valType="bool"/>
@@ -161,7 +140,7 @@
       <TextComponent name="AMP_maskstim">
         <Param name="color" updates="constant" val="#212121" valType="str"/>
         <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
-        <Param name="durationEstim" updates="None" val="" valType="code"/>
+        <Param name="durationEstim" updates="None" val="5" valType="code"/>
         <Param name="flip" updates="constant" val="" valType="str"/>
         <Param name="font" updates="constant" val="Arial" valType="str"/>
         <Param name="languageStyle" updates="None" val="LTR" valType="str"/>
@@ -172,13 +151,35 @@
         <Param name="pos" updates="constant" val="(0, 0)" valType="code"/>
         <Param name="startEstim" updates="None" val="" valType="code"/>
         <Param name="startType" updates="None" val="time (s)" valType="str"/>
-        <Param name="startVal" updates="None" val="0.75" valType="code"/>
+        <Param name="startVal" updates="None" val="0" valType="code"/>
         <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
-        <Param name="stopVal" updates="constant" val="3.25" valType="code"/>
+        <Param name="stopVal" updates="constant" val="" valType="code"/>
         <Param name="text" updates="set every repeat" val="$masks" valType="str"/>
         <Param name="units" updates="None" val="from exp settings" valType="str"/>
         <Param name="wrapWidth" updates="constant" val="" valType="code"/>
       </TextComponent>
+      <ImageComponent name="key_reminder_2">
+        <Param name="color" updates="constant" val="$[1,1,1]" valType="str"/>
+        <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
+        <Param name="durationEstim" updates="None" val="5" valType="code"/>
+        <Param name="flipHoriz" updates="constant" val="False" valType="bool"/>
+        <Param name="flipVert" updates="constant" val="False" valType="bool"/>
+        <Param name="image" updates="constant" val="images/layout_reminder_AMP.png" valType="str"/>
+        <Param name="interpolate" updates="constant" val="linear" valType="str"/>
+        <Param name="mask" updates="constant" val="None" valType="str"/>
+        <Param name="name" updates="None" val="key_reminder_2" valType="code"/>
+        <Param name="opacity" updates="constant" val="1" valType="code"/>
+        <Param name="ori" updates="constant" val="0" valType="code"/>
+        <Param name="pos" updates="constant" val="(0, -6)" valType="code"/>
+        <Param name="size" updates="constant" val="(20, 10)" valType="code"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0" valType="code"/>
+        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
+        <Param name="stopVal" updates="constant" val="" valType="code"/>
+        <Param name="texture resolution" updates="constant" val="128" valType="code"/>
+        <Param name="units" updates="None" val="deg" valType="str"/>
+      </ImageComponent>
     </Routine>
     <Routine name="AMP_word">
       <TextComponent name="AMP_wordstim">
@@ -197,7 +198,7 @@
         <Param name="startType" updates="None" val="time (s)" valType="str"/>
         <Param name="startVal" updates="None" val="0" valType="code"/>
         <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
-        <Param name="stopVal" updates="constant" val=".75" valType="code"/>
+        <Param name="stopVal" updates="constant" val=".075" valType="code"/>
         <Param name="text" updates="set every repeat" val="$words" valType="str"/>
         <Param name="units" updates="None" val="from exp settings" valType="str"/>
         <Param name="wrapWidth" updates="constant" val="" valType="code"/>
@@ -216,9 +217,9 @@
         <Param name="pos" updates="constant" val="(0, 0)" valType="code"/>
         <Param name="startEstim" updates="None" val="" valType="code"/>
         <Param name="startType" updates="None" val="time (s)" valType="str"/>
-        <Param name="startVal" updates="None" val="0.75" valType="code"/>
+        <Param name="startVal" updates="None" val="0.075" valType="code"/>
         <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
-        <Param name="stopVal" updates="constant" val=".125" valType="code"/>
+        <Param name="stopVal" updates="constant" val=".025" valType="code"/>
         <Param name="text" updates="constant" val="" valType="str"/>
         <Param name="units" updates="None" val="from exp settings" valType="str"/>
         <Param name="wrapWidth" updates="constant" val="" valType="code"/>
@@ -237,6 +238,27 @@
         <Param name="End Routine" updates="constant" val="" valType="extendedCode"/>
         <Param name="name" updates="None" val="code_3" valType="code"/>
       </CodeComponent>
+      <TextComponent name="AMP_nonwordstim_2">
+        <Param name="color" updates="constant" val="#212121" valType="str"/>
+        <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
+        <Param name="durationEstim" updates="None" val="" valType="code"/>
+        <Param name="flip" updates="constant" val="" valType="str"/>
+        <Param name="font" updates="constant" val="Verdana" valType="str"/>
+        <Param name="languageStyle" updates="None" val="LTR" valType="str"/>
+        <Param name="letterHeight" updates="constant" val="0.05" valType="code"/>
+        <Param name="name" updates="None" val="AMP_nonwordstim_2" valType="code"/>
+        <Param name="opacity" updates="constant" val="1" valType="code"/>
+        <Param name="ori" updates="constant" val="0" valType="code"/>
+        <Param name="pos" updates="constant" val="(0, 0)" valType="code"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.1" valType="code"/>
+        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
+        <Param name="stopVal" updates="constant" val=".15" valType="code"/>
+        <Param name="text" updates="set every repeat" val="$nonwords" valType="str"/>
+        <Param name="units" updates="None" val="from exp settings" valType="str"/>
+        <Param name="wrapWidth" updates="constant" val="" valType="code"/>
+      </TextComponent>
     </Routine>
     <Routine name="instr1">
       <TextComponent name="instr_1">
@@ -478,7 +500,7 @@
         <Param name="startVal" updates="None" val="6" valType="code"/>
         <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
         <Param name="stopVal" updates="constant" val="6" valType="code"/>
-        <Param name="text" updates="constant" val="After seeing each word, you will see a non-word." valType="str"/>
+        <Param name="text" updates="constant" val="After seeing each word, you will see a nonsense word." valType="str"/>
         <Param name="units" updates="None" val="from exp settings" valType="str"/>
         <Param name="wrapWidth" updates="constant" val="" valType="code"/>
       </TextComponent>
@@ -499,7 +521,7 @@
         <Param name="startVal" updates="None" val="12" valType="code"/>
         <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
         <Param name="stopVal" updates="constant" val="6" valType="code"/>
-        <Param name="text" updates="constant" val="After this, you will see another blank screen and a string of symbols" valType="str"/>
+        <Param name="text" updates="constant" val="After this, you will see a string of &quot;&amp;&quot; symbols" valType="str"/>
         <Param name="units" updates="None" val="from exp settings" valType="str"/>
         <Param name="wrapWidth" updates="constant" val="" valType="code"/>
       </TextComponent>
@@ -519,8 +541,8 @@
         <Param name="startType" updates="None" val="time (s)" valType="str"/>
         <Param name="startVal" updates="None" val="18" valType="code"/>
         <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
-        <Param name="stopVal" updates="constant" val="6" valType="code"/>
-        <Param name="text" updates="constant" val="You will rate whether the non-word made you feel positive or negative" valType="str"/>
+        <Param name="stopVal" updates="constant" val="10" valType="code"/>
+        <Param name="text" updates="constant" val="Upon seeing the &quot;&amp;&quot; symbols, you will rate whether the nonsense word you just saw made you feel positive or negative" valType="str"/>
         <Param name="units" updates="None" val="from exp settings" valType="str"/>
         <Param name="wrapWidth" updates="constant" val="" valType="code"/>
       </TextComponent>
@@ -538,10 +560,10 @@
         <Param name="pos" updates="constant" val="(0, 0)" valType="code"/>
         <Param name="startEstim" updates="None" val="" valType="code"/>
         <Param name="startType" updates="None" val="time (s)" valType="str"/>
-        <Param name="startVal" updates="None" val="24" valType="code"/>
+        <Param name="startVal" updates="None" val="28" valType="code"/>
         <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
         <Param name="stopVal" updates="constant" val="6" valType="code"/>
-        <Param name="text" updates="constant" val="If the non-word made you feel positive, press the right arrow key" valType="str"/>
+        <Param name="text" updates="constant" val="If the nonsense word made you feel positive, press the right arrow key" valType="str"/>
         <Param name="units" updates="None" val="from exp settings" valType="str"/>
         <Param name="wrapWidth" updates="constant" val="" valType="code"/>
       </TextComponent>
@@ -559,7 +581,7 @@
         <Param name="pos" updates="constant" val="(0, 0)" valType="code"/>
         <Param name="startEstim" updates="None" val="" valType="code"/>
         <Param name="startType" updates="None" val="time (s)" valType="str"/>
-        <Param name="startVal" updates="None" val="30" valType="code"/>
+        <Param name="startVal" updates="None" val="34" valType="code"/>
         <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
         <Param name="stopVal" updates="constant" val="6" valType="code"/>
         <Param name="text" updates="constant" val="If the non-word made you feel negative, press the left arrow key" valType="str"/>
@@ -582,7 +604,7 @@
         <Param name="size" updates="constant" val="(0.9, 0.5)" valType="code"/>
         <Param name="startEstim" updates="None" val="" valType="code"/>
         <Param name="startType" updates="None" val="time (s)" valType="str"/>
-        <Param name="startVal" updates="None" val="36" valType="code"/>
+        <Param name="startVal" updates="None" val="40" valType="code"/>
         <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
         <Param name="stopVal" updates="constant" val="6" valType="code"/>
         <Param name="texture resolution" updates="constant" val="128" valType="code"/>
@@ -602,10 +624,10 @@
         <Param name="pos" updates="constant" val="(0, 0)" valType="code"/>
         <Param name="startEstim" updates="None" val="" valType="code"/>
         <Param name="startType" updates="None" val="time (s)" valType="str"/>
-        <Param name="startVal" updates="None" val="42" valType="code"/>
+        <Param name="startVal" updates="None" val="46" valType="code"/>
         <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
         <Param name="stopVal" updates="constant" val="6" valType="code"/>
-        <Param name="text" updates="constant" val="Remember you are rating the non-word, NOT the word that came before it." valType="str"/>
+        <Param name="text" updates="constant" val="Remember you are rating the nonsense word, NOT the word that came before it." valType="str"/>
         <Param name="units" updates="None" val="from exp settings" valType="str"/>
         <Param name="wrapWidth" updates="constant" val="" valType="code"/>
       </TextComponent>
@@ -623,7 +645,7 @@
         <Param name="pos" updates="constant" val="(0, 0)" valType="code"/>
         <Param name="startEstim" updates="None" val="" valType="code"/>
         <Param name="startType" updates="None" val="time (s)" valType="str"/>
-        <Param name="startVal" updates="None" val="48" valType="code"/>
+        <Param name="startVal" updates="None" val="52" valType="code"/>
         <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
         <Param name="stopVal" updates="constant" val="6" valType="code"/>
         <Param name="text" updates="constant" val="Let's do a practice round." valType="str"/>
@@ -699,7 +721,7 @@
         <Param name="startType" updates="None" val="time (s)" valType="str"/>
         <Param name="startVal" updates="None" val="0" valType="code"/>
         <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
-        <Param name="stopVal" updates="constant" val=".75" valType="code"/>
+        <Param name="stopVal" updates="constant" val=".1" valType="code"/>
         <Param name="text" updates="set every repeat" val="$words" valType="str"/>
         <Param name="units" updates="None" val="from exp settings" valType="str"/>
         <Param name="wrapWidth" updates="constant" val="" valType="code"/>
@@ -718,7 +740,7 @@
         <Param name="pos" updates="constant" val="(0, 0)" valType="code"/>
         <Param name="startEstim" updates="None" val="" valType="code"/>
         <Param name="startType" updates="None" val="time (s)" valType="str"/>
-        <Param name="startVal" updates="None" val="0.75" valType="code"/>
+        <Param name="startVal" updates="None" val="0.1" valType="code"/>
         <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
         <Param name="stopVal" updates="constant" val=".125" valType="code"/>
         <Param name="text" updates="constant" val="" valType="str"/>
@@ -726,9 +748,7 @@
         <Param name="wrapWidth" updates="constant" val="" valType="code"/>
       </TextComponent>
       <CodeComponent name="code_4">
-        <Param name="Begin Experiment" updates="constant" val="import random &amp;#10;import pandas as pd&amp;#10;import numpy as np&amp;#10;&amp;#10;# reading in the CSV so that I can generate the conditions file for the AMP&amp;#10;words = pd.read_csv(&quot;words4exp.csv&quot;)&amp;#10;&amp;#10;# Here are the row indices for all of the words in the full CSV.&amp;#10;&amp;#10;full_list = list(range(0,341)) &amp;#10;care_virtue = list(range(0,12)) &amp;#10;care_vice = list(range(12,24)) &amp;#10;fair_virtue = list(range(24,36)) &amp;#10;fair_vice = list(range(36,48)) &amp;#10;loyal_virtue = list(range(48,60)) &amp;#10;loyal_vice = list(range(60,72)) &amp;#10;auth_virtue = list(range(72,84)) &amp;#10;auth_vice = list(range(84,96)) &amp;#10;sanc_virtue = list(range(96,108)) &amp;#10;sanc_vice = list(range(108,120)) &amp;#10;neutral = list(range(120,170)) &amp;#10;nonword = list(range(170,340)) &amp;#10;control = [340,341]&amp;#10;&amp;#10;# Taking a sample from each category for the AMP&amp;#10;&amp;#10;care_virtue_amp = random.sample(care_virtue, 7)  &amp;#10;care_vice_amp = random.sample(care_vice, 7) &amp;#10;fair_virtue_amp = random.sample(fair_virtue, 7)  &amp;#10;fair_vice_amp = random.sample(fair_vice, 7) &amp;#10;loyal_virtue_amp = random.sample(loyal_virtue, 7)  &amp;#10;loyal_vice_amp = random.sample(loyal_vice, 7) &amp;#10;auth_virtue_amp = random.sample(auth_virtue, 7)  &amp;#10;auth_vice_amp = random.sample(auth_vice, 7) &amp;#10;sanc_virtue_amp = random.sample(sanc_virtue, 7)  &amp;#10;sanc_vice_amp = random.sample(sanc_vice, 7) &amp;#10;nonword_amp = random.sample(nonword, 72) &amp;#10;control_amp = control  &amp;#10;&amp;#10;# Concatenating all of these samples together for the final list.&amp;#10;&amp;#10;AMP_words = care_virtue_amp + care_vice_amp + fair_virtue_amp + fair_vice_amp + loyal_virtue_amp + loyal_vice_amp + auth_virtue_amp + auth_vice_amp + sanc_virtue_amp + sanc_vice_amp + control_amp&amp;#10;&amp;#10;# Now pulling the rows from the original CSV And putting them into a new CSV that will be original for each person.&amp;#10;&amp;#10;AMP_wordlist = words.loc[AMP_words].word.values &amp;#10;AMP_masklist = words.loc[nonword_amp].masks.values &amp;#10;AMP_nonwordlist = words.loc[nonword_amp].word.values &amp;#10;AMP_corr_ans = words.loc[AMP_words].correct_amp.values&amp;#10;&amp;#10;df1 = pd.DataFrame(     &amp;#10;    {'words': AMP_wordlist.tolist(),      &amp;#10;    'corr_ans': AMP_corr_ans.tolist()     &amp;#10;    })  &amp;#10;df2 = pd.DataFrame(      &amp;#10;    {'nonwords': AMP_nonwordlist.tolist(),      &amp;#10;    'masks': AMP_masklist.tolist(),     &amp;#10;    })   &amp;#10;&amp;#10;df1 = df1.sample(frac=1).reset_index(drop=True) &amp;#10;df2 = df2.sample(frac=1).reset_index(drop=True)  &amp;#10;df_full = pd.concat([df1,df2], axis = 1)&amp;#10;&amp;#10;df_full.to_csv(&quot;AMP_conditions.csv&quot;)&amp;#10;&amp;#10;# Getting the LDT words &amp;#10;&amp;#10;care_virtue_LDT = list(set(care_virtue).difference(care_virtue_amp))&amp;#10;care_vice_LDT = list(set(care_vice).difference(care_vice_amp)) &amp;#10;fair_virtue_LDT = list(set(fair_virtue).difference(fair_virtue_amp)) &amp;#10;fair_vice_LDT = list(set(fair_vice).difference(fair_vice_amp)) &amp;#10;loyal_virtue_LDT = list(set(loyal_virtue).difference(loyal_virtue_amp))  &amp;#10;loyal_vice_LDT = list(set(loyal_vice).difference(loyal_vice_amp)) &amp;#10;auth_virtue_LDT = list(set(auth_virtue).difference(auth_virtue_amp))  &amp;#10;auth_vice_LDT = list(set(auth_vice).difference(auth_vice_amp)) &amp;#10;sanc_virtue_LDT = list(set(sanc_virtue).difference(sanc_virtue_amp)) &amp;#10;sanc_vice_LDT = list(set(sanc_vice).difference(sanc_vice_amp)) &amp;#10;nonword_LDT = list(set(nonword).difference(nonword_amp)) &amp;#10;neutral_LDT = neutral&amp;#10;&amp;#10;# Concatenating together all of the LDT words and then shuffling them for good measure.&amp;#10;&amp;#10;LDT_words = care_virtue_LDT + care_vice_LDT + fair_virtue_LDT + fair_vice_LDT + loyal_virtue_LDT + loyal_vice_LDT + auth_virtue_LDT + auth_vice_LDT + sanc_virtue_LDT + sanc_vice_LDT + nonword_LDT + neutral_LDT&amp;#10;random.shuffle(LDT_words)&amp;#10;&amp;#10;# Generating a random selection of two words for the AMP practice.&amp;#10;&amp;#10;AMP_prac_selection = np.random.choice(10, 2)
-AMP_prac_selection.tolist()&amp;#10;&amp;#10;# Generating a random selection of three words for the LDT practice.&amp;#10;&amp;#10;LDT_prac_selection = np.random.choice(10, 3)
-LDT_prac_selection.tolist()" valType="extendedCode"/>
+        <Param name="Begin Experiment" updates="constant" val="import random &amp;#10;import pandas as pd&amp;#10;import numpy as np&amp;#10;&amp;#10;# reading in the CSV so that I can generate the conditions file for the AMP&amp;#10;words = pd.read_csv(&quot;words4exp.csv&quot;)&amp;#10;&amp;#10;# Here are the row indices for all of the words in the full CSV.&amp;#10;&amp;#10;full_list = list(range(0,341)) &amp;#10;care_virtue = list(range(0,12)) &amp;#10;care_vice = list(range(12,24)) &amp;#10;fair_virtue = list(range(24,36)) &amp;#10;fair_vice = list(range(36,48)) &amp;#10;loyal_virtue = list(range(48,60)) &amp;#10;loyal_vice = list(range(60,72)) &amp;#10;auth_virtue = list(range(72,84)) &amp;#10;auth_vice = list(range(84,96)) &amp;#10;sanc_virtue = list(range(96,108)) &amp;#10;sanc_vice = list(range(108,120)) &amp;#10;neutral = list(range(120,170)) &amp;#10;nonword = list(range(170,340)) &amp;#10;control = [340,341]&amp;#10;&amp;#10;# Taking a sample from each category for the AMP&amp;#10;&amp;#10;care_virtue_amp = random.sample(care_virtue, 7)  &amp;#10;care_vice_amp = random.sample(care_vice, 7) &amp;#10;fair_virtue_amp = random.sample(fair_virtue, 7)  &amp;#10;fair_vice_amp = random.sample(fair_vice, 7) &amp;#10;loyal_virtue_amp = random.sample(loyal_virtue, 7)  &amp;#10;loyal_vice_amp = random.sample(loyal_vice, 7) &amp;#10;auth_virtue_amp = random.sample(auth_virtue, 7)  &amp;#10;auth_vice_amp = random.sample(auth_vice, 7) &amp;#10;sanc_virtue_amp = random.sample(sanc_virtue, 7)  &amp;#10;sanc_vice_amp = random.sample(sanc_vice, 7) &amp;#10;nonword_amp = random.sample(nonword, 72) &amp;#10;control_amp = control  &amp;#10;&amp;#10;# Concatenating all of these samples together for the final list.&amp;#10;&amp;#10;AMP_words = care_virtue_amp + care_vice_amp + fair_virtue_amp + fair_vice_amp + loyal_virtue_amp + loyal_vice_amp + auth_virtue_amp + auth_vice_amp + sanc_virtue_amp + sanc_vice_amp + control_amp&amp;#10;&amp;#10;# Now pulling the rows from the original CSV And putting them into a new CSV that will be original for each person.&amp;#10;&amp;#10;AMP_wordlist = words.loc[AMP_words].word.values &amp;#10;AMP_masklist = words.loc[nonword_amp].masks.values &amp;#10;AMP_nonwordlist = words.loc[nonword_amp].word.values &amp;#10;AMP_corr_ans = words.loc[AMP_words].correct_amp.values&amp;#10;&amp;#10;df1 = pd.DataFrame(     &amp;#10;    {'words': AMP_wordlist.tolist(),      &amp;#10;    'corr_ans': AMP_corr_ans.tolist()     &amp;#10;    })  &amp;#10;df2 = pd.DataFrame(      &amp;#10;    {'nonwords': AMP_nonwordlist.tolist(),      &amp;#10;    'masks': AMP_masklist.tolist(),     &amp;#10;    })   &amp;#10;&amp;#10;df1 = df1.sample(frac=1).reset_index(drop=True) &amp;#10;df2 = df2.sample(frac=1).reset_index(drop=True)  &amp;#10;df_full = pd.concat([df1,df2], axis = 1)&amp;#10;&amp;#10;df_full.to_csv(&quot;AMP_conditions.csv&quot;)&amp;#10;&amp;#10;# Getting the LDT words &amp;#10;&amp;#10;care_virtue_LDT = list(set(care_virtue).difference(care_virtue_amp))&amp;#10;care_vice_LDT = list(set(care_vice).difference(care_vice_amp)) &amp;#10;fair_virtue_LDT = list(set(fair_virtue).difference(fair_virtue_amp)) &amp;#10;fair_vice_LDT = list(set(fair_vice).difference(fair_vice_amp)) &amp;#10;loyal_virtue_LDT = list(set(loyal_virtue).difference(loyal_virtue_amp))  &amp;#10;loyal_vice_LDT = list(set(loyal_vice).difference(loyal_vice_amp)) &amp;#10;auth_virtue_LDT = list(set(auth_virtue).difference(auth_virtue_amp))  &amp;#10;auth_vice_LDT = list(set(auth_vice).difference(auth_vice_amp)) &amp;#10;sanc_virtue_LDT = list(set(sanc_virtue).difference(sanc_virtue_amp)) &amp;#10;sanc_vice_LDT = list(set(sanc_vice).difference(sanc_vice_amp)) &amp;#10;nonword_LDT = list(set(nonword).difference(nonword_amp)) &amp;#10;neutral_LDT = neutral&amp;#10;&amp;#10;# Concatenating together all of the LDT words and then shuffling them for good measure.&amp;#10;&amp;#10;LDT_words = care_virtue_LDT + care_vice_LDT + fair_virtue_LDT + fair_vice_LDT + loyal_virtue_LDT + loyal_vice_LDT + auth_virtue_LDT + auth_vice_LDT + sanc_virtue_LDT + sanc_vice_LDT + nonword_LDT + neutral_LDT&amp;#10;random.shuffle(LDT_words)&amp;#10;&amp;#10;# Generating a random selection of two words for the AMP practice.&amp;#10;&amp;#10;AMP_prac_selection = np.random.choice(50, 10, replace=False)&amp;#10;AMP_prac_selection.tolist()&amp;#10;&amp;#10;# Generating a random selection of three words for the LDT practice.&amp;#10;&amp;#10;LDT_prac_selection = np.random.choice(300, 25, replace=False)&amp;#10;LDT_prac_selection.tolist()" valType="extendedCode"/>
         <Param name="Begin JS Experiment" updates="constant" val="" valType="extendedCode"/>
         <Param name="Begin JS Routine" updates="constant" val="" valType="extendedCode"/>
         <Param name="Begin Routine" updates="constant" val="" valType="extendedCode"/>
@@ -741,9 +761,7 @@ LDT_prac_selection.tolist()" valType="extendedCode"/>
         <Param name="End Routine" updates="constant" val="" valType="extendedCode"/>
         <Param name="name" updates="None" val="code_4" valType="code"/>
       </CodeComponent>
-    </Routine>
-    <Routine name="AMP_nonword_prac">
-      <TextComponent name="AMP_nonwordstim_2">
+      <TextComponent name="AMP_nonwordstim_3">
         <Param name="color" updates="constant" val="#212121" valType="str"/>
         <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
         <Param name="durationEstim" updates="None" val="" valType="code"/>
@@ -751,31 +769,33 @@ LDT_prac_selection.tolist()" valType="extendedCode"/>
         <Param name="font" updates="constant" val="Verdana" valType="str"/>
         <Param name="languageStyle" updates="None" val="LTR" valType="str"/>
         <Param name="letterHeight" updates="constant" val="0.05" valType="code"/>
-        <Param name="name" updates="None" val="AMP_nonwordstim_2" valType="code"/>
+        <Param name="name" updates="None" val="AMP_nonwordstim_3" valType="code"/>
         <Param name="opacity" updates="constant" val="1" valType="code"/>
         <Param name="ori" updates="constant" val="0" valType="code"/>
         <Param name="pos" updates="constant" val="(0, 0)" valType="code"/>
         <Param name="startEstim" updates="None" val="" valType="code"/>
         <Param name="startType" updates="None" val="time (s)" valType="str"/>
-        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="startVal" updates="None" val=".225" valType="code"/>
         <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
-        <Param name="stopVal" updates="constant" val=".75" valType="code"/>
+        <Param name="stopVal" updates="constant" val=".300" valType="code"/>
         <Param name="text" updates="set every repeat" val="$nonwords" valType="str"/>
         <Param name="units" updates="None" val="from exp settings" valType="str"/>
         <Param name="wrapWidth" updates="constant" val="" valType="code"/>
       </TextComponent>
+    </Routine>
+    <Routine name="AMP_nonword_prac">
       <KeyboardComponent name="resp_AMP_prac">
         <Param name="allowedKeys" updates="constant" val="'left','right',&quot;escape&quot;,&quot;n&quot;" valType="code"/>
         <Param name="correctAns" updates="constant" val="$corr_ans" valType="str"/>
         <Param name="discard previous" updates="constant" val="True" valType="bool"/>
-        <Param name="durationEstim" updates="None" val="" valType="code"/>
+        <Param name="durationEstim" updates="None" val="5" valType="code"/>
         <Param name="forceEndRoutine" updates="constant" val="True" valType="bool"/>
         <Param name="name" updates="None" val="resp_AMP_prac" valType="code"/>
         <Param name="startEstim" updates="None" val="" valType="code"/>
         <Param name="startType" updates="None" val="time (s)" valType="str"/>
-        <Param name="startVal" updates="None" val=".75" valType="code"/>
+        <Param name="startVal" updates="None" val="0" valType="code"/>
         <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
-        <Param name="stopVal" updates="constant" val="3.25" valType="code"/>
+        <Param name="stopVal" updates="constant" val="" valType="code"/>
         <Param name="store" updates="constant" val="first key" valType="str"/>
         <Param name="storeCorrect" updates="constant" val="True" valType="bool"/>
         <Param name="syncScreenRefresh" updates="constant" val="True" valType="bool"/>
@@ -797,7 +817,7 @@ LDT_prac_selection.tolist()" valType="extendedCode"/>
       <TextComponent name="AMP_maskstim_2">
         <Param name="color" updates="constant" val="#212121" valType="str"/>
         <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
-        <Param name="durationEstim" updates="None" val="" valType="code"/>
+        <Param name="durationEstim" updates="None" val="5" valType="code"/>
         <Param name="flip" updates="constant" val="" valType="str"/>
         <Param name="font" updates="constant" val="Verdana" valType="str"/>
         <Param name="languageStyle" updates="None" val="LTR" valType="str"/>
@@ -808,13 +828,35 @@ LDT_prac_selection.tolist()" valType="extendedCode"/>
         <Param name="pos" updates="constant" val="(0, 0)" valType="code"/>
         <Param name="startEstim" updates="None" val="" valType="code"/>
         <Param name="startType" updates="None" val="time (s)" valType="str"/>
-        <Param name="startVal" updates="None" val="0.75" valType="code"/>
+        <Param name="startVal" updates="None" val="0" valType="code"/>
         <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
-        <Param name="stopVal" updates="constant" val="3.25" valType="code"/>
+        <Param name="stopVal" updates="constant" val="" valType="code"/>
         <Param name="text" updates="set every repeat" val="$masks" valType="str"/>
         <Param name="units" updates="None" val="from exp settings" valType="str"/>
         <Param name="wrapWidth" updates="constant" val="" valType="code"/>
       </TextComponent>
+      <ImageComponent name="key_reminder">
+        <Param name="color" updates="constant" val="$[1,1,1]" valType="str"/>
+        <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
+        <Param name="durationEstim" updates="None" val="5" valType="code"/>
+        <Param name="flipHoriz" updates="constant" val="False" valType="bool"/>
+        <Param name="flipVert" updates="constant" val="False" valType="bool"/>
+        <Param name="image" updates="constant" val="images/layout_reminder_AMP.png" valType="str"/>
+        <Param name="interpolate" updates="constant" val="linear" valType="str"/>
+        <Param name="mask" updates="constant" val="None" valType="str"/>
+        <Param name="name" updates="None" val="key_reminder" valType="code"/>
+        <Param name="opacity" updates="constant" val="1" valType="code"/>
+        <Param name="ori" updates="constant" val="0" valType="code"/>
+        <Param name="pos" updates="constant" val="(0, -6)" valType="code"/>
+        <Param name="size" updates="constant" val="(20, 10)" valType="code"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0" valType="code"/>
+        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
+        <Param name="stopVal" updates="constant" val="" valType="code"/>
+        <Param name="texture resolution" updates="constant" val="128" valType="code"/>
+        <Param name="units" updates="None" val="deg" valType="str"/>
+      </ImageComponent>
     </Routine>
     <Routine name="instr_AMP_2">
       <TextComponent name="instr_AMP9">
@@ -1231,7 +1273,7 @@ LDT_prac_selection.tolist()" valType="extendedCode"/>
         <Param name="startType" updates="None" val="time (s)" valType="str"/>
         <Param name="startVal" updates="None" val="0" valType="code"/>
         <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
-        <Param name="stopVal" updates="constant" val=".4" valType="code"/>
+        <Param name="stopVal" updates="constant" val=".06" valType="code"/>
         <Param name="text" updates="set every repeat" val="$word" valType="str"/>
         <Param name="units" updates="None" val="from exp settings" valType="str"/>
         <Param name="wrapWidth" updates="constant" val="" valType="code"/>
@@ -1250,7 +1292,7 @@ LDT_prac_selection.tolist()" valType="extendedCode"/>
         <Param name="pos" updates="constant" val="(0, 0)" valType="code"/>
         <Param name="startEstim" updates="None" val="" valType="code"/>
         <Param name="startType" updates="None" val="time (s)" valType="str"/>
-        <Param name="startVal" updates="None" val=".4" valType="code"/>
+        <Param name="startVal" updates="None" val=".06" valType="code"/>
         <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
         <Param name="stopVal" updates="constant" val="2" valType="code"/>
         <Param name="text" updates="set every repeat" val="$masks" valType="str"/>
@@ -1266,7 +1308,7 @@ LDT_prac_selection.tolist()" valType="extendedCode"/>
         <Param name="name" updates="None" val="resp_LDT_prac" valType="code"/>
         <Param name="startEstim" updates="None" val="" valType="code"/>
         <Param name="startType" updates="None" val="time (s)" valType="str"/>
-        <Param name="startVal" updates="None" val=".4" valType="code"/>
+        <Param name="startVal" updates="None" val=".06" valType="code"/>
         <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
         <Param name="stopVal" updates="constant" val="2" valType="code"/>
         <Param name="store" updates="constant" val="last key" valType="str"/>
@@ -1287,6 +1329,28 @@ LDT_prac_selection.tolist()" valType="extendedCode"/>
         <Param name="End Routine" updates="constant" val="" valType="extendedCode"/>
         <Param name="name" updates="None" val="code_6" valType="code"/>
       </CodeComponent>
+      <ImageComponent name="key_reminder_3">
+        <Param name="color" updates="constant" val="$[1,1,1]" valType="str"/>
+        <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
+        <Param name="durationEstim" updates="None" val="" valType="code"/>
+        <Param name="flipHoriz" updates="constant" val="False" valType="bool"/>
+        <Param name="flipVert" updates="constant" val="False" valType="bool"/>
+        <Param name="image" updates="constant" val="images/layout_reminder_LDT.png" valType="str"/>
+        <Param name="interpolate" updates="constant" val="linear" valType="str"/>
+        <Param name="mask" updates="constant" val="None" valType="str"/>
+        <Param name="name" updates="None" val="key_reminder_3" valType="code"/>
+        <Param name="opacity" updates="constant" val="1" valType="code"/>
+        <Param name="ori" updates="constant" val="0" valType="code"/>
+        <Param name="pos" updates="constant" val="(0, -6)" valType="code"/>
+        <Param name="size" updates="constant" val="(20, 10)" valType="code"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.06" valType="code"/>
+        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
+        <Param name="stopVal" updates="constant" val="2" valType="code"/>
+        <Param name="texture resolution" updates="constant" val="128" valType="code"/>
+        <Param name="units" updates="None" val="deg" valType="str"/>
+      </ImageComponent>
     </Routine>
     <Routine name="LDT_fix_prac">
       <ImageComponent name="LDT_fix_cross">
@@ -1315,7 +1379,7 @@ LDT_prac_selection.tolist()" valType="extendedCode"/>
         <Param name="Begin Experiment" updates="constant" val="" valType="extendedCode"/>
         <Param name="Begin JS Experiment" updates="constant" val="" valType="extendedCode"/>
         <Param name="Begin JS Routine" updates="constant" val="" valType="extendedCode"/>
-        <Param name="Begin Routine" updates="constant" val="rand_duration = random.randint(1000, 3000)/1000" valType="extendedCode"/>
+        <Param name="Begin Routine" updates="constant" val="rand_duration = random.randint(100, 300)/1000" valType="extendedCode"/>
         <Param name="Code Type" updates="None" val="Py" valType="str"/>
         <Param name="Each Frame" updates="constant" val="" valType="extendedCode"/>
         <Param name="Each JS Frame" updates="constant" val="" valType="extendedCode"/>
@@ -1353,7 +1417,7 @@ LDT_prac_selection.tolist()" valType="extendedCode"/>
         <Param name="Begin Experiment" updates="constant" val="" valType="extendedCode"/>
         <Param name="Begin JS Experiment" updates="constant" val="" valType="extendedCode"/>
         <Param name="Begin JS Routine" updates="constant" val="" valType="extendedCode"/>
-        <Param name="Begin Routine" updates="constant" val="rand_duration = random.randint(1000, 3000)/1000" valType="extendedCode"/>
+        <Param name="Begin Routine" updates="constant" val="rand_duration = random.randint(100, 300)/1000" valType="extendedCode"/>
         <Param name="Code Type" updates="None" val="Py" valType="str"/>
         <Param name="Each Frame" updates="constant" val="" valType="extendedCode"/>
         <Param name="Each JS Frame" updates="constant" val="" valType="extendedCode"/>
@@ -1657,7 +1721,7 @@ LDT_prac_selection.tolist()" valType="extendedCode"/>
         <Param name="startType" updates="None" val="time (s)" valType="str"/>
         <Param name="startVal" updates="None" val="0" valType="code"/>
         <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
-        <Param name="stopVal" updates="constant" val=".4" valType="code"/>
+        <Param name="stopVal" updates="constant" val=".06" valType="code"/>
         <Param name="text" updates="set every repeat" val="$word" valType="str"/>
         <Param name="units" updates="None" val="from exp settings" valType="str"/>
         <Param name="wrapWidth" updates="constant" val="" valType="code"/>
@@ -1676,7 +1740,7 @@ LDT_prac_selection.tolist()" valType="extendedCode"/>
         <Param name="pos" updates="constant" val="(0, 0)" valType="code"/>
         <Param name="startEstim" updates="None" val="" valType="code"/>
         <Param name="startType" updates="None" val="time (s)" valType="str"/>
-        <Param name="startVal" updates="None" val=".4" valType="code"/>
+        <Param name="startVal" updates="None" val=".06" valType="code"/>
         <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
         <Param name="stopVal" updates="constant" val="2" valType="code"/>
         <Param name="text" updates="set every repeat" val="$masks" valType="str"/>
@@ -1692,7 +1756,7 @@ LDT_prac_selection.tolist()" valType="extendedCode"/>
         <Param name="name" updates="None" val="resp_LDT_2" valType="code"/>
         <Param name="startEstim" updates="None" val="" valType="code"/>
         <Param name="startType" updates="None" val="time (s)" valType="str"/>
-        <Param name="startVal" updates="None" val=".4" valType="code"/>
+        <Param name="startVal" updates="None" val=".06" valType="code"/>
         <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
         <Param name="stopVal" updates="constant" val="2" valType="code"/>
         <Param name="store" updates="constant" val="last key" valType="str"/>
@@ -1713,6 +1777,28 @@ LDT_prac_selection.tolist()" valType="extendedCode"/>
         <Param name="End Routine" updates="constant" val="" valType="extendedCode"/>
         <Param name="name" updates="None" val="code_10" valType="code"/>
       </CodeComponent>
+      <ImageComponent name="key_reminder_4">
+        <Param name="color" updates="constant" val="$[1,1,1]" valType="str"/>
+        <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
+        <Param name="durationEstim" updates="None" val="" valType="code"/>
+        <Param name="flipHoriz" updates="constant" val="False" valType="bool"/>
+        <Param name="flipVert" updates="constant" val="False" valType="bool"/>
+        <Param name="image" updates="constant" val="images/layout_reminder_LDT.png" valType="str"/>
+        <Param name="interpolate" updates="constant" val="linear" valType="str"/>
+        <Param name="mask" updates="constant" val="None" valType="str"/>
+        <Param name="name" updates="None" val="key_reminder_4" valType="code"/>
+        <Param name="opacity" updates="constant" val="1" valType="code"/>
+        <Param name="ori" updates="constant" val="0" valType="code"/>
+        <Param name="pos" updates="constant" val="(0, -6)" valType="code"/>
+        <Param name="size" updates="constant" val="(20, 10)" valType="code"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.06" valType="code"/>
+        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
+        <Param name="stopVal" updates="constant" val="2" valType="code"/>
+        <Param name="texture resolution" updates="constant" val="128" valType="code"/>
+        <Param name="units" updates="None" val="deg" valType="str"/>
+      </ImageComponent>
     </Routine>
     <Routine name="tweets">
       <TextComponent name="tweet">
@@ -1808,7 +1894,7 @@ LDT_prac_selection.tolist()" valType="extendedCode"/>
       <Param name="conditionsFile" updates="None" val="words4exp.csv" valType="str"/>
       <Param name="endPoints" updates="None" val="[0, 1]" valType="num"/>
       <Param name="isTrials" updates="None" val="True" valType="bool"/>
-      <Param name="loopType" updates="None" val="fullRandom" valType="str"/>
+      <Param name="loopType" updates="None" val="random" valType="str"/>
       <Param name="nReps" updates="None" val="1" valType="code"/>
       <Param name="name" updates="None" val="LDT_prac_loop" valType="code"/>
       <Param name="random seed" updates="None" val="" valType="code"/>
