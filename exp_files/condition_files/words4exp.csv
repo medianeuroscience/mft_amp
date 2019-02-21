@@ -1,4 +1,4 @@
-,word,category,correct_amp,correct_ldt,masks
+,words,category,correct_amp,correct_ldt,masks
 0,care,care.virtue,left,left,&&&&
 1,help,care.virtue,left,left,&&&&
 2,health,care.virtue,left,left,&&&&&&
@@ -361,3 +361,5 @@
 359,chressing,nonword,,,&&&&&&&&&
 360,nomaric,nonword,,,&&&&&&&
 361,sonvoy,nonword,,,&&&&&&
+362,sfumatoy,nonword,,,&&&&&&&&
+363,dormandi,nonword,,,&&&&&&&&

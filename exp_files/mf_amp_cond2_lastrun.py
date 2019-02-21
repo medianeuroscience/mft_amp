@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy3 Experiment Builder (v3.0.3),
-    on Wed Feb 20 20:33:25 2019
+    on Wed Feb 20 20:43:23 2019
 If you publish work using this script please cite the PsychoPy publications:
     Peirce, JW (2007) PsychoPy - Psychophysics software in Python.
         Journal of Neuroscience Methods, 162(1-2), 8-13.
@@ -28,7 +28,7 @@ os.chdir(_thisDir)
 
 # Store info about the experiment session
 psychopyVersion = '3.0.3'
-expName = 'mf_amp'  # from the Builder filename that created this script
+expName = 'mf_amp_cond2'  # from the Builder filename that created this script
 expInfo = {'participant': '', 'session': '001'}
 dlg = gui.DlgFromDict(dictionary=expInfo, title=expName)
 if dlg.OK == False:
@@ -43,7 +43,7 @@ filename = _thisDir + os.sep + u'data/%s_%s_%s' % (expInfo['participant'], expNa
 # An ExperimentHandler isn't essential but helps with data saving
 thisExp = data.ExperimentHandler(name=expName, version='',
     extraInfo=expInfo, runtimeInfo=None,
-    originPath='/Users/jacobfisher/projects/inprogress/mf_amp/exp_files/mf_amp_lastrun.py',
+    originPath='/Users/jacobfisher/projects/inprogress/mf_amp/exp_files/mf_amp_cond2_lastrun.py',
     savePickle=True, saveWideText=True,
     dataFileName=filename)
 # save a log file for detail verbose info
@@ -128,10 +128,195 @@ instr_7 = visual.TextStim(win=win, name='instr_7',
     depth=-7.0);
 
 
+# Initialize components for Routine "instr_LDT"
+instr_LDTClock = core.Clock()
+instr_LDT1 = visual.TextStim(win=win, name='instr_LDT1',
+    text='Welcome to the first task!\n\nIn this task, you will see a selection of words and non-words',
+    font='Open Sans',
+    pos=(0, 0), height=0.05, wrapWidth=None, ori=0, 
+    color='#212121', colorSpace='rgb', opacity=1, 
+    languageStyle='LTR',
+    depth=0.0);
+instr_LDT2 = visual.TextStim(win=win, name='instr_LDT2',
+    text='You will see a real word or a nonsense word quickly followed by a string of "&" symbols\n',
+    font='Open Sans',
+    pos=(0, 0), height=0.05, wrapWidth=None, ori=0, 
+    color='#212121', colorSpace='rgb', opacity=1, 
+    languageStyle='LTR',
+    depth=-1.0);
+instr_LDT3 = visual.TextStim(win=win, name='instr_LDT3',
+    text='Upon seeing the "&" symbols, you should decide as quickly as possible whether you saw a word or non-word',
+    font='Open Sans',
+    pos=(0, 0), height=0.05, wrapWidth=None, ori=0, 
+    color='#212121', colorSpace='rgb', opacity=1, 
+    languageStyle='LTR',
+    depth=-2.0);
+instr_LDT4 = visual.TextStim(win=win, name='instr_LDT4',
+    text='If you think you saw a real word, press the right arrow key',
+    font='Open Sans',
+    pos=(0, 0), height=0.05, wrapWidth=None, ori=0, 
+    color='#212121', colorSpace='rgb', opacity=1, 
+    languageStyle='LTR',
+    depth=-3.0);
+instr_LDT5 = visual.TextStim(win=win, name='instr_LDT5',
+    text='If you think you saw a nonsense word, press the left arrow key',
+    font='Open Sans',
+    pos=(0, 0), height=0.05, wrapWidth=None, ori=0, 
+    color='#212121', colorSpace='rgb', opacity=1, 
+    languageStyle='LTR',
+    depth=-4.0);
+instr_LDT6 = visual.TextStim(win=win, name='instr_LDT6',
+    text='Please make sure your fingers are in the correct place',
+    font='Open Sans',
+    pos=(0, 0), height=0.05, wrapWidth=None, ori=0, 
+    color='#212121', colorSpace='rgb', opacity=1, 
+    languageStyle='LTR',
+    depth=-5.0);
+image_3 = visual.ImageStim(
+    win=win, name='image_3',
+    image='images/keyboard_diagram.png', mask=None,
+    ori=0, pos=(0, 0), size=(0.9, 0.5),
+    color=[1,1,1], colorSpace='rgb', opacity=1,
+    flipHoriz=False, flipVert=False,
+    texRes=128, interpolate=True, depth=-6.0)
+keyboard_reminder_LDT = visual.ImageStim(
+    win=win, name='keyboard_reminder_LDT',
+    image='images/layout_reminder_LDT.png', mask=None,
+    ori=0, pos=(0, 0), size=(0.9, 0.5),
+    color=[1,1,1], colorSpace='rgb', opacity=1,
+    flipHoriz=False, flipVert=False,
+    texRes=128, interpolate=True, depth=-7.0)
+instr_LDT7 = visual.TextStim(win=win, name='instr_LDT7',
+    text='The words may be difficult to see, but please do the best you can',
+    font='Open Sans',
+    pos=(0, 0), height=0.05, wrapWidth=None, ori=0, 
+    color='#212121', colorSpace='rgb', opacity=1, 
+    languageStyle='LTR',
+    depth=-8.0);
+instr_LT8 = visual.TextStim(win=win, name='instr_LT8',
+    text="Let's do a practice round",
+    font='Open Sans',
+    pos=(0, 0), height=0.05, wrapWidth=None, ori=0, 
+    color='#212121', colorSpace='rgb', opacity=1, 
+    languageStyle='LTR',
+    depth=-8.0);
+instr_LDT9_ = visual.TextStim(win=win, name='instr_LDT9_',
+    text='When you are ready to begin, press the right arrow key',
+    font='Open Sans',
+    pos=(0, 0), height=0.05, wrapWidth=None, ori=0, 
+    color='#212121', colorSpace='rgb', opacity=1, 
+    languageStyle='LTR',
+    depth=-10.0);
+
+
+# Initialize components for Routine "LDT_fix_prac"
+LDT_fix_pracClock = core.Clock()
+LDT_fix_cross = visual.ImageStim(
+    win=win, name='LDT_fix_cross',units='pix', 
+    image='images/crosshair.png', mask=None,
+    ori=0, pos=(0, 0), size=[50,50],
+    color=[1,1,1], colorSpace='rgb', opacity=1,
+    flipHoriz=False, flipVert=False,
+    texRes=128, interpolate=True, depth=0.0)
+
+
+# Initialize components for Routine "LDT_prac"
+LDT_pracClock = core.Clock()
+LDT_word_prac = visual.TextStim(win=win, name='LDT_word_prac',
+    text='default text',
+    font='Verdana',
+    pos=(0, 0), height=0.05, wrapWidth=None, ori=0, 
+    color='#212121', colorSpace='rgb', opacity=1, 
+    languageStyle='LTR',
+    depth=0.0);
+LDT_mask_prac = visual.TextStim(win=win, name='LDT_mask_prac',
+    text='default text',
+    font='Verdana',
+    pos=(0, 0), height=0.05, wrapWidth=None, ori=0, 
+    color='#212121', colorSpace='rgb', opacity=1, 
+    languageStyle='LTR',
+    depth=-1.0);
+
+key_reminder_3 = visual.ImageStim(
+    win=win, name='key_reminder_3',units='deg', 
+    image='images/layout_reminder_LDT.png', mask=None,
+    ori=0, pos=(0, -6), size=(20, 10),
+    color=[1,1,1], colorSpace='rgb', opacity=1,
+    flipHoriz=False, flipVert=False,
+    texRes=128, interpolate=True, depth=-3.0)
+
+# Initialize components for Routine "instr_LDT_2"
+instr_LDT_2Clock = core.Clock()
+instr_LDT9 = visual.TextStim(win=win, name='instr_LDT9',
+    text='Great job!',
+    font='Verdana',
+    pos=(0, 0), height=0.05, wrapWidth=None, ori=0, 
+    color='#212121', colorSpace='rgb', opacity=1, 
+    languageStyle='LTR',
+    depth=0.0);
+instr_LDT10 = visual.TextStim(win=win, name='instr_LDT10',
+    text='Remember that LEFT is nonsense word\nand RIGHT is real word.',
+    font='Verdana',
+    pos=(0, 0), height=0.05, wrapWidth=None, ori=0, 
+    color='#212121', colorSpace='rgb', opacity=1, 
+    languageStyle='LTR',
+    depth=-1.0);
+image_6 = visual.ImageStim(
+    win=win, name='image_6',
+    image='images/layout_reminder_LDT.png', mask=None,
+    ori=0, pos=(0, 0), size=(0.9, 0.5),
+    color=[1,1,1], colorSpace='rgb', opacity=1,
+    flipHoriz=False, flipVert=False,
+    texRes=128, interpolate=True, depth=-2.0)
+instr_LDT11 = visual.TextStim(win=win, name='instr_LDT11',
+    text='If you are ready to begin, please press the right arrow key',
+    font='Verdana',
+    pos=(0, 0), height=0.05, wrapWidth=None, ori=0, 
+    color='#212121', colorSpace='rgb', opacity=1, 
+    languageStyle='LTR',
+    depth=-3.0);
+
+
+# Initialize components for Routine "LDT_fix"
+LDT_fixClock = core.Clock()
+LDT_fix_cross_2 = visual.ImageStim(
+    win=win, name='LDT_fix_cross_2',units='pix', 
+    image='images/crosshair.png', mask=None,
+    ori=0, pos=(0, 0), size=[50,50],
+    color=[1,1,1], colorSpace='rgb', opacity=1,
+    flipHoriz=False, flipVert=False,
+    texRes=128, interpolate=True, depth=0.0)
+
+
+# Initialize components for Routine "LDT_trial"
+LDT_trialClock = core.Clock()
+LDT_word_2 = visual.TextStim(win=win, name='LDT_word_2',
+    text='default text',
+    font='Verdana',
+    pos=(0, 0), height=0.05, wrapWidth=None, ori=0, 
+    color='#212121', colorSpace='rgb', opacity=1, 
+    languageStyle='LTR',
+    depth=0.0);
+LDT_mask_2 = visual.TextStim(win=win, name='LDT_mask_2',
+    text='default text',
+    font='Verdana',
+    pos=(0, 0), height=0.05, wrapWidth=None, ori=0, 
+    color='#212121', colorSpace='rgb', opacity=1, 
+    languageStyle='LTR',
+    depth=-1.0);
+
+key_reminder_4 = visual.ImageStim(
+    win=win, name='key_reminder_4',units='deg', 
+    image='images/layout_reminder_LDT.png', mask=None,
+    ori=0, pos=(0, -6), size=(20, 10),
+    color=[1,1,1], colorSpace='rgb', opacity=1,
+    flipHoriz=False, flipVert=False,
+    texRes=128, interpolate=True, depth=-3.0)
+
 # Initialize components for Routine "instr_AMP"
 instr_AMPClock = core.Clock()
 instr_AMP1 = visual.TextStim(win=win, name='instr_AMP1',
-    text='Welcome to the first task!\n\nIn this task, you will see a selection of words.',
+    text='Welcome to the second task!\n\nIn this task, you will see a selection of words.',
     font='Open Sans',
     pos=(0, 0), height=0.05, wrapWidth=None, ori=0, 
     color='#212121', colorSpace='rgb', opacity=1, 
@@ -462,191 +647,6 @@ key_reminder_2 = visual.ImageStim(
     flipHoriz=False, flipVert=False,
     texRes=128, interpolate=True, depth=-3.0)
 
-# Initialize components for Routine "instr_LDT"
-instr_LDTClock = core.Clock()
-instr_LDT1 = visual.TextStim(win=win, name='instr_LDT1',
-    text='Welcome to the second task!\n\nIn this task, you will see a selection of words and non-words',
-    font='Open Sans',
-    pos=(0, 0), height=0.05, wrapWidth=None, ori=0, 
-    color='#212121', colorSpace='rgb', opacity=1, 
-    languageStyle='LTR',
-    depth=0.0);
-instr_LDT2 = visual.TextStim(win=win, name='instr_LDT2',
-    text='You will see a real word or a nonsense word quickly followed by a string of "&" symbols\n',
-    font='Open Sans',
-    pos=(0, 0), height=0.05, wrapWidth=None, ori=0, 
-    color='#212121', colorSpace='rgb', opacity=1, 
-    languageStyle='LTR',
-    depth=-1.0);
-instr_LDT3 = visual.TextStim(win=win, name='instr_LDT3',
-    text='Upon seeing the "&" symbols, you should decide as quickly as possible whether you saw a word or non-word',
-    font='Open Sans',
-    pos=(0, 0), height=0.05, wrapWidth=None, ori=0, 
-    color='#212121', colorSpace='rgb', opacity=1, 
-    languageStyle='LTR',
-    depth=-2.0);
-instr_LDT4 = visual.TextStim(win=win, name='instr_LDT4',
-    text='If you think you saw a real word, press the right arrow key',
-    font='Open Sans',
-    pos=(0, 0), height=0.05, wrapWidth=None, ori=0, 
-    color='#212121', colorSpace='rgb', opacity=1, 
-    languageStyle='LTR',
-    depth=-3.0);
-instr_LDT5 = visual.TextStim(win=win, name='instr_LDT5',
-    text='If you think you saw a nonsense word, press the left arrow key',
-    font='Open Sans',
-    pos=(0, 0), height=0.05, wrapWidth=None, ori=0, 
-    color='#212121', colorSpace='rgb', opacity=1, 
-    languageStyle='LTR',
-    depth=-4.0);
-instr_LDT6 = visual.TextStim(win=win, name='instr_LDT6',
-    text='Please make sure your fingers are in the correct place',
-    font='Open Sans',
-    pos=(0, 0), height=0.05, wrapWidth=None, ori=0, 
-    color='#212121', colorSpace='rgb', opacity=1, 
-    languageStyle='LTR',
-    depth=-5.0);
-image_3 = visual.ImageStim(
-    win=win, name='image_3',
-    image='images/keyboard_diagram.png', mask=None,
-    ori=0, pos=(0, 0), size=(0.9, 0.5),
-    color=[1,1,1], colorSpace='rgb', opacity=1,
-    flipHoriz=False, flipVert=False,
-    texRes=128, interpolate=True, depth=-6.0)
-keyboard_reminder_LDT = visual.ImageStim(
-    win=win, name='keyboard_reminder_LDT',
-    image='images/layout_reminder_LDT.png', mask=None,
-    ori=0, pos=(0, 0), size=(0.9, 0.5),
-    color=[1,1,1], colorSpace='rgb', opacity=1,
-    flipHoriz=False, flipVert=False,
-    texRes=128, interpolate=True, depth=-7.0)
-instr_LDT7 = visual.TextStim(win=win, name='instr_LDT7',
-    text='The words may be difficult to see, but please do the best you can',
-    font='Open Sans',
-    pos=(0, 0), height=0.05, wrapWidth=None, ori=0, 
-    color='#212121', colorSpace='rgb', opacity=1, 
-    languageStyle='LTR',
-    depth=-8.0);
-instr_LT8 = visual.TextStim(win=win, name='instr_LT8',
-    text="Let's do a practice round",
-    font='Open Sans',
-    pos=(0, 0), height=0.05, wrapWidth=None, ori=0, 
-    color='#212121', colorSpace='rgb', opacity=1, 
-    languageStyle='LTR',
-    depth=-8.0);
-instr_LDT9_ = visual.TextStim(win=win, name='instr_LDT9_',
-    text='When you are ready to begin, press the right arrow key',
-    font='Open Sans',
-    pos=(0, 0), height=0.05, wrapWidth=None, ori=0, 
-    color='#212121', colorSpace='rgb', opacity=1, 
-    languageStyle='LTR',
-    depth=-10.0);
-
-
-# Initialize components for Routine "LDT_fix_prac"
-LDT_fix_pracClock = core.Clock()
-LDT_fix_cross = visual.ImageStim(
-    win=win, name='LDT_fix_cross',units='pix', 
-    image='images/crosshair.png', mask=None,
-    ori=0, pos=(0, 0), size=[50,50],
-    color=[1,1,1], colorSpace='rgb', opacity=1,
-    flipHoriz=False, flipVert=False,
-    texRes=128, interpolate=True, depth=0.0)
-
-
-# Initialize components for Routine "LDT_prac"
-LDT_pracClock = core.Clock()
-LDT_word_prac = visual.TextStim(win=win, name='LDT_word_prac',
-    text='default text',
-    font='Verdana',
-    pos=(0, 0), height=0.05, wrapWidth=None, ori=0, 
-    color='#212121', colorSpace='rgb', opacity=1, 
-    languageStyle='LTR',
-    depth=0.0);
-LDT_mask_prac = visual.TextStim(win=win, name='LDT_mask_prac',
-    text='default text',
-    font='Verdana',
-    pos=(0, 0), height=0.05, wrapWidth=None, ori=0, 
-    color='#212121', colorSpace='rgb', opacity=1, 
-    languageStyle='LTR',
-    depth=-1.0);
-
-key_reminder_3 = visual.ImageStim(
-    win=win, name='key_reminder_3',units='deg', 
-    image='images/layout_reminder_LDT.png', mask=None,
-    ori=0, pos=(0, -6), size=(20, 10),
-    color=[1,1,1], colorSpace='rgb', opacity=1,
-    flipHoriz=False, flipVert=False,
-    texRes=128, interpolate=True, depth=-3.0)
-
-# Initialize components for Routine "instr_LDT_2"
-instr_LDT_2Clock = core.Clock()
-instr_LDT9 = visual.TextStim(win=win, name='instr_LDT9',
-    text='Great job!',
-    font='Verdana',
-    pos=(0, 0), height=0.05, wrapWidth=None, ori=0, 
-    color='#212121', colorSpace='rgb', opacity=1, 
-    languageStyle='LTR',
-    depth=0.0);
-instr_LDT10 = visual.TextStim(win=win, name='instr_LDT10',
-    text='Remember that LEFT is nonsense word\nand RIGHT is real word.',
-    font='Verdana',
-    pos=(0, 0), height=0.05, wrapWidth=None, ori=0, 
-    color='#212121', colorSpace='rgb', opacity=1, 
-    languageStyle='LTR',
-    depth=-1.0);
-image_6 = visual.ImageStim(
-    win=win, name='image_6',
-    image='images/layout_reminder_LDT.png', mask=None,
-    ori=0, pos=(0, 0), size=(0.9, 0.5),
-    color=[1,1,1], colorSpace='rgb', opacity=1,
-    flipHoriz=False, flipVert=False,
-    texRes=128, interpolate=True, depth=-2.0)
-instr_LDT11 = visual.TextStim(win=win, name='instr_LDT11',
-    text='If you are ready to begin, please press the right arrow key',
-    font='Verdana',
-    pos=(0, 0), height=0.05, wrapWidth=None, ori=0, 
-    color='#212121', colorSpace='rgb', opacity=1, 
-    languageStyle='LTR',
-    depth=-3.0);
-
-
-# Initialize components for Routine "LDT_fix"
-LDT_fixClock = core.Clock()
-LDT_fix_cross_2 = visual.ImageStim(
-    win=win, name='LDT_fix_cross_2',units='pix', 
-    image='images/crosshair.png', mask=None,
-    ori=0, pos=(0, 0), size=[50,50],
-    color=[1,1,1], colorSpace='rgb', opacity=1,
-    flipHoriz=False, flipVert=False,
-    texRes=128, interpolate=True, depth=0.0)
-
-
-# Initialize components for Routine "LDT_trial"
-LDT_trialClock = core.Clock()
-LDT_word_2 = visual.TextStim(win=win, name='LDT_word_2',
-    text='default text',
-    font='Verdana',
-    pos=(0, 0), height=0.05, wrapWidth=None, ori=0, 
-    color='#212121', colorSpace='rgb', opacity=1, 
-    languageStyle='LTR',
-    depth=0.0);
-LDT_mask_2 = visual.TextStim(win=win, name='LDT_mask_2',
-    text='default text',
-    font='Verdana',
-    pos=(0, 0), height=0.05, wrapWidth=None, ori=0, 
-    color='#212121', colorSpace='rgb', opacity=1, 
-    languageStyle='LTR',
-    depth=-1.0);
-
-key_reminder_4 = visual.ImageStim(
-    win=win, name='key_reminder_4',units='deg', 
-    image='images/layout_reminder_LDT.png', mask=None,
-    ori=0, pos=(0, -6), size=(20, 10),
-    color=[1,1,1], colorSpace='rgb', opacity=1,
-    flipHoriz=False, flipVert=False,
-    texRes=128, interpolate=True, depth=-3.0)
-
 # Initialize components for Routine "instr_tweets"
 instr_tweetsClock = core.Clock()
 instr_LDT1_2 = visual.TextStim(win=win, name='instr_LDT1_2',
@@ -860,6 +860,696 @@ thisExp.nextEntry()
 
 # the Routine "instr1" was not non-slip safe, so reset the non-slip timer
 routineTimer.reset()
+
+# ------Prepare to start Routine "instr_LDT"-------
+t = 0
+instr_LDTClock.reset()  # clock
+frameN = -1
+continueRoutine = True
+# update component parameters for each repeat
+key_resp_LDT_instr = event.BuilderKeyResponse()
+
+# keep track of which components have finished
+instr_LDTComponents = [instr_LDT1, instr_LDT2, instr_LDT3, instr_LDT4, instr_LDT5, instr_LDT6, image_3, keyboard_reminder_LDT, instr_LDT7, instr_LT8, instr_LDT9_, key_resp_LDT_instr]
+for thisComponent in instr_LDTComponents:
+    if hasattr(thisComponent, 'status'):
+        thisComponent.status = NOT_STARTED
+
+# -------Start Routine "instr_LDT"-------
+while continueRoutine:
+    # get current time
+    t = instr_LDTClock.getTime()
+    frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
+    # update/draw components on each frame
+    
+    # *instr_LDT1* updates
+    if t >= 0.0 and instr_LDT1.status == NOT_STARTED:
+        # keep track of start time/frame for later
+        instr_LDT1.tStart = t
+        instr_LDT1.frameNStart = frameN  # exact frame index
+        instr_LDT1.setAutoDraw(True)
+    frameRemains = 0.0 + 6- win.monitorFramePeriod * 0.75  # most of one frame period left
+    if instr_LDT1.status == STARTED and t >= frameRemains:
+        instr_LDT1.setAutoDraw(False)
+    
+    # *instr_LDT2* updates
+    if t >= 6 and instr_LDT2.status == NOT_STARTED:
+        # keep track of start time/frame for later
+        instr_LDT2.tStart = t
+        instr_LDT2.frameNStart = frameN  # exact frame index
+        instr_LDT2.setAutoDraw(True)
+    frameRemains = 6 + 6- win.monitorFramePeriod * 0.75  # most of one frame period left
+    if instr_LDT2.status == STARTED and t >= frameRemains:
+        instr_LDT2.setAutoDraw(False)
+    
+    # *instr_LDT3* updates
+    if t >= 12 and instr_LDT3.status == NOT_STARTED:
+        # keep track of start time/frame for later
+        instr_LDT3.tStart = t
+        instr_LDT3.frameNStart = frameN  # exact frame index
+        instr_LDT3.setAutoDraw(True)
+    frameRemains = 12 + 8- win.monitorFramePeriod * 0.75  # most of one frame period left
+    if instr_LDT3.status == STARTED and t >= frameRemains:
+        instr_LDT3.setAutoDraw(False)
+    
+    # *instr_LDT4* updates
+    if t >= 20 and instr_LDT4.status == NOT_STARTED:
+        # keep track of start time/frame for later
+        instr_LDT4.tStart = t
+        instr_LDT4.frameNStart = frameN  # exact frame index
+        instr_LDT4.setAutoDraw(True)
+    frameRemains = 20 + 6- win.monitorFramePeriod * 0.75  # most of one frame period left
+    if instr_LDT4.status == STARTED and t >= frameRemains:
+        instr_LDT4.setAutoDraw(False)
+    
+    # *instr_LDT5* updates
+    if t >= 26 and instr_LDT5.status == NOT_STARTED:
+        # keep track of start time/frame for later
+        instr_LDT5.tStart = t
+        instr_LDT5.frameNStart = frameN  # exact frame index
+        instr_LDT5.setAutoDraw(True)
+    frameRemains = 26 + 6- win.monitorFramePeriod * 0.75  # most of one frame period left
+    if instr_LDT5.status == STARTED and t >= frameRemains:
+        instr_LDT5.setAutoDraw(False)
+    
+    # *instr_LDT6* updates
+    if t >= 32 and instr_LDT6.status == NOT_STARTED:
+        # keep track of start time/frame for later
+        instr_LDT6.tStart = t
+        instr_LDT6.frameNStart = frameN  # exact frame index
+        instr_LDT6.setAutoDraw(True)
+    frameRemains = 32 + 6- win.monitorFramePeriod * 0.75  # most of one frame period left
+    if instr_LDT6.status == STARTED and t >= frameRemains:
+        instr_LDT6.setAutoDraw(False)
+    
+    # *image_3* updates
+    if t >= 38 and image_3.status == NOT_STARTED:
+        # keep track of start time/frame for later
+        image_3.tStart = t
+        image_3.frameNStart = frameN  # exact frame index
+        image_3.setAutoDraw(True)
+    frameRemains = 38 + 4- win.monitorFramePeriod * 0.75  # most of one frame period left
+    if image_3.status == STARTED and t >= frameRemains:
+        image_3.setAutoDraw(False)
+    
+    # *keyboard_reminder_LDT* updates
+    if t >= 42 and keyboard_reminder_LDT.status == NOT_STARTED:
+        # keep track of start time/frame for later
+        keyboard_reminder_LDT.tStart = t
+        keyboard_reminder_LDT.frameNStart = frameN  # exact frame index
+        keyboard_reminder_LDT.setAutoDraw(True)
+    frameRemains = 42 + 4- win.monitorFramePeriod * 0.75  # most of one frame period left
+    if keyboard_reminder_LDT.status == STARTED and t >= frameRemains:
+        keyboard_reminder_LDT.setAutoDraw(False)
+    
+    # *instr_LDT7* updates
+    if t >= 46 and instr_LDT7.status == NOT_STARTED:
+        # keep track of start time/frame for later
+        instr_LDT7.tStart = t
+        instr_LDT7.frameNStart = frameN  # exact frame index
+        instr_LDT7.setAutoDraw(True)
+    frameRemains = 46 + 6- win.monitorFramePeriod * 0.75  # most of one frame period left
+    if instr_LDT7.status == STARTED and t >= frameRemains:
+        instr_LDT7.setAutoDraw(False)
+    
+    # *instr_LT8* updates
+    if t >= 52 and instr_LT8.status == NOT_STARTED:
+        # keep track of start time/frame for later
+        instr_LT8.tStart = t
+        instr_LT8.frameNStart = frameN  # exact frame index
+        instr_LT8.setAutoDraw(True)
+    frameRemains = 52 + 4- win.monitorFramePeriod * 0.75  # most of one frame period left
+    if instr_LT8.status == STARTED and t >= frameRemains:
+        instr_LT8.setAutoDraw(False)
+    
+    # *instr_LDT9_* updates
+    if t >= 56 and instr_LDT9_.status == NOT_STARTED:
+        # keep track of start time/frame for later
+        instr_LDT9_.tStart = t
+        instr_LDT9_.frameNStart = frameN  # exact frame index
+        instr_LDT9_.setAutoDraw(True)
+    
+    # *key_resp_LDT_instr* updates
+    if t >= 56 and key_resp_LDT_instr.status == NOT_STARTED:
+        # keep track of start time/frame for later
+        key_resp_LDT_instr.tStart = t
+        key_resp_LDT_instr.frameNStart = frameN  # exact frame index
+        key_resp_LDT_instr.status = STARTED
+        # keyboard checking is just starting
+        win.callOnFlip(key_resp_LDT_instr.clock.reset)  # t=0 on next screen flip
+        event.clearEvents(eventType='keyboard')
+    if key_resp_LDT_instr.status == STARTED:
+        theseKeys = event.getKeys(keyList=['right'])
+        
+        # check for quit:
+        if "escape" in theseKeys:
+            endExpNow = True
+        if len(theseKeys) > 0:  # at least one key was pressed
+            key_resp_LDT_instr.keys = theseKeys[-1]  # just the last key pressed
+            key_resp_LDT_instr.rt = key_resp_LDT_instr.clock.getTime()
+            # a response ends the routine
+            continueRoutine = False
+    keys = event.getKeys()
+    if 'j' in keys:
+            continueRoutine = False 
+    
+    # check for quit (typically the Esc key)
+    if endExpNow or event.getKeys(keyList=["escape"]):
+        core.quit()
+    
+    # check if all components have finished
+    if not continueRoutine:  # a component has requested a forced-end of Routine
+        break
+    continueRoutine = False  # will revert to True if at least one component still running
+    for thisComponent in instr_LDTComponents:
+        if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
+            continueRoutine = True
+            break  # at least one component has not yet finished
+    
+    # refresh the screen
+    if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
+        win.flip()
+
+# -------Ending Routine "instr_LDT"-------
+for thisComponent in instr_LDTComponents:
+    if hasattr(thisComponent, "setAutoDraw"):
+        thisComponent.setAutoDraw(False)
+# check responses
+if key_resp_LDT_instr.keys in ['', [], None]:  # No response was made
+    key_resp_LDT_instr.keys=None
+thisExp.addData('key_resp_LDT_instr.keys',key_resp_LDT_instr.keys)
+if key_resp_LDT_instr.keys != None:  # we had a response
+    thisExp.addData('key_resp_LDT_instr.rt', key_resp_LDT_instr.rt)
+thisExp.nextEntry()
+
+# the Routine "instr_LDT" was not non-slip safe, so reset the non-slip timer
+routineTimer.reset()
+
+# set up handler to look after randomisation of conditions etc
+LDT_prac_loop = data.TrialHandler(nReps=1, method='random', 
+    extraInfo=expInfo, originPath=-1,
+    trialList=data.importConditions('condition_files/ldt_testrun.csv'),
+    seed=None, name='LDT_prac_loop')
+thisExp.addLoop(LDT_prac_loop)  # add the loop to the experiment
+thisLDT_prac_loop = LDT_prac_loop.trialList[0]  # so we can initialise stimuli with some values
+# abbreviate parameter names if possible (e.g. rgb = thisLDT_prac_loop.rgb)
+if thisLDT_prac_loop != None:
+    for paramName in thisLDT_prac_loop:
+        exec('{} = thisLDT_prac_loop[paramName]'.format(paramName))
+
+for thisLDT_prac_loop in LDT_prac_loop:
+    currentLoop = LDT_prac_loop
+    # abbreviate parameter names if possible (e.g. rgb = thisLDT_prac_loop.rgb)
+    if thisLDT_prac_loop != None:
+        for paramName in thisLDT_prac_loop:
+            exec('{} = thisLDT_prac_loop[paramName]'.format(paramName))
+    
+    # ------Prepare to start Routine "LDT_fix_prac"-------
+    t = 0
+    LDT_fix_pracClock.reset()  # clock
+    frameN = -1
+    continueRoutine = True
+    # update component parameters for each repeat
+    rand_duration = random.randint(100, 300)/1000
+    # keep track of which components have finished
+    LDT_fix_pracComponents = [LDT_fix_cross]
+    for thisComponent in LDT_fix_pracComponents:
+        if hasattr(thisComponent, 'status'):
+            thisComponent.status = NOT_STARTED
+    
+    # -------Start Routine "LDT_fix_prac"-------
+    while continueRoutine:
+        # get current time
+        t = LDT_fix_pracClock.getTime()
+        frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
+        # update/draw components on each frame
+        
+        # *LDT_fix_cross* updates
+        if t >= 0.0 and LDT_fix_cross.status == NOT_STARTED:
+            # keep track of start time/frame for later
+            LDT_fix_cross.tStart = t
+            LDT_fix_cross.frameNStart = frameN  # exact frame index
+            LDT_fix_cross.setAutoDraw(True)
+        frameRemains = 0.0 + rand_duration- win.monitorFramePeriod * 0.75  # most of one frame period left
+        if LDT_fix_cross.status == STARTED and t >= frameRemains:
+            LDT_fix_cross.setAutoDraw(False)
+        
+        
+        # check for quit (typically the Esc key)
+        if endExpNow or event.getKeys(keyList=["escape"]):
+            core.quit()
+        
+        # check if all components have finished
+        if not continueRoutine:  # a component has requested a forced-end of Routine
+            break
+        continueRoutine = False  # will revert to True if at least one component still running
+        for thisComponent in LDT_fix_pracComponents:
+            if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
+                continueRoutine = True
+                break  # at least one component has not yet finished
+        
+        # refresh the screen
+        if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
+            win.flip()
+    
+    # -------Ending Routine "LDT_fix_prac"-------
+    for thisComponent in LDT_fix_pracComponents:
+        if hasattr(thisComponent, "setAutoDraw"):
+            thisComponent.setAutoDraw(False)
+    
+    # the Routine "LDT_fix_prac" was not non-slip safe, so reset the non-slip timer
+    routineTimer.reset()
+    
+    # ------Prepare to start Routine "LDT_prac"-------
+    t = 0
+    LDT_pracClock.reset()  # clock
+    frameN = -1
+    continueRoutine = True
+    routineTimer.add(2.060000)
+    # update component parameters for each repeat
+    LDT_word_prac.setText(words)
+    LDT_mask_prac.setText(mask)
+    resp_LDT_prac = event.BuilderKeyResponse()
+    
+    # keep track of which components have finished
+    LDT_pracComponents = [LDT_word_prac, LDT_mask_prac, resp_LDT_prac, key_reminder_3]
+    for thisComponent in LDT_pracComponents:
+        if hasattr(thisComponent, 'status'):
+            thisComponent.status = NOT_STARTED
+    
+    # -------Start Routine "LDT_prac"-------
+    while continueRoutine and routineTimer.getTime() > 0:
+        # get current time
+        t = LDT_pracClock.getTime()
+        frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
+        # update/draw components on each frame
+        
+        # *LDT_word_prac* updates
+        if t >= 0 and LDT_word_prac.status == NOT_STARTED:
+            # keep track of start time/frame for later
+            LDT_word_prac.tStart = t
+            LDT_word_prac.frameNStart = frameN  # exact frame index
+            LDT_word_prac.setAutoDraw(True)
+        frameRemains = 0 + .06- win.monitorFramePeriod * 0.75  # most of one frame period left
+        if LDT_word_prac.status == STARTED and t >= frameRemains:
+            LDT_word_prac.setAutoDraw(False)
+        
+        # *LDT_mask_prac* updates
+        if t >= .06 and LDT_mask_prac.status == NOT_STARTED:
+            # keep track of start time/frame for later
+            LDT_mask_prac.tStart = t
+            LDT_mask_prac.frameNStart = frameN  # exact frame index
+            LDT_mask_prac.setAutoDraw(True)
+        frameRemains = .06 + 2- win.monitorFramePeriod * 0.75  # most of one frame period left
+        if LDT_mask_prac.status == STARTED and t >= frameRemains:
+            LDT_mask_prac.setAutoDraw(False)
+        
+        # *resp_LDT_prac* updates
+        if t >= .06 and resp_LDT_prac.status == NOT_STARTED:
+            # keep track of start time/frame for later
+            resp_LDT_prac.tStart = t
+            resp_LDT_prac.frameNStart = frameN  # exact frame index
+            resp_LDT_prac.status = STARTED
+            # keyboard checking is just starting
+            win.callOnFlip(resp_LDT_prac.clock.reset)  # t=0 on next screen flip
+            event.clearEvents(eventType='keyboard')
+        frameRemains = .06 + 2- win.monitorFramePeriod * 0.75  # most of one frame period left
+        if resp_LDT_prac.status == STARTED and t >= frameRemains:
+            resp_LDT_prac.status = FINISHED
+        if resp_LDT_prac.status == STARTED:
+            theseKeys = event.getKeys(keyList=['left', 'right'])
+            
+            # check for quit:
+            if "escape" in theseKeys:
+                endExpNow = True
+            if len(theseKeys) > 0:  # at least one key was pressed
+                resp_LDT_prac.keys = theseKeys[-1]  # just the last key pressed
+                resp_LDT_prac.rt = resp_LDT_prac.clock.getTime()
+                # a response ends the routine
+                continueRoutine = False
+        
+        
+        # *key_reminder_3* updates
+        if t >= 0.06 and key_reminder_3.status == NOT_STARTED:
+            # keep track of start time/frame for later
+            key_reminder_3.tStart = t
+            key_reminder_3.frameNStart = frameN  # exact frame index
+            key_reminder_3.setAutoDraw(True)
+        frameRemains = 0.06 + 2- win.monitorFramePeriod * 0.75  # most of one frame period left
+        if key_reminder_3.status == STARTED and t >= frameRemains:
+            key_reminder_3.setAutoDraw(False)
+        
+        # check for quit (typically the Esc key)
+        if endExpNow or event.getKeys(keyList=["escape"]):
+            core.quit()
+        
+        # check if all components have finished
+        if not continueRoutine:  # a component has requested a forced-end of Routine
+            break
+        continueRoutine = False  # will revert to True if at least one component still running
+        for thisComponent in LDT_pracComponents:
+            if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
+                continueRoutine = True
+                break  # at least one component has not yet finished
+        
+        # refresh the screen
+        if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
+            win.flip()
+    
+    # -------Ending Routine "LDT_prac"-------
+    for thisComponent in LDT_pracComponents:
+        if hasattr(thisComponent, "setAutoDraw"):
+            thisComponent.setAutoDraw(False)
+    # check responses
+    if resp_LDT_prac.keys in ['', [], None]:  # No response was made
+        resp_LDT_prac.keys=None
+    LDT_prac_loop.addData('resp_LDT_prac.keys',resp_LDT_prac.keys)
+    if resp_LDT_prac.keys != None:  # we had a response
+        LDT_prac_loop.addData('resp_LDT_prac.rt', resp_LDT_prac.rt)
+    thisExp.addData('task', "LDT_prac")
+    thisExp.addData('keypress', resp_LDT_prac.keys)
+    thisExp.addData('RT', resp_LDT_prac.rt)
+    thisExp.addData('corr', resp_LDT_prac.corr)
+    thisExp.nextEntry()
+    
+# completed 1 repeats of 'LDT_prac_loop'
+
+
+# ------Prepare to start Routine "instr_LDT_2"-------
+t = 0
+instr_LDT_2Clock.reset()  # clock
+frameN = -1
+continueRoutine = True
+# update component parameters for each repeat
+resp_LDT_ready = event.BuilderKeyResponse()
+
+# keep track of which components have finished
+instr_LDT_2Components = [instr_LDT9, instr_LDT10, image_6, instr_LDT11, resp_LDT_ready]
+for thisComponent in instr_LDT_2Components:
+    if hasattr(thisComponent, 'status'):
+        thisComponent.status = NOT_STARTED
+
+# -------Start Routine "instr_LDT_2"-------
+while continueRoutine:
+    # get current time
+    t = instr_LDT_2Clock.getTime()
+    frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
+    # update/draw components on each frame
+    
+    # *instr_LDT9* updates
+    if t >= 0.0 and instr_LDT9.status == NOT_STARTED:
+        # keep track of start time/frame for later
+        instr_LDT9.tStart = t
+        instr_LDT9.frameNStart = frameN  # exact frame index
+        instr_LDT9.setAutoDraw(True)
+    frameRemains = 0.0 + 4- win.monitorFramePeriod * 0.75  # most of one frame period left
+    if instr_LDT9.status == STARTED and t >= frameRemains:
+        instr_LDT9.setAutoDraw(False)
+    
+    # *instr_LDT10* updates
+    if t >= 4 and instr_LDT10.status == NOT_STARTED:
+        # keep track of start time/frame for later
+        instr_LDT10.tStart = t
+        instr_LDT10.frameNStart = frameN  # exact frame index
+        instr_LDT10.setAutoDraw(True)
+    frameRemains = 4 + 6- win.monitorFramePeriod * 0.75  # most of one frame period left
+    if instr_LDT10.status == STARTED and t >= frameRemains:
+        instr_LDT10.setAutoDraw(False)
+    
+    # *image_6* updates
+    if t >= 10 and image_6.status == NOT_STARTED:
+        # keep track of start time/frame for later
+        image_6.tStart = t
+        image_6.frameNStart = frameN  # exact frame index
+        image_6.setAutoDraw(True)
+    frameRemains = 10 + 6- win.monitorFramePeriod * 0.75  # most of one frame period left
+    if image_6.status == STARTED and t >= frameRemains:
+        image_6.setAutoDraw(False)
+    
+    # *instr_LDT11* updates
+    if t >= 16 and instr_LDT11.status == NOT_STARTED:
+        # keep track of start time/frame for later
+        instr_LDT11.tStart = t
+        instr_LDT11.frameNStart = frameN  # exact frame index
+        instr_LDT11.setAutoDraw(True)
+    
+    # *resp_LDT_ready* updates
+    if t >= 16 and resp_LDT_ready.status == NOT_STARTED:
+        # keep track of start time/frame for later
+        resp_LDT_ready.tStart = t
+        resp_LDT_ready.frameNStart = frameN  # exact frame index
+        resp_LDT_ready.status = STARTED
+        # keyboard checking is just starting
+        win.callOnFlip(resp_LDT_ready.clock.reset)  # t=0 on next screen flip
+        event.clearEvents(eventType='keyboard')
+    if resp_LDT_ready.status == STARTED:
+        theseKeys = event.getKeys(keyList=['right'])
+        
+        # check for quit:
+        if "escape" in theseKeys:
+            endExpNow = True
+        if len(theseKeys) > 0:  # at least one key was pressed
+            resp_LDT_ready.keys = theseKeys[-1]  # just the last key pressed
+            resp_LDT_ready.rt = resp_LDT_ready.clock.getTime()
+            # a response ends the routine
+            continueRoutine = False
+    keys = event.getKeys()
+    if 'j' in keys:
+            continueRoutine = False 
+    
+    # check for quit (typically the Esc key)
+    if endExpNow or event.getKeys(keyList=["escape"]):
+        core.quit()
+    
+    # check if all components have finished
+    if not continueRoutine:  # a component has requested a forced-end of Routine
+        break
+    continueRoutine = False  # will revert to True if at least one component still running
+    for thisComponent in instr_LDT_2Components:
+        if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
+            continueRoutine = True
+            break  # at least one component has not yet finished
+    
+    # refresh the screen
+    if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
+        win.flip()
+
+# -------Ending Routine "instr_LDT_2"-------
+for thisComponent in instr_LDT_2Components:
+    if hasattr(thisComponent, "setAutoDraw"):
+        thisComponent.setAutoDraw(False)
+# check responses
+if resp_LDT_ready.keys in ['', [], None]:  # No response was made
+    resp_LDT_ready.keys=None
+thisExp.addData('resp_LDT_ready.keys',resp_LDT_ready.keys)
+if resp_LDT_ready.keys != None:  # we had a response
+    thisExp.addData('resp_LDT_ready.rt', resp_LDT_ready.rt)
+thisExp.nextEntry()
+
+# the Routine "instr_LDT_2" was not non-slip safe, so reset the non-slip timer
+routineTimer.reset()
+
+# set up handler to look after randomisation of conditions etc
+LDT_loop = data.TrialHandler(nReps=1, method='random', 
+    extraInfo=expInfo, originPath=-1,
+    trialList=data.importConditions('condition_files/LDT_conditions.csv'),
+    seed=None, name='LDT_loop')
+thisExp.addLoop(LDT_loop)  # add the loop to the experiment
+thisLDT_loop = LDT_loop.trialList[0]  # so we can initialise stimuli with some values
+# abbreviate parameter names if possible (e.g. rgb = thisLDT_loop.rgb)
+if thisLDT_loop != None:
+    for paramName in thisLDT_loop:
+        exec('{} = thisLDT_loop[paramName]'.format(paramName))
+
+for thisLDT_loop in LDT_loop:
+    currentLoop = LDT_loop
+    # abbreviate parameter names if possible (e.g. rgb = thisLDT_loop.rgb)
+    if thisLDT_loop != None:
+        for paramName in thisLDT_loop:
+            exec('{} = thisLDT_loop[paramName]'.format(paramName))
+    
+    # ------Prepare to start Routine "LDT_fix"-------
+    t = 0
+    LDT_fixClock.reset()  # clock
+    frameN = -1
+    continueRoutine = True
+    # update component parameters for each repeat
+    rand_duration = random.randint(100, 300)/1000
+    # keep track of which components have finished
+    LDT_fixComponents = [LDT_fix_cross_2]
+    for thisComponent in LDT_fixComponents:
+        if hasattr(thisComponent, 'status'):
+            thisComponent.status = NOT_STARTED
+    
+    # -------Start Routine "LDT_fix"-------
+    while continueRoutine:
+        # get current time
+        t = LDT_fixClock.getTime()
+        frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
+        # update/draw components on each frame
+        
+        # *LDT_fix_cross_2* updates
+        if t >= 0.0 and LDT_fix_cross_2.status == NOT_STARTED:
+            # keep track of start time/frame for later
+            LDT_fix_cross_2.tStart = t
+            LDT_fix_cross_2.frameNStart = frameN  # exact frame index
+            LDT_fix_cross_2.setAutoDraw(True)
+        frameRemains = 0.0 + rand_duration- win.monitorFramePeriod * 0.75  # most of one frame period left
+        if LDT_fix_cross_2.status == STARTED and t >= frameRemains:
+            LDT_fix_cross_2.setAutoDraw(False)
+        
+        
+        # check for quit (typically the Esc key)
+        if endExpNow or event.getKeys(keyList=["escape"]):
+            core.quit()
+        
+        # check if all components have finished
+        if not continueRoutine:  # a component has requested a forced-end of Routine
+            break
+        continueRoutine = False  # will revert to True if at least one component still running
+        for thisComponent in LDT_fixComponents:
+            if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
+                continueRoutine = True
+                break  # at least one component has not yet finished
+        
+        # refresh the screen
+        if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
+            win.flip()
+    
+    # -------Ending Routine "LDT_fix"-------
+    for thisComponent in LDT_fixComponents:
+        if hasattr(thisComponent, "setAutoDraw"):
+            thisComponent.setAutoDraw(False)
+    
+    # the Routine "LDT_fix" was not non-slip safe, so reset the non-slip timer
+    routineTimer.reset()
+    
+    # ------Prepare to start Routine "LDT_trial"-------
+    t = 0
+    LDT_trialClock.reset()  # clock
+    frameN = -1
+    continueRoutine = True
+    routineTimer.add(2.060000)
+    # update component parameters for each repeat
+    LDT_word_2.setText(words)
+    LDT_mask_2.setText(mask)
+    resp_LDT = event.BuilderKeyResponse()
+    
+    # keep track of which components have finished
+    LDT_trialComponents = [LDT_word_2, LDT_mask_2, resp_LDT, key_reminder_4]
+    for thisComponent in LDT_trialComponents:
+        if hasattr(thisComponent, 'status'):
+            thisComponent.status = NOT_STARTED
+    
+    # -------Start Routine "LDT_trial"-------
+    while continueRoutine and routineTimer.getTime() > 0:
+        # get current time
+        t = LDT_trialClock.getTime()
+        frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
+        # update/draw components on each frame
+        
+        # *LDT_word_2* updates
+        if t >= 0 and LDT_word_2.status == NOT_STARTED:
+            # keep track of start time/frame for later
+            LDT_word_2.tStart = t
+            LDT_word_2.frameNStart = frameN  # exact frame index
+            LDT_word_2.setAutoDraw(True)
+        frameRemains = 0 + .06- win.monitorFramePeriod * 0.75  # most of one frame period left
+        if LDT_word_2.status == STARTED and t >= frameRemains:
+            LDT_word_2.setAutoDraw(False)
+        
+        # *LDT_mask_2* updates
+        if t >= .06 and LDT_mask_2.status == NOT_STARTED:
+            # keep track of start time/frame for later
+            LDT_mask_2.tStart = t
+            LDT_mask_2.frameNStart = frameN  # exact frame index
+            LDT_mask_2.setAutoDraw(True)
+        frameRemains = .06 + 2- win.monitorFramePeriod * 0.75  # most of one frame period left
+        if LDT_mask_2.status == STARTED and t >= frameRemains:
+            LDT_mask_2.setAutoDraw(False)
+        
+        # *resp_LDT* updates
+        if t >= .06 and resp_LDT.status == NOT_STARTED:
+            # keep track of start time/frame for later
+            resp_LDT.tStart = t
+            resp_LDT.frameNStart = frameN  # exact frame index
+            resp_LDT.status = STARTED
+            # keyboard checking is just starting
+            win.callOnFlip(resp_LDT.clock.reset)  # t=0 on next screen flip
+            event.clearEvents(eventType='keyboard')
+        frameRemains = .06 + 2- win.monitorFramePeriod * 0.75  # most of one frame period left
+        if resp_LDT.status == STARTED and t >= frameRemains:
+            resp_LDT.status = FINISHED
+        if resp_LDT.status == STARTED:
+            theseKeys = event.getKeys(keyList=['left', 'right'])
+            
+            # check for quit:
+            if "escape" in theseKeys:
+                endExpNow = True
+            if len(theseKeys) > 0:  # at least one key was pressed
+                resp_LDT.keys = theseKeys[-1]  # just the last key pressed
+                resp_LDT.rt = resp_LDT.clock.getTime()
+                # was this 'correct'?
+                if (resp_LDT.keys == str(corr_ans)) or (resp_LDT.keys == corr_ans):
+                    resp_LDT.corr = 1
+                else:
+                    resp_LDT.corr = 0
+                # a response ends the routine
+                continueRoutine = False
+        
+        
+        # *key_reminder_4* updates
+        if t >= 0.06 and key_reminder_4.status == NOT_STARTED:
+            # keep track of start time/frame for later
+            key_reminder_4.tStart = t
+            key_reminder_4.frameNStart = frameN  # exact frame index
+            key_reminder_4.setAutoDraw(True)
+        frameRemains = 0.06 + 2- win.monitorFramePeriod * 0.75  # most of one frame period left
+        if key_reminder_4.status == STARTED and t >= frameRemains:
+            key_reminder_4.setAutoDraw(False)
+        
+        # check for quit (typically the Esc key)
+        if endExpNow or event.getKeys(keyList=["escape"]):
+            core.quit()
+        
+        # check if all components have finished
+        if not continueRoutine:  # a component has requested a forced-end of Routine
+            break
+        continueRoutine = False  # will revert to True if at least one component still running
+        for thisComponent in LDT_trialComponents:
+            if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
+                continueRoutine = True
+                break  # at least one component has not yet finished
+        
+        # refresh the screen
+        if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
+            win.flip()
+    
+    # -------Ending Routine "LDT_trial"-------
+    for thisComponent in LDT_trialComponents:
+        if hasattr(thisComponent, "setAutoDraw"):
+            thisComponent.setAutoDraw(False)
+    # check responses
+    if resp_LDT.keys in ['', [], None]:  # No response was made
+        resp_LDT.keys=None
+        # was no response the correct answer?!
+        if str(corr_ans).lower() == 'none':
+           resp_LDT.corr = 1;  # correct non-response
+        else:
+           resp_LDT.corr = 0;  # failed to respond (incorrectly)
+    # store data for LDT_loop (TrialHandler)
+    LDT_loop.addData('resp_LDT.keys',resp_LDT.keys)
+    LDT_loop.addData('resp_LDT.corr', resp_LDT.corr)
+    if resp_LDT.keys != None:  # we had a response
+        LDT_loop.addData('resp_LDT.rt', resp_LDT.rt)
+    thisExp.addData('task', "LDT")
+    thisExp.addData('keypress', resp_LDT.keys)
+    thisExp.addData('RT', resp_LDT.rt)
+    thisExp.addData('corr', resp_LDT.corr)
+    thisExp.nextEntry()
+    
+# completed 1 repeats of 'LDT_loop'
+
 
 # ------Prepare to start Routine "instr_AMP"-------
 t = 0
@@ -1603,708 +2293,6 @@ for thisAMP_trial in AMP_trials:
 # completed 1 repeats of 'AMP_trials'
 
 
-# ------Prepare to start Routine "instr_LDT"-------
-t = 0
-instr_LDTClock.reset()  # clock
-frameN = -1
-continueRoutine = True
-# update component parameters for each repeat
-key_resp_LDT_instr = event.BuilderKeyResponse()
-
-# keep track of which components have finished
-instr_LDTComponents = [instr_LDT1, instr_LDT2, instr_LDT3, instr_LDT4, instr_LDT5, instr_LDT6, image_3, keyboard_reminder_LDT, instr_LDT7, instr_LT8, instr_LDT9_, key_resp_LDT_instr]
-for thisComponent in instr_LDTComponents:
-    if hasattr(thisComponent, 'status'):
-        thisComponent.status = NOT_STARTED
-
-# -------Start Routine "instr_LDT"-------
-while continueRoutine:
-    # get current time
-    t = instr_LDTClock.getTime()
-    frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
-    # update/draw components on each frame
-    
-    # *instr_LDT1* updates
-    if t >= 0.0 and instr_LDT1.status == NOT_STARTED:
-        # keep track of start time/frame for later
-        instr_LDT1.tStart = t
-        instr_LDT1.frameNStart = frameN  # exact frame index
-        instr_LDT1.setAutoDraw(True)
-    frameRemains = 0.0 + 6- win.monitorFramePeriod * 0.75  # most of one frame period left
-    if instr_LDT1.status == STARTED and t >= frameRemains:
-        instr_LDT1.setAutoDraw(False)
-    
-    # *instr_LDT2* updates
-    if t >= 6 and instr_LDT2.status == NOT_STARTED:
-        # keep track of start time/frame for later
-        instr_LDT2.tStart = t
-        instr_LDT2.frameNStart = frameN  # exact frame index
-        instr_LDT2.setAutoDraw(True)
-    frameRemains = 6 + 6- win.monitorFramePeriod * 0.75  # most of one frame period left
-    if instr_LDT2.status == STARTED and t >= frameRemains:
-        instr_LDT2.setAutoDraw(False)
-    
-    # *instr_LDT3* updates
-    if t >= 12 and instr_LDT3.status == NOT_STARTED:
-        # keep track of start time/frame for later
-        instr_LDT3.tStart = t
-        instr_LDT3.frameNStart = frameN  # exact frame index
-        instr_LDT3.setAutoDraw(True)
-    frameRemains = 12 + 8- win.monitorFramePeriod * 0.75  # most of one frame period left
-    if instr_LDT3.status == STARTED and t >= frameRemains:
-        instr_LDT3.setAutoDraw(False)
-    
-    # *instr_LDT4* updates
-    if t >= 20 and instr_LDT4.status == NOT_STARTED:
-        # keep track of start time/frame for later
-        instr_LDT4.tStart = t
-        instr_LDT4.frameNStart = frameN  # exact frame index
-        instr_LDT4.setAutoDraw(True)
-    frameRemains = 20 + 6- win.monitorFramePeriod * 0.75  # most of one frame period left
-    if instr_LDT4.status == STARTED and t >= frameRemains:
-        instr_LDT4.setAutoDraw(False)
-    
-    # *instr_LDT5* updates
-    if t >= 26 and instr_LDT5.status == NOT_STARTED:
-        # keep track of start time/frame for later
-        instr_LDT5.tStart = t
-        instr_LDT5.frameNStart = frameN  # exact frame index
-        instr_LDT5.setAutoDraw(True)
-    frameRemains = 26 + 6- win.monitorFramePeriod * 0.75  # most of one frame period left
-    if instr_LDT5.status == STARTED and t >= frameRemains:
-        instr_LDT5.setAutoDraw(False)
-    
-    # *instr_LDT6* updates
-    if t >= 32 and instr_LDT6.status == NOT_STARTED:
-        # keep track of start time/frame for later
-        instr_LDT6.tStart = t
-        instr_LDT6.frameNStart = frameN  # exact frame index
-        instr_LDT6.setAutoDraw(True)
-    frameRemains = 32 + 6- win.monitorFramePeriod * 0.75  # most of one frame period left
-    if instr_LDT6.status == STARTED and t >= frameRemains:
-        instr_LDT6.setAutoDraw(False)
-    
-    # *image_3* updates
-    if t >= 38 and image_3.status == NOT_STARTED:
-        # keep track of start time/frame for later
-        image_3.tStart = t
-        image_3.frameNStart = frameN  # exact frame index
-        image_3.setAutoDraw(True)
-    frameRemains = 38 + 4- win.monitorFramePeriod * 0.75  # most of one frame period left
-    if image_3.status == STARTED and t >= frameRemains:
-        image_3.setAutoDraw(False)
-    
-    # *keyboard_reminder_LDT* updates
-    if t >= 42 and keyboard_reminder_LDT.status == NOT_STARTED:
-        # keep track of start time/frame for later
-        keyboard_reminder_LDT.tStart = t
-        keyboard_reminder_LDT.frameNStart = frameN  # exact frame index
-        keyboard_reminder_LDT.setAutoDraw(True)
-    frameRemains = 42 + 4- win.monitorFramePeriod * 0.75  # most of one frame period left
-    if keyboard_reminder_LDT.status == STARTED and t >= frameRemains:
-        keyboard_reminder_LDT.setAutoDraw(False)
-    
-    # *instr_LDT7* updates
-    if t >= 46 and instr_LDT7.status == NOT_STARTED:
-        # keep track of start time/frame for later
-        instr_LDT7.tStart = t
-        instr_LDT7.frameNStart = frameN  # exact frame index
-        instr_LDT7.setAutoDraw(True)
-    frameRemains = 46 + 6- win.monitorFramePeriod * 0.75  # most of one frame period left
-    if instr_LDT7.status == STARTED and t >= frameRemains:
-        instr_LDT7.setAutoDraw(False)
-    
-    # *instr_LT8* updates
-    if t >= 52 and instr_LT8.status == NOT_STARTED:
-        # keep track of start time/frame for later
-        instr_LT8.tStart = t
-        instr_LT8.frameNStart = frameN  # exact frame index
-        instr_LT8.setAutoDraw(True)
-    frameRemains = 52 + 4- win.monitorFramePeriod * 0.75  # most of one frame period left
-    if instr_LT8.status == STARTED and t >= frameRemains:
-        instr_LT8.setAutoDraw(False)
-    
-    # *instr_LDT9_* updates
-    if t >= 56 and instr_LDT9_.status == NOT_STARTED:
-        # keep track of start time/frame for later
-        instr_LDT9_.tStart = t
-        instr_LDT9_.frameNStart = frameN  # exact frame index
-        instr_LDT9_.setAutoDraw(True)
-    
-    # *key_resp_LDT_instr* updates
-    if t >= 56 and key_resp_LDT_instr.status == NOT_STARTED:
-        # keep track of start time/frame for later
-        key_resp_LDT_instr.tStart = t
-        key_resp_LDT_instr.frameNStart = frameN  # exact frame index
-        key_resp_LDT_instr.status = STARTED
-        # keyboard checking is just starting
-        win.callOnFlip(key_resp_LDT_instr.clock.reset)  # t=0 on next screen flip
-        event.clearEvents(eventType='keyboard')
-    if key_resp_LDT_instr.status == STARTED:
-        theseKeys = event.getKeys(keyList=['right'])
-        
-        # check for quit:
-        if "escape" in theseKeys:
-            endExpNow = True
-        if len(theseKeys) > 0:  # at least one key was pressed
-            key_resp_LDT_instr.keys = theseKeys[-1]  # just the last key pressed
-            key_resp_LDT_instr.rt = key_resp_LDT_instr.clock.getTime()
-            # a response ends the routine
-            continueRoutine = False
-    keys = event.getKeys()
-    if 'j' in keys:
-            continueRoutine = False 
-    
-    # check for quit (typically the Esc key)
-    if endExpNow or event.getKeys(keyList=["escape"]):
-        core.quit()
-    
-    # check if all components have finished
-    if not continueRoutine:  # a component has requested a forced-end of Routine
-        break
-    continueRoutine = False  # will revert to True if at least one component still running
-    for thisComponent in instr_LDTComponents:
-        if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
-            continueRoutine = True
-            break  # at least one component has not yet finished
-    
-    # refresh the screen
-    if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
-        win.flip()
-
-# -------Ending Routine "instr_LDT"-------
-for thisComponent in instr_LDTComponents:
-    if hasattr(thisComponent, "setAutoDraw"):
-        thisComponent.setAutoDraw(False)
-# check responses
-if key_resp_LDT_instr.keys in ['', [], None]:  # No response was made
-    key_resp_LDT_instr.keys=None
-thisExp.addData('key_resp_LDT_instr.keys',key_resp_LDT_instr.keys)
-if key_resp_LDT_instr.keys != None:  # we had a response
-    thisExp.addData('key_resp_LDT_instr.rt', key_resp_LDT_instr.rt)
-thisExp.nextEntry()
-
-# the Routine "instr_LDT" was not non-slip safe, so reset the non-slip timer
-routineTimer.reset()
-
-# set up handler to look after randomisation of conditions etc
-LDT_prac_loop = data.TrialHandler(nReps=1, method='random', 
-    extraInfo=expInfo, originPath=-1,
-    trialList=data.importConditions('condition_files/ldt_testrun.csv'),
-    seed=None, name='LDT_prac_loop')
-thisExp.addLoop(LDT_prac_loop)  # add the loop to the experiment
-thisLDT_prac_loop = LDT_prac_loop.trialList[0]  # so we can initialise stimuli with some values
-# abbreviate parameter names if possible (e.g. rgb = thisLDT_prac_loop.rgb)
-if thisLDT_prac_loop != None:
-    for paramName in thisLDT_prac_loop:
-        exec('{} = thisLDT_prac_loop[paramName]'.format(paramName))
-
-for thisLDT_prac_loop in LDT_prac_loop:
-    currentLoop = LDT_prac_loop
-    # abbreviate parameter names if possible (e.g. rgb = thisLDT_prac_loop.rgb)
-    if thisLDT_prac_loop != None:
-        for paramName in thisLDT_prac_loop:
-            exec('{} = thisLDT_prac_loop[paramName]'.format(paramName))
-    
-    # ------Prepare to start Routine "LDT_fix_prac"-------
-    t = 0
-    LDT_fix_pracClock.reset()  # clock
-    frameN = -1
-    continueRoutine = True
-    # update component parameters for each repeat
-    rand_duration = random.randint(100, 300)/1000
-    # keep track of which components have finished
-    LDT_fix_pracComponents = [LDT_fix_cross]
-    for thisComponent in LDT_fix_pracComponents:
-        if hasattr(thisComponent, 'status'):
-            thisComponent.status = NOT_STARTED
-    
-    # -------Start Routine "LDT_fix_prac"-------
-    while continueRoutine:
-        # get current time
-        t = LDT_fix_pracClock.getTime()
-        frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
-        # update/draw components on each frame
-        
-        # *LDT_fix_cross* updates
-        if t >= 0.0 and LDT_fix_cross.status == NOT_STARTED:
-            # keep track of start time/frame for later
-            LDT_fix_cross.tStart = t
-            LDT_fix_cross.frameNStart = frameN  # exact frame index
-            LDT_fix_cross.setAutoDraw(True)
-        frameRemains = 0.0 + rand_duration- win.monitorFramePeriod * 0.75  # most of one frame period left
-        if LDT_fix_cross.status == STARTED and t >= frameRemains:
-            LDT_fix_cross.setAutoDraw(False)
-        
-        
-        # check for quit (typically the Esc key)
-        if endExpNow or event.getKeys(keyList=["escape"]):
-            core.quit()
-        
-        # check if all components have finished
-        if not continueRoutine:  # a component has requested a forced-end of Routine
-            break
-        continueRoutine = False  # will revert to True if at least one component still running
-        for thisComponent in LDT_fix_pracComponents:
-            if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
-                continueRoutine = True
-                break  # at least one component has not yet finished
-        
-        # refresh the screen
-        if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
-            win.flip()
-    
-    # -------Ending Routine "LDT_fix_prac"-------
-    for thisComponent in LDT_fix_pracComponents:
-        if hasattr(thisComponent, "setAutoDraw"):
-            thisComponent.setAutoDraw(False)
-    
-    # the Routine "LDT_fix_prac" was not non-slip safe, so reset the non-slip timer
-    routineTimer.reset()
-    
-    # ------Prepare to start Routine "LDT_prac"-------
-    t = 0
-    LDT_pracClock.reset()  # clock
-    frameN = -1
-    continueRoutine = True
-    routineTimer.add(2.060000)
-    # update component parameters for each repeat
-    LDT_word_prac.setText(words)
-    LDT_mask_prac.setText(mask)
-    resp_LDT_prac = event.BuilderKeyResponse()
-    
-    # keep track of which components have finished
-    LDT_pracComponents = [LDT_word_prac, LDT_mask_prac, resp_LDT_prac, key_reminder_3]
-    for thisComponent in LDT_pracComponents:
-        if hasattr(thisComponent, 'status'):
-            thisComponent.status = NOT_STARTED
-    
-    # -------Start Routine "LDT_prac"-------
-    while continueRoutine and routineTimer.getTime() > 0:
-        # get current time
-        t = LDT_pracClock.getTime()
-        frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
-        # update/draw components on each frame
-        
-        # *LDT_word_prac* updates
-        if t >= 0 and LDT_word_prac.status == NOT_STARTED:
-            # keep track of start time/frame for later
-            LDT_word_prac.tStart = t
-            LDT_word_prac.frameNStart = frameN  # exact frame index
-            LDT_word_prac.setAutoDraw(True)
-        frameRemains = 0 + .06- win.monitorFramePeriod * 0.75  # most of one frame period left
-        if LDT_word_prac.status == STARTED and t >= frameRemains:
-            LDT_word_prac.setAutoDraw(False)
-        
-        # *LDT_mask_prac* updates
-        if t >= .06 and LDT_mask_prac.status == NOT_STARTED:
-            # keep track of start time/frame for later
-            LDT_mask_prac.tStart = t
-            LDT_mask_prac.frameNStart = frameN  # exact frame index
-            LDT_mask_prac.setAutoDraw(True)
-        frameRemains = .06 + 2- win.monitorFramePeriod * 0.75  # most of one frame period left
-        if LDT_mask_prac.status == STARTED and t >= frameRemains:
-            LDT_mask_prac.setAutoDraw(False)
-        
-        # *resp_LDT_prac* updates
-        if t >= .06 and resp_LDT_prac.status == NOT_STARTED:
-            # keep track of start time/frame for later
-            resp_LDT_prac.tStart = t
-            resp_LDT_prac.frameNStart = frameN  # exact frame index
-            resp_LDT_prac.status = STARTED
-            # keyboard checking is just starting
-            win.callOnFlip(resp_LDT_prac.clock.reset)  # t=0 on next screen flip
-            event.clearEvents(eventType='keyboard')
-        frameRemains = .06 + 2- win.monitorFramePeriod * 0.75  # most of one frame period left
-        if resp_LDT_prac.status == STARTED and t >= frameRemains:
-            resp_LDT_prac.status = FINISHED
-        if resp_LDT_prac.status == STARTED:
-            theseKeys = event.getKeys(keyList=['left', 'right'])
-            
-            # check for quit:
-            if "escape" in theseKeys:
-                endExpNow = True
-            if len(theseKeys) > 0:  # at least one key was pressed
-                resp_LDT_prac.keys = theseKeys[-1]  # just the last key pressed
-                resp_LDT_prac.rt = resp_LDT_prac.clock.getTime()
-                # was this 'correct'?
-                if (resp_LDT_prac.keys == str(corr_ans)) or (resp_LDT_prac.keys == corr_ans):
-                    resp_LDT_prac.corr = 1
-                else:
-                    resp_LDT_prac.corr = 0
-                # a response ends the routine
-                continueRoutine = False
-        
-        
-        # *key_reminder_3* updates
-        if t >= 0.06 and key_reminder_3.status == NOT_STARTED:
-            # keep track of start time/frame for later
-            key_reminder_3.tStart = t
-            key_reminder_3.frameNStart = frameN  # exact frame index
-            key_reminder_3.setAutoDraw(True)
-        frameRemains = 0.06 + 2- win.monitorFramePeriod * 0.75  # most of one frame period left
-        if key_reminder_3.status == STARTED and t >= frameRemains:
-            key_reminder_3.setAutoDraw(False)
-        
-        # check for quit (typically the Esc key)
-        if endExpNow or event.getKeys(keyList=["escape"]):
-            core.quit()
-        
-        # check if all components have finished
-        if not continueRoutine:  # a component has requested a forced-end of Routine
-            break
-        continueRoutine = False  # will revert to True if at least one component still running
-        for thisComponent in LDT_pracComponents:
-            if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
-                continueRoutine = True
-                break  # at least one component has not yet finished
-        
-        # refresh the screen
-        if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
-            win.flip()
-    
-    # -------Ending Routine "LDT_prac"-------
-    for thisComponent in LDT_pracComponents:
-        if hasattr(thisComponent, "setAutoDraw"):
-            thisComponent.setAutoDraw(False)
-    # check responses
-    if resp_LDT_prac.keys in ['', [], None]:  # No response was made
-        resp_LDT_prac.keys=None
-        # was no response the correct answer?!
-        if str(corr_ans).lower() == 'none':
-           resp_LDT_prac.corr = 1;  # correct non-response
-        else:
-           resp_LDT_prac.corr = 0;  # failed to respond (incorrectly)
-    # store data for LDT_prac_loop (TrialHandler)
-    LDT_prac_loop.addData('resp_LDT_prac.keys',resp_LDT_prac.keys)
-    LDT_prac_loop.addData('resp_LDT_prac.corr', resp_LDT_prac.corr)
-    if resp_LDT_prac.keys != None:  # we had a response
-        LDT_prac_loop.addData('resp_LDT_prac.rt', resp_LDT_prac.rt)
-    thisExp.addData('task', "LDT_prac")
-    thisExp.addData('keypress', resp_LDT_prac.keys)
-    thisExp.addData('RT', resp_LDT_prac.rt)
-    thisExp.addData('corr', resp_LDT_prac.corr)
-    thisExp.nextEntry()
-    
-# completed 1 repeats of 'LDT_prac_loop'
-
-
-# ------Prepare to start Routine "instr_LDT_2"-------
-t = 0
-instr_LDT_2Clock.reset()  # clock
-frameN = -1
-continueRoutine = True
-# update component parameters for each repeat
-resp_LDT_ready = event.BuilderKeyResponse()
-
-# keep track of which components have finished
-instr_LDT_2Components = [instr_LDT9, instr_LDT10, image_6, instr_LDT11, resp_LDT_ready]
-for thisComponent in instr_LDT_2Components:
-    if hasattr(thisComponent, 'status'):
-        thisComponent.status = NOT_STARTED
-
-# -------Start Routine "instr_LDT_2"-------
-while continueRoutine:
-    # get current time
-    t = instr_LDT_2Clock.getTime()
-    frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
-    # update/draw components on each frame
-    
-    # *instr_LDT9* updates
-    if t >= 0.0 and instr_LDT9.status == NOT_STARTED:
-        # keep track of start time/frame for later
-        instr_LDT9.tStart = t
-        instr_LDT9.frameNStart = frameN  # exact frame index
-        instr_LDT9.setAutoDraw(True)
-    frameRemains = 0.0 + 4- win.monitorFramePeriod * 0.75  # most of one frame period left
-    if instr_LDT9.status == STARTED and t >= frameRemains:
-        instr_LDT9.setAutoDraw(False)
-    
-    # *instr_LDT10* updates
-    if t >= 4 and instr_LDT10.status == NOT_STARTED:
-        # keep track of start time/frame for later
-        instr_LDT10.tStart = t
-        instr_LDT10.frameNStart = frameN  # exact frame index
-        instr_LDT10.setAutoDraw(True)
-    frameRemains = 4 + 6- win.monitorFramePeriod * 0.75  # most of one frame period left
-    if instr_LDT10.status == STARTED and t >= frameRemains:
-        instr_LDT10.setAutoDraw(False)
-    
-    # *image_6* updates
-    if t >= 10 and image_6.status == NOT_STARTED:
-        # keep track of start time/frame for later
-        image_6.tStart = t
-        image_6.frameNStart = frameN  # exact frame index
-        image_6.setAutoDraw(True)
-    frameRemains = 10 + 6- win.monitorFramePeriod * 0.75  # most of one frame period left
-    if image_6.status == STARTED and t >= frameRemains:
-        image_6.setAutoDraw(False)
-    
-    # *instr_LDT11* updates
-    if t >= 16 and instr_LDT11.status == NOT_STARTED:
-        # keep track of start time/frame for later
-        instr_LDT11.tStart = t
-        instr_LDT11.frameNStart = frameN  # exact frame index
-        instr_LDT11.setAutoDraw(True)
-    
-    # *resp_LDT_ready* updates
-    if t >= 16 and resp_LDT_ready.status == NOT_STARTED:
-        # keep track of start time/frame for later
-        resp_LDT_ready.tStart = t
-        resp_LDT_ready.frameNStart = frameN  # exact frame index
-        resp_LDT_ready.status = STARTED
-        # keyboard checking is just starting
-        win.callOnFlip(resp_LDT_ready.clock.reset)  # t=0 on next screen flip
-        event.clearEvents(eventType='keyboard')
-    if resp_LDT_ready.status == STARTED:
-        theseKeys = event.getKeys(keyList=['right'])
-        
-        # check for quit:
-        if "escape" in theseKeys:
-            endExpNow = True
-        if len(theseKeys) > 0:  # at least one key was pressed
-            resp_LDT_ready.keys = theseKeys[-1]  # just the last key pressed
-            resp_LDT_ready.rt = resp_LDT_ready.clock.getTime()
-            # a response ends the routine
-            continueRoutine = False
-    keys = event.getKeys()
-    if 'j' in keys:
-            continueRoutine = False 
-    
-    # check for quit (typically the Esc key)
-    if endExpNow or event.getKeys(keyList=["escape"]):
-        core.quit()
-    
-    # check if all components have finished
-    if not continueRoutine:  # a component has requested a forced-end of Routine
-        break
-    continueRoutine = False  # will revert to True if at least one component still running
-    for thisComponent in instr_LDT_2Components:
-        if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
-            continueRoutine = True
-            break  # at least one component has not yet finished
-    
-    # refresh the screen
-    if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
-        win.flip()
-
-# -------Ending Routine "instr_LDT_2"-------
-for thisComponent in instr_LDT_2Components:
-    if hasattr(thisComponent, "setAutoDraw"):
-        thisComponent.setAutoDraw(False)
-# check responses
-if resp_LDT_ready.keys in ['', [], None]:  # No response was made
-    resp_LDT_ready.keys=None
-thisExp.addData('resp_LDT_ready.keys',resp_LDT_ready.keys)
-if resp_LDT_ready.keys != None:  # we had a response
-    thisExp.addData('resp_LDT_ready.rt', resp_LDT_ready.rt)
-thisExp.nextEntry()
-
-# the Routine "instr_LDT_2" was not non-slip safe, so reset the non-slip timer
-routineTimer.reset()
-
-# set up handler to look after randomisation of conditions etc
-LDT_loop = data.TrialHandler(nReps=1, method='random', 
-    extraInfo=expInfo, originPath=-1,
-    trialList=data.importConditions('condition_files/LDT_conditions.csv', selection='0:30'),
-    seed=None, name='LDT_loop')
-thisExp.addLoop(LDT_loop)  # add the loop to the experiment
-thisLDT_loop = LDT_loop.trialList[0]  # so we can initialise stimuli with some values
-# abbreviate parameter names if possible (e.g. rgb = thisLDT_loop.rgb)
-if thisLDT_loop != None:
-    for paramName in thisLDT_loop:
-        exec('{} = thisLDT_loop[paramName]'.format(paramName))
-
-for thisLDT_loop in LDT_loop:
-    currentLoop = LDT_loop
-    # abbreviate parameter names if possible (e.g. rgb = thisLDT_loop.rgb)
-    if thisLDT_loop != None:
-        for paramName in thisLDT_loop:
-            exec('{} = thisLDT_loop[paramName]'.format(paramName))
-    
-    # ------Prepare to start Routine "LDT_fix"-------
-    t = 0
-    LDT_fixClock.reset()  # clock
-    frameN = -1
-    continueRoutine = True
-    # update component parameters for each repeat
-    rand_duration = random.randint(100, 300)/1000
-    # keep track of which components have finished
-    LDT_fixComponents = [LDT_fix_cross_2]
-    for thisComponent in LDT_fixComponents:
-        if hasattr(thisComponent, 'status'):
-            thisComponent.status = NOT_STARTED
-    
-    # -------Start Routine "LDT_fix"-------
-    while continueRoutine:
-        # get current time
-        t = LDT_fixClock.getTime()
-        frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
-        # update/draw components on each frame
-        
-        # *LDT_fix_cross_2* updates
-        if t >= 0.0 and LDT_fix_cross_2.status == NOT_STARTED:
-            # keep track of start time/frame for later
-            LDT_fix_cross_2.tStart = t
-            LDT_fix_cross_2.frameNStart = frameN  # exact frame index
-            LDT_fix_cross_2.setAutoDraw(True)
-        frameRemains = 0.0 + rand_duration- win.monitorFramePeriod * 0.75  # most of one frame period left
-        if LDT_fix_cross_2.status == STARTED and t >= frameRemains:
-            LDT_fix_cross_2.setAutoDraw(False)
-        
-        
-        # check for quit (typically the Esc key)
-        if endExpNow or event.getKeys(keyList=["escape"]):
-            core.quit()
-        
-        # check if all components have finished
-        if not continueRoutine:  # a component has requested a forced-end of Routine
-            break
-        continueRoutine = False  # will revert to True if at least one component still running
-        for thisComponent in LDT_fixComponents:
-            if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
-                continueRoutine = True
-                break  # at least one component has not yet finished
-        
-        # refresh the screen
-        if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
-            win.flip()
-    
-    # -------Ending Routine "LDT_fix"-------
-    for thisComponent in LDT_fixComponents:
-        if hasattr(thisComponent, "setAutoDraw"):
-            thisComponent.setAutoDraw(False)
-    
-    # the Routine "LDT_fix" was not non-slip safe, so reset the non-slip timer
-    routineTimer.reset()
-    
-    # ------Prepare to start Routine "LDT_trial"-------
-    t = 0
-    LDT_trialClock.reset()  # clock
-    frameN = -1
-    continueRoutine = True
-    routineTimer.add(2.060000)
-    # update component parameters for each repeat
-    LDT_word_2.setText(words)
-    LDT_mask_2.setText(mask)
-    resp_LDT = event.BuilderKeyResponse()
-    
-    # keep track of which components have finished
-    LDT_trialComponents = [LDT_word_2, LDT_mask_2, resp_LDT, key_reminder_4]
-    for thisComponent in LDT_trialComponents:
-        if hasattr(thisComponent, 'status'):
-            thisComponent.status = NOT_STARTED
-    
-    # -------Start Routine "LDT_trial"-------
-    while continueRoutine and routineTimer.getTime() > 0:
-        # get current time
-        t = LDT_trialClock.getTime()
-        frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
-        # update/draw components on each frame
-        
-        # *LDT_word_2* updates
-        if t >= 0 and LDT_word_2.status == NOT_STARTED:
-            # keep track of start time/frame for later
-            LDT_word_2.tStart = t
-            LDT_word_2.frameNStart = frameN  # exact frame index
-            LDT_word_2.setAutoDraw(True)
-        frameRemains = 0 + .06- win.monitorFramePeriod * 0.75  # most of one frame period left
-        if LDT_word_2.status == STARTED and t >= frameRemains:
-            LDT_word_2.setAutoDraw(False)
-        
-        # *LDT_mask_2* updates
-        if t >= .06 and LDT_mask_2.status == NOT_STARTED:
-            # keep track of start time/frame for later
-            LDT_mask_2.tStart = t
-            LDT_mask_2.frameNStart = frameN  # exact frame index
-            LDT_mask_2.setAutoDraw(True)
-        frameRemains = .06 + 2- win.monitorFramePeriod * 0.75  # most of one frame period left
-        if LDT_mask_2.status == STARTED and t >= frameRemains:
-            LDT_mask_2.setAutoDraw(False)
-        
-        # *resp_LDT* updates
-        if t >= .06 and resp_LDT.status == NOT_STARTED:
-            # keep track of start time/frame for later
-            resp_LDT.tStart = t
-            resp_LDT.frameNStart = frameN  # exact frame index
-            resp_LDT.status = STARTED
-            # keyboard checking is just starting
-            win.callOnFlip(resp_LDT.clock.reset)  # t=0 on next screen flip
-            event.clearEvents(eventType='keyboard')
-        frameRemains = .06 + 2- win.monitorFramePeriod * 0.75  # most of one frame period left
-        if resp_LDT.status == STARTED and t >= frameRemains:
-            resp_LDT.status = FINISHED
-        if resp_LDT.status == STARTED:
-            theseKeys = event.getKeys(keyList=['left', 'right'])
-            
-            # check for quit:
-            if "escape" in theseKeys:
-                endExpNow = True
-            if len(theseKeys) > 0:  # at least one key was pressed
-                resp_LDT.keys = theseKeys[-1]  # just the last key pressed
-                resp_LDT.rt = resp_LDT.clock.getTime()
-                # was this 'correct'?
-                if (resp_LDT.keys == str(corr_ans)) or (resp_LDT.keys == corr_ans):
-                    resp_LDT.corr = 1
-                else:
-                    resp_LDT.corr = 0
-                # a response ends the routine
-                continueRoutine = False
-        
-        
-        # *key_reminder_4* updates
-        if t >= 0.06 and key_reminder_4.status == NOT_STARTED:
-            # keep track of start time/frame for later
-            key_reminder_4.tStart = t
-            key_reminder_4.frameNStart = frameN  # exact frame index
-            key_reminder_4.setAutoDraw(True)
-        frameRemains = 0.06 + 2- win.monitorFramePeriod * 0.75  # most of one frame period left
-        if key_reminder_4.status == STARTED and t >= frameRemains:
-            key_reminder_4.setAutoDraw(False)
-        
-        # check for quit (typically the Esc key)
-        if endExpNow or event.getKeys(keyList=["escape"]):
-            core.quit()
-        
-        # check if all components have finished
-        if not continueRoutine:  # a component has requested a forced-end of Routine
-            break
-        continueRoutine = False  # will revert to True if at least one component still running
-        for thisComponent in LDT_trialComponents:
-            if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
-                continueRoutine = True
-                break  # at least one component has not yet finished
-        
-        # refresh the screen
-        if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
-            win.flip()
-    
-    # -------Ending Routine "LDT_trial"-------
-    for thisComponent in LDT_trialComponents:
-        if hasattr(thisComponent, "setAutoDraw"):
-            thisComponent.setAutoDraw(False)
-    # check responses
-    if resp_LDT.keys in ['', [], None]:  # No response was made
-        resp_LDT.keys=None
-        # was no response the correct answer?!
-        if str(corr_ans).lower() == 'none':
-           resp_LDT.corr = 1;  # correct non-response
-        else:
-           resp_LDT.corr = 0;  # failed to respond (incorrectly)
-    # store data for LDT_loop (TrialHandler)
-    LDT_loop.addData('resp_LDT.keys',resp_LDT.keys)
-    LDT_loop.addData('resp_LDT.corr', resp_LDT.corr)
-    if resp_LDT.keys != None:  # we had a response
-        LDT_loop.addData('resp_LDT.rt', resp_LDT.rt)
-    thisExp.addData('task', "LDT")
-    thisExp.addData('keypress', resp_LDT.keys)
-    thisExp.addData('RT', resp_LDT.rt)
-    thisExp.addData('corr', resp_LDT.corr)
-    thisExp.nextEntry()
-    
-# completed 1 repeats of 'LDT_loop'
-
-
 # ------Prepare to start Routine "instr_tweets"-------
 t = 0
 instr_tweetsClock.reset()  # clock
@@ -2550,13 +2538,13 @@ for thisTweet_loop in tweet_loop:
 
 
 
+
+
+
+
+
+
 os.remove("AMP_conditions.csv")
-
-
-
-
-
-
 
 
 
