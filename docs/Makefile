@@ -4,7 +4,7 @@
 # You can set these variables from the command line.
 SPHINXOPTS    =
 SPHINXBUILD   = sphinx-build
-SPHINXPROJ    = cogperc_fmri_1
+SPHINXPROJ    = mf_amp
 SOURCEDIR     = source
 BUILDDIR      = build
 

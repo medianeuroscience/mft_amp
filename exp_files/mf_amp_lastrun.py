@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy3 Experiment Builder (v3.0.3),
-    on Mon Feb 18 19:59:25 2019
+    on Wed Feb 20 16:12:45 2019
 If you publish work using this script please cite the PsychoPy publications:
     Peirce, JW (2007) PsychoPy - Psychophysics software in Python.
         Journal of Neuroscience Methods, 162(1-2), 8-13.
@@ -305,17 +305,14 @@ random.shuffle(LDT_words)
 
 # Generating a random selection of two words for the AMP practice.
 
-AMP_prac_selection = np.random.choice(10, 2)
+AMP_prac_selection = np.random.choice(50, 10, replace=False)
 AMP_prac_selection.tolist()
 
 # Generating a random selection of three words for the LDT practice.
 
-LDT_prac_selection = np.random.choice(10, 3)
+LDT_prac_selection = np.random.choice(300, 25, replace=False)
 LDT_prac_selection.tolist()
-
-# Initialize components for Routine "AMP_nonword_prac"
-AMP_nonword_pracClock = core.Clock()
-AMP_nonwordstim_2 = visual.TextStim(win=win, name='AMP_nonwordstim_2',
+AMP_nonwordstim_3 = visual.TextStim(win=win, name='AMP_nonwordstim_3',
     text='default text',
     font='Verdana',
     pos=(0, 0), height=0.05, wrapWidth=None, ori=0, 
@@ -323,13 +320,23 @@ AMP_nonwordstim_2 = visual.TextStim(win=win, name='AMP_nonwordstim_2',
     languageStyle='LTR',
     depth=0.0);
 
+# Initialize components for Routine "AMP_nonword_prac"
+AMP_nonword_pracClock = core.Clock()
+
 AMP_maskstim_2 = visual.TextStim(win=win, name='AMP_maskstim_2',
     text='default text',
     font='Verdana',
     pos=(0, 0), height=0.05, wrapWidth=None, ori=0, 
     color='#212121', colorSpace='rgb', opacity=1, 
     languageStyle='LTR',
-    depth=-3.0);
+    depth=-2.0);
+key_reminder = visual.ImageStim(
+    win=win, name='key_reminder',units='deg', 
+    image='images/layout_reminder_AMP.png', mask=None,
+    ori=0, pos=(0, -6), size=(20, 10),
+    color=[1,1,1], colorSpace='rgb', opacity=1,
+    flipHoriz=False, flipVert=False,
+    texRes=128, interpolate=True, depth=-3.0)
 
 # Initialize components for Routine "instr_AMP_2"
 instr_AMP_2Clock = core.Clock()
@@ -391,10 +398,7 @@ gap_1 = visual.TextStim(win=win, name='gap_1',
     languageStyle='LTR',
     depth=-1.0);
 
-
-# Initialize components for Routine "AMP_nonword"
-AMP_nonwordClock = core.Clock()
-AMP_nonwordstim = visual.TextStim(win=win, name='AMP_nonwordstim',
+AMP_nonwordstim_2 = visual.TextStim(win=win, name='AMP_nonwordstim_2',
     text='default text',
     font='Verdana',
     pos=(0, 0), height=0.05, wrapWidth=None, ori=0, 
@@ -402,13 +406,23 @@ AMP_nonwordstim = visual.TextStim(win=win, name='AMP_nonwordstim',
     languageStyle='LTR',
     depth=0.0);
 
+# Initialize components for Routine "AMP_nonword"
+AMP_nonwordClock = core.Clock()
+
 AMP_maskstim = visual.TextStim(win=win, name='AMP_maskstim',
     text='default text',
     font='Arial',
     pos=(0, 0), height=0.05, wrapWidth=None, ori=0, 
     color='#212121', colorSpace='rgb', opacity=1, 
     languageStyle='LTR',
-    depth=-3.0);
+    depth=-2.0);
+key_reminder_2 = visual.ImageStim(
+    win=win, name='key_reminder_2',units='deg', 
+    image='images/layout_reminder_AMP.png', mask=None,
+    ori=0, pos=(0, -6), size=(20, 10),
+    color=[1,1,1], colorSpace='rgb', opacity=1,
+    flipHoriz=False, flipVert=False,
+    texRes=128, interpolate=True, depth=-3.0)
 
 # Initialize components for Routine "instr_LDT"
 instr_LDTClock = core.Clock()
@@ -512,6 +526,13 @@ LDT_mask_prac = visual.TextStim(win=win, name='LDT_mask_prac',
     languageStyle='LTR',
     depth=-1.0);
 
+key_reminder_3 = visual.ImageStim(
+    win=win, name='key_reminder_3',units='deg', 
+    image='images/layout_reminder_LDT.png', mask=None,
+    ori=0, pos=(0, -6), size=(20, 10),
+    color=[1,1,1], colorSpace='rgb', opacity=1,
+    flipHoriz=False, flipVert=False,
+    texRes=128, interpolate=True, depth=-3.0)
 
 # Initialize components for Routine "instr_LDT_2"
 instr_LDT_2Clock = core.Clock()
@@ -573,6 +594,13 @@ LDT_mask_2 = visual.TextStim(win=win, name='LDT_mask_2',
     languageStyle='LTR',
     depth=-1.0);
 
+key_reminder_4 = visual.ImageStim(
+    win=win, name='key_reminder_4',units='deg', 
+    image='images/layout_reminder_LDT.png', mask=None,
+    ori=0, pos=(0, -6), size=(20, 10),
+    color=[1,1,1], colorSpace='rgb', opacity=1,
+    flipHoriz=False, flipVert=False,
+    texRes=128, interpolate=True, depth=-3.0)
 
 # Initialize components for Routine "instr_tweets"
 instr_tweetsClock = core.Clock()
@@ -986,12 +1014,13 @@ for thisAMP_prac_loop in AMP_prac_loop:
     AMP_prac_wordClock.reset()  # clock
     frameN = -1
     continueRoutine = True
-    routineTimer.add(0.875000)
+    routineTimer.add(0.525000)
     # update component parameters for each repeat
     AMP_wordstim_2.setText(words)
     
+    AMP_nonwordstim_3.setText(nonwords)
     # keep track of which components have finished
-    AMP_prac_wordComponents = [AMP_wordstim_2, gap]
+    AMP_prac_wordComponents = [AMP_wordstim_2, gap, AMP_nonwordstim_3]
     for thisComponent in AMP_prac_wordComponents:
         if hasattr(thisComponent, 'status'):
             thisComponent.status = NOT_STARTED
@@ -1009,20 +1038,30 @@ for thisAMP_prac_loop in AMP_prac_loop:
             AMP_wordstim_2.tStart = t
             AMP_wordstim_2.frameNStart = frameN  # exact frame index
             AMP_wordstim_2.setAutoDraw(True)
-        frameRemains = 0 + .75- win.monitorFramePeriod * 0.75  # most of one frame period left
+        frameRemains = 0 + .1- win.monitorFramePeriod * 0.75  # most of one frame period left
         if AMP_wordstim_2.status == STARTED and t >= frameRemains:
             AMP_wordstim_2.setAutoDraw(False)
         
         # *gap* updates
-        if t >= 0.75 and gap.status == NOT_STARTED:
+        if t >= 0.1 and gap.status == NOT_STARTED:
             # keep track of start time/frame for later
             gap.tStart = t
             gap.frameNStart = frameN  # exact frame index
             gap.setAutoDraw(True)
-        frameRemains = 0.75 + .125- win.monitorFramePeriod * 0.75  # most of one frame period left
+        frameRemains = 0.1 + .125- win.monitorFramePeriod * 0.75  # most of one frame period left
         if gap.status == STARTED and t >= frameRemains:
             gap.setAutoDraw(False)
         
+        
+        # *AMP_nonwordstim_3* updates
+        if t >= .225 and AMP_nonwordstim_3.status == NOT_STARTED:
+            # keep track of start time/frame for later
+            AMP_nonwordstim_3.tStart = t
+            AMP_nonwordstim_3.frameNStart = frameN  # exact frame index
+            AMP_nonwordstim_3.setAutoDraw(True)
+        frameRemains = .225 + .300- win.monitorFramePeriod * 0.75  # most of one frame period left
+        if AMP_nonwordstim_3.status == STARTED and t >= frameRemains:
+            AMP_nonwordstim_3.setAutoDraw(False)
         
         # check for quit (typically the Esc key)
         if endExpNow or event.getKeys(keyList=["escape"]):
@@ -1052,37 +1091,25 @@ for thisAMP_prac_loop in AMP_prac_loop:
     AMP_nonword_pracClock.reset()  # clock
     frameN = -1
     continueRoutine = True
-    routineTimer.add(4.000000)
     # update component parameters for each repeat
-    AMP_nonwordstim_2.setText(nonwords)
     resp_AMP_prac = event.BuilderKeyResponse()
     
     AMP_maskstim_2.setText(masks)
     # keep track of which components have finished
-    AMP_nonword_pracComponents = [AMP_nonwordstim_2, resp_AMP_prac, AMP_maskstim_2]
+    AMP_nonword_pracComponents = [resp_AMP_prac, AMP_maskstim_2, key_reminder]
     for thisComponent in AMP_nonword_pracComponents:
         if hasattr(thisComponent, 'status'):
             thisComponent.status = NOT_STARTED
     
     # -------Start Routine "AMP_nonword_prac"-------
-    while continueRoutine and routineTimer.getTime() > 0:
+    while continueRoutine:
         # get current time
         t = AMP_nonword_pracClock.getTime()
         frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
         # update/draw components on each frame
         
-        # *AMP_nonwordstim_2* updates
-        if t >= 0.0 and AMP_nonwordstim_2.status == NOT_STARTED:
-            # keep track of start time/frame for later
-            AMP_nonwordstim_2.tStart = t
-            AMP_nonwordstim_2.frameNStart = frameN  # exact frame index
-            AMP_nonwordstim_2.setAutoDraw(True)
-        frameRemains = 0.0 + .75- win.monitorFramePeriod * 0.75  # most of one frame period left
-        if AMP_nonwordstim_2.status == STARTED and t >= frameRemains:
-            AMP_nonwordstim_2.setAutoDraw(False)
-        
         # *resp_AMP_prac* updates
-        if t >= .75 and resp_AMP_prac.status == NOT_STARTED:
+        if t >= 0 and resp_AMP_prac.status == NOT_STARTED:
             # keep track of start time/frame for later
             resp_AMP_prac.tStart = t
             resp_AMP_prac.frameNStart = frameN  # exact frame index
@@ -1090,9 +1117,6 @@ for thisAMP_prac_loop in AMP_prac_loop:
             # keyboard checking is just starting
             win.callOnFlip(resp_AMP_prac.clock.reset)  # t=0 on next screen flip
             event.clearEvents(eventType='keyboard')
-        frameRemains = .75 + 3.25- win.monitorFramePeriod * 0.75  # most of one frame period left
-        if resp_AMP_prac.status == STARTED and t >= frameRemains:
-            resp_AMP_prac.status = FINISHED
         if resp_AMP_prac.status == STARTED:
             theseKeys = event.getKeys(keyList=['left', 'right', 'escape', 'n'])
             
@@ -1113,14 +1137,18 @@ for thisAMP_prac_loop in AMP_prac_loop:
         
         
         # *AMP_maskstim_2* updates
-        if t >= 0.75 and AMP_maskstim_2.status == NOT_STARTED:
+        if t >= 0 and AMP_maskstim_2.status == NOT_STARTED:
             # keep track of start time/frame for later
             AMP_maskstim_2.tStart = t
             AMP_maskstim_2.frameNStart = frameN  # exact frame index
             AMP_maskstim_2.setAutoDraw(True)
-        frameRemains = 0.75 + 3.25- win.monitorFramePeriod * 0.75  # most of one frame period left
-        if AMP_maskstim_2.status == STARTED and t >= frameRemains:
-            AMP_maskstim_2.setAutoDraw(False)
+        
+        # *key_reminder* updates
+        if t >= 0 and key_reminder.status == NOT_STARTED:
+            # keep track of start time/frame for later
+            key_reminder.tStart = t
+            key_reminder.frameNStart = frameN  # exact frame index
+            key_reminder.setAutoDraw(True)
         
         # check for quit (typically the Esc key)
         if endExpNow or event.getKeys(keyList=["escape"]):
@@ -1157,6 +1185,8 @@ for thisAMP_prac_loop in AMP_prac_loop:
     if resp_AMP_prac.keys != None:  # we had a response
         AMP_prac_loop.addData('resp_AMP_prac.rt', resp_AMP_prac.rt)
     
+    # the Routine "AMP_nonword_prac" was not non-slip safe, so reset the non-slip timer
+    routineTimer.reset()
     thisExp.nextEntry()
     
 # completed 1 repeats of 'AMP_prac_loop'
@@ -1334,7 +1364,7 @@ for thisComponent in instr_AMP_3Components:
 
 
 # set up handler to look after randomisation of conditions etc
-AMP_trials = data.TrialHandler(nReps=1, method='random', 
+AMP_trials = data.TrialHandler(nReps=1, method='sequential', 
     extraInfo=expInfo, originPath=-1,
     trialList=data.importConditions('AMP_conditions.csv', selection='0:3'),
     seed=None, name='AMP_trials')
@@ -1357,12 +1387,13 @@ for thisAMP_trial in AMP_trials:
     AMP_wordClock.reset()  # clock
     frameN = -1
     continueRoutine = True
-    routineTimer.add(0.875000)
+    routineTimer.add(0.250000)
     # update component parameters for each repeat
     AMP_wordstim.setText(words)
     
+    AMP_nonwordstim_2.setText(nonwords)
     # keep track of which components have finished
-    AMP_wordComponents = [AMP_wordstim, gap_1]
+    AMP_wordComponents = [AMP_wordstim, gap_1, AMP_nonwordstim_2]
     for thisComponent in AMP_wordComponents:
         if hasattr(thisComponent, 'status'):
             thisComponent.status = NOT_STARTED
@@ -1380,20 +1411,30 @@ for thisAMP_trial in AMP_trials:
             AMP_wordstim.tStart = t
             AMP_wordstim.frameNStart = frameN  # exact frame index
             AMP_wordstim.setAutoDraw(True)
-        frameRemains = 0 + .75- win.monitorFramePeriod * 0.75  # most of one frame period left
+        frameRemains = 0 + .075- win.monitorFramePeriod * 0.75  # most of one frame period left
         if AMP_wordstim.status == STARTED and t >= frameRemains:
             AMP_wordstim.setAutoDraw(False)
         
         # *gap_1* updates
-        if t >= 0.75 and gap_1.status == NOT_STARTED:
+        if t >= 0.075 and gap_1.status == NOT_STARTED:
             # keep track of start time/frame for later
             gap_1.tStart = t
             gap_1.frameNStart = frameN  # exact frame index
             gap_1.setAutoDraw(True)
-        frameRemains = 0.75 + .125- win.monitorFramePeriod * 0.75  # most of one frame period left
+        frameRemains = 0.075 + .025- win.monitorFramePeriod * 0.75  # most of one frame period left
         if gap_1.status == STARTED and t >= frameRemains:
             gap_1.setAutoDraw(False)
         
+        
+        # *AMP_nonwordstim_2* updates
+        if t >= 0.1 and AMP_nonwordstim_2.status == NOT_STARTED:
+            # keep track of start time/frame for later
+            AMP_nonwordstim_2.tStart = t
+            AMP_nonwordstim_2.frameNStart = frameN  # exact frame index
+            AMP_nonwordstim_2.setAutoDraw(True)
+        frameRemains = 0.1 + .15- win.monitorFramePeriod * 0.75  # most of one frame period left
+        if AMP_nonwordstim_2.status == STARTED and t >= frameRemains:
+            AMP_nonwordstim_2.setAutoDraw(False)
         
         # check for quit (typically the Esc key)
         if endExpNow or event.getKeys(keyList=["escape"]):
@@ -1423,34 +1464,22 @@ for thisAMP_trial in AMP_trials:
     AMP_nonwordClock.reset()  # clock
     frameN = -1
     continueRoutine = True
-    routineTimer.add(4.000000)
     # update component parameters for each repeat
-    AMP_nonwordstim.setText(nonwords)
     resp_AMP = event.BuilderKeyResponse()
     
     AMP_maskstim.setText(masks)
     # keep track of which components have finished
-    AMP_nonwordComponents = [AMP_nonwordstim, resp_AMP, AMP_maskstim]
+    AMP_nonwordComponents = [resp_AMP, AMP_maskstim, key_reminder_2]
     for thisComponent in AMP_nonwordComponents:
         if hasattr(thisComponent, 'status'):
             thisComponent.status = NOT_STARTED
     
     # -------Start Routine "AMP_nonword"-------
-    while continueRoutine and routineTimer.getTime() > 0:
+    while continueRoutine:
         # get current time
         t = AMP_nonwordClock.getTime()
         frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
         # update/draw components on each frame
-        
-        # *AMP_nonwordstim* updates
-        if t >= 0.0 and AMP_nonwordstim.status == NOT_STARTED:
-            # keep track of start time/frame for later
-            AMP_nonwordstim.tStart = t
-            AMP_nonwordstim.frameNStart = frameN  # exact frame index
-            AMP_nonwordstim.setAutoDraw(True)
-        frameRemains = 0.0 + .75- win.monitorFramePeriod * 0.75  # most of one frame period left
-        if AMP_nonwordstim.status == STARTED and t >= frameRemains:
-            AMP_nonwordstim.setAutoDraw(False)
         
         # *resp_AMP* updates
         if t >= 0.0 and resp_AMP.status == NOT_STARTED:
@@ -1461,9 +1490,6 @@ for thisAMP_trial in AMP_trials:
             # keyboard checking is just starting
             win.callOnFlip(resp_AMP.clock.reset)  # t=0 on next screen flip
             event.clearEvents(eventType='keyboard')
-        frameRemains = 0.0 + 4- win.monitorFramePeriod * 0.75  # most of one frame period left
-        if resp_AMP.status == STARTED and t >= frameRemains:
-            resp_AMP.status = FINISHED
         if resp_AMP.status == STARTED:
             theseKeys = event.getKeys(keyList=['left', 'right', 'escape', 'n'])
             
@@ -1484,14 +1510,18 @@ for thisAMP_trial in AMP_trials:
         
         
         # *AMP_maskstim* updates
-        if t >= 0.75 and AMP_maskstim.status == NOT_STARTED:
+        if t >= 0 and AMP_maskstim.status == NOT_STARTED:
             # keep track of start time/frame for later
             AMP_maskstim.tStart = t
             AMP_maskstim.frameNStart = frameN  # exact frame index
             AMP_maskstim.setAutoDraw(True)
-        frameRemains = 0.75 + 3.25- win.monitorFramePeriod * 0.75  # most of one frame period left
-        if AMP_maskstim.status == STARTED and t >= frameRemains:
-            AMP_maskstim.setAutoDraw(False)
+        
+        # *key_reminder_2* updates
+        if t >= 0 and key_reminder_2.status == NOT_STARTED:
+            # keep track of start time/frame for later
+            key_reminder_2.tStart = t
+            key_reminder_2.frameNStart = frameN  # exact frame index
+            key_reminder_2.setAutoDraw(True)
         
         # check for quit (typically the Esc key)
         if endExpNow or event.getKeys(keyList=["escape"]):
@@ -1528,6 +1558,8 @@ for thisAMP_trial in AMP_trials:
     if resp_AMP.keys != None:  # we had a response
         AMP_trials.addData('resp_AMP.rt', resp_AMP.rt)
     
+    # the Routine "AMP_nonword" was not non-slip safe, so reset the non-slip timer
+    routineTimer.reset()
     thisExp.nextEntry()
     
 # completed 1 repeats of 'AMP_trials'
@@ -1708,7 +1740,7 @@ thisExp.nextEntry()
 routineTimer.reset()
 
 # set up handler to look after randomisation of conditions etc
-LDT_prac_loop = data.TrialHandler(nReps=1, method='fullRandom', 
+LDT_prac_loop = data.TrialHandler(nReps=1, method='random', 
     extraInfo=expInfo, originPath=-1,
     trialList=data.importConditions('words4exp.csv', selection=LDT_prac_selection),
     seed=None, name='LDT_prac_loop')
@@ -1732,7 +1764,7 @@ for thisLDT_prac_loop in LDT_prac_loop:
     frameN = -1
     continueRoutine = True
     # update component parameters for each repeat
-    rand_duration = random.randint(1000, 3000)/1000
+    rand_duration = random.randint(100, 300)/1000
     # keep track of which components have finished
     LDT_fix_pracComponents = [LDT_fix_cross]
     for thisComponent in LDT_fix_pracComponents:
@@ -1787,14 +1819,14 @@ for thisLDT_prac_loop in LDT_prac_loop:
     LDT_pracClock.reset()  # clock
     frameN = -1
     continueRoutine = True
-    routineTimer.add(2.400000)
+    routineTimer.add(2.060000)
     # update component parameters for each repeat
     LDT_word_prac.setText(word)
     LDT_mask_prac.setText(masks)
     resp_LDT_prac = event.BuilderKeyResponse()
     
     # keep track of which components have finished
-    LDT_pracComponents = [LDT_word_prac, LDT_mask_prac, resp_LDT_prac]
+    LDT_pracComponents = [LDT_word_prac, LDT_mask_prac, resp_LDT_prac, key_reminder_3]
     for thisComponent in LDT_pracComponents:
         if hasattr(thisComponent, 'status'):
             thisComponent.status = NOT_STARTED
@@ -1812,22 +1844,22 @@ for thisLDT_prac_loop in LDT_prac_loop:
             LDT_word_prac.tStart = t
             LDT_word_prac.frameNStart = frameN  # exact frame index
             LDT_word_prac.setAutoDraw(True)
-        frameRemains = 0 + .4- win.monitorFramePeriod * 0.75  # most of one frame period left
+        frameRemains = 0 + .06- win.monitorFramePeriod * 0.75  # most of one frame period left
         if LDT_word_prac.status == STARTED and t >= frameRemains:
             LDT_word_prac.setAutoDraw(False)
         
         # *LDT_mask_prac* updates
-        if t >= .4 and LDT_mask_prac.status == NOT_STARTED:
+        if t >= .06 and LDT_mask_prac.status == NOT_STARTED:
             # keep track of start time/frame for later
             LDT_mask_prac.tStart = t
             LDT_mask_prac.frameNStart = frameN  # exact frame index
             LDT_mask_prac.setAutoDraw(True)
-        frameRemains = .4 + 2- win.monitorFramePeriod * 0.75  # most of one frame period left
+        frameRemains = .06 + 2- win.monitorFramePeriod * 0.75  # most of one frame period left
         if LDT_mask_prac.status == STARTED and t >= frameRemains:
             LDT_mask_prac.setAutoDraw(False)
         
         # *resp_LDT_prac* updates
-        if t >= .4 and resp_LDT_prac.status == NOT_STARTED:
+        if t >= .06 and resp_LDT_prac.status == NOT_STARTED:
             # keep track of start time/frame for later
             resp_LDT_prac.tStart = t
             resp_LDT_prac.frameNStart = frameN  # exact frame index
@@ -1835,7 +1867,7 @@ for thisLDT_prac_loop in LDT_prac_loop:
             # keyboard checking is just starting
             win.callOnFlip(resp_LDT_prac.clock.reset)  # t=0 on next screen flip
             event.clearEvents(eventType='keyboard')
-        frameRemains = .4 + 2- win.monitorFramePeriod * 0.75  # most of one frame period left
+        frameRemains = .06 + 2- win.monitorFramePeriod * 0.75  # most of one frame period left
         if resp_LDT_prac.status == STARTED and t >= frameRemains:
             resp_LDT_prac.status = FINISHED
         if resp_LDT_prac.status == STARTED:
@@ -1855,6 +1887,16 @@ for thisLDT_prac_loop in LDT_prac_loop:
                 # a response ends the routine
                 continueRoutine = False
         
+        
+        # *key_reminder_3* updates
+        if t >= 0.06 and key_reminder_3.status == NOT_STARTED:
+            # keep track of start time/frame for later
+            key_reminder_3.tStart = t
+            key_reminder_3.frameNStart = frameN  # exact frame index
+            key_reminder_3.setAutoDraw(True)
+        frameRemains = 0.06 + 2- win.monitorFramePeriod * 0.75  # most of one frame period left
+        if key_reminder_3.status == STARTED and t >= frameRemains:
+            key_reminder_3.setAutoDraw(False)
         
         # check for quit (typically the Esc key)
         if endExpNow or event.getKeys(keyList=["escape"]):
@@ -2035,7 +2077,7 @@ for thisLDT_loop in LDT_loop:
     frameN = -1
     continueRoutine = True
     # update component parameters for each repeat
-    rand_duration = random.randint(1000, 3000)/1000
+    rand_duration = random.randint(100, 300)/1000
     # keep track of which components have finished
     LDT_fixComponents = [LDT_fix_cross_2]
     for thisComponent in LDT_fixComponents:
@@ -2090,14 +2132,14 @@ for thisLDT_loop in LDT_loop:
     LDT_trialClock.reset()  # clock
     frameN = -1
     continueRoutine = True
-    routineTimer.add(2.400000)
+    routineTimer.add(2.060000)
     # update component parameters for each repeat
     LDT_word_2.setText(word)
     LDT_mask_2.setText(masks)
     resp_LDT_2 = event.BuilderKeyResponse()
     
     # keep track of which components have finished
-    LDT_trialComponents = [LDT_word_2, LDT_mask_2, resp_LDT_2]
+    LDT_trialComponents = [LDT_word_2, LDT_mask_2, resp_LDT_2, key_reminder_4]
     for thisComponent in LDT_trialComponents:
         if hasattr(thisComponent, 'status'):
             thisComponent.status = NOT_STARTED
@@ -2115,22 +2157,22 @@ for thisLDT_loop in LDT_loop:
             LDT_word_2.tStart = t
             LDT_word_2.frameNStart = frameN  # exact frame index
             LDT_word_2.setAutoDraw(True)
-        frameRemains = 0 + .4- win.monitorFramePeriod * 0.75  # most of one frame period left
+        frameRemains = 0 + .06- win.monitorFramePeriod * 0.75  # most of one frame period left
         if LDT_word_2.status == STARTED and t >= frameRemains:
             LDT_word_2.setAutoDraw(False)
         
         # *LDT_mask_2* updates
-        if t >= .4 and LDT_mask_2.status == NOT_STARTED:
+        if t >= .06 and LDT_mask_2.status == NOT_STARTED:
             # keep track of start time/frame for later
             LDT_mask_2.tStart = t
             LDT_mask_2.frameNStart = frameN  # exact frame index
             LDT_mask_2.setAutoDraw(True)
-        frameRemains = .4 + 2- win.monitorFramePeriod * 0.75  # most of one frame period left
+        frameRemains = .06 + 2- win.monitorFramePeriod * 0.75  # most of one frame period left
         if LDT_mask_2.status == STARTED and t >= frameRemains:
             LDT_mask_2.setAutoDraw(False)
         
         # *resp_LDT_2* updates
-        if t >= .4 and resp_LDT_2.status == NOT_STARTED:
+        if t >= .06 and resp_LDT_2.status == NOT_STARTED:
             # keep track of start time/frame for later
             resp_LDT_2.tStart = t
             resp_LDT_2.frameNStart = frameN  # exact frame index
@@ -2138,7 +2180,7 @@ for thisLDT_loop in LDT_loop:
             # keyboard checking is just starting
             win.callOnFlip(resp_LDT_2.clock.reset)  # t=0 on next screen flip
             event.clearEvents(eventType='keyboard')
-        frameRemains = .4 + 2- win.monitorFramePeriod * 0.75  # most of one frame period left
+        frameRemains = .06 + 2- win.monitorFramePeriod * 0.75  # most of one frame period left
         if resp_LDT_2.status == STARTED and t >= frameRemains:
             resp_LDT_2.status = FINISHED
         if resp_LDT_2.status == STARTED:
@@ -2158,6 +2200,16 @@ for thisLDT_loop in LDT_loop:
                 # a response ends the routine
                 continueRoutine = False
         
+        
+        # *key_reminder_4* updates
+        if t >= 0.06 and key_reminder_4.status == NOT_STARTED:
+            # keep track of start time/frame for later
+            key_reminder_4.tStart = t
+            key_reminder_4.frameNStart = frameN  # exact frame index
+            key_reminder_4.setAutoDraw(True)
+        frameRemains = 0.06 + 2- win.monitorFramePeriod * 0.75  # most of one frame period left
+        if key_reminder_4.status == STARTED and t >= frameRemains:
+            key_reminder_4.setAutoDraw(False)
         
         # check for quit (typically the Esc key)
         if endExpNow or event.getKeys(keyList=["escape"]):
