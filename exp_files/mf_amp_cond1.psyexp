@@ -1,10 +1,10 @@
 <?xml version="1.0" ?>
-<PsychoPy2experiment encoding="utf-8" version="3.0.4">
+<PsychoPy2experiment encoding="utf-8" version="3.0.3">
   <Settings>
     <Param name="Completed URL" updates="None" val="" valType="str"/>
     <Param name="Data filename" updates="None" val="u'data/%s_%s_%s' % (expInfo['participant'], expName, expInfo['date'])" valType="code"/>
     <Param name="Enable Escape" updates="None" val="True" valType="bool"/>
-    <Param name="Experiment info" updates="None" val="{'participant': '', 'session': '001'}" valType="code"/>
+    <Param name="Experiment info" updates="None" val="{'participant': ''}" valType="code"/>
     <Param name="Force stereo" updates="None" val="True" valType="bool"/>
     <Param name="Full-screen window" updates="None" val="True" valType="bool"/>
     <Param name="HTML path" updates="None" val="html" valType="str"/>
@@ -22,7 +22,7 @@
     <Param name="Show mouse" updates="None" val="False" valType="bool"/>
     <Param name="Units" updates="None" val="height" valType="str"/>
     <Param name="Use version" updates="None" val="" valType="str"/>
-    <Param name="Window size (pixels)" updates="None" val="[1920, 1080]" valType="code"/>
+    <Param name="Window size (pixels)" updates="None" val="[1680, 1050]" valType="code"/>
     <Param name="blendMode" updates="None" val="avg" valType="str"/>
     <Param name="color" updates="None" val="$[0.765,0.765,0.765]" valType="str"/>
     <Param name="colorSpace" updates="None" val="rgb" valType="str"/>
@@ -112,7 +112,7 @@
         <Param name="startVal" updates="None" val="18" valType="code"/>
         <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
         <Param name="stopVal" updates="constant" val="10" valType="code"/>
-        <Param name="text" updates="constant" val="Upon seeing the &quot;&amp;&quot; symbols, you will rate whether the nonsense word you just saw made you feel positive or negative" valType="str"/>
+        <Param name="text" updates="constant" val="Upon seeing the &quot;&amp;&quot; symbols, you will rate whether the nonsense word you just saw made you feel pleasant or unpleasant" valType="str"/>
         <Param name="units" updates="None" val="from exp settings" valType="str"/>
         <Param name="wrapWidth" updates="constant" val="" valType="code"/>
       </TextComponent>
@@ -133,7 +133,7 @@
         <Param name="startVal" updates="None" val="28" valType="code"/>
         <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
         <Param name="stopVal" updates="constant" val="6" valType="code"/>
-        <Param name="text" updates="constant" val="If the nonsense word made you feel positive, press the RIGHT arrow key" valType="str"/>
+        <Param name="text" updates="constant" val="If the nonsense word made you feel pleasant, press the RIGHT arrow key" valType="str"/>
         <Param name="units" updates="None" val="from exp settings" valType="str"/>
         <Param name="wrapWidth" updates="constant" val="" valType="code"/>
       </TextComponent>
@@ -154,7 +154,7 @@
         <Param name="startVal" updates="None" val="34" valType="code"/>
         <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
         <Param name="stopVal" updates="constant" val="6" valType="code"/>
-        <Param name="text" updates="constant" val="If the nonsense made you feel negative, press the LEFT arrow key" valType="str"/>
+        <Param name="text" updates="constant" val="If the nonsense made you feel unpleasant, press the LEFT arrow key" valType="str"/>
         <Param name="units" updates="None" val="from exp settings" valType="str"/>
         <Param name="wrapWidth" updates="constant" val="" valType="code"/>
       </TextComponent>
@@ -282,7 +282,7 @@
         <Param name="flip" updates="constant" val="" valType="str"/>
         <Param name="font" updates="constant" val="Verdana" valType="str"/>
         <Param name="languageStyle" updates="None" val="LTR" valType="str"/>
-        <Param name="letterHeight" updates="constant" val="0.05" valType="code"/>
+        <Param name="letterHeight" updates="constant" val=".05" valType="code"/>
         <Param name="name" updates="None" val="instr_2" valType="code"/>
         <Param name="opacity" updates="constant" val="1" valType="code"/>
         <Param name="ori" updates="constant" val="0" valType="code"/>
@@ -615,7 +615,7 @@
         <Param name="wrapWidth" updates="constant" val="" valType="code"/>
       </TextComponent>
       <CodeComponent name="code_4">
-        <Param name="Begin Experiment" updates="constant" val="import random &amp;#10;import pandas as pd&amp;#10;import numpy as np&amp;#10;&amp;#10;# reading in the CSV so that I can generate the conditions file for the AMP&amp;#10;words = pd.read_csv(&quot;condition_files/words4exp.csv&quot;)&amp;#10;&amp;#10;# Here are the row indices for all of the words in the full CSV.&amp;#10;&amp;#10;unique_cats = {k:None for k in words.category.unique()} &amp;#10;for k,v in unique_cats.items():&amp;#10;    unique_cats[k] = list(words[words.category == k].index.values)&amp;#10;&amp;#10;# Taking a sample from each category for the AMP and plugging the rest into the LDT&amp;#10;&amp;#10;full_amp_words = {k:None for k in unique_cats.keys() if k != &quot;neutral&quot;} &amp;#10;full_ldt_words = {k:None for k in unique_cats.keys()} &amp;#10;&amp;#10;for k,v in unique_cats.items():&amp;#10;    if &quot;.&quot; in str(k):&amp;#10;        full_amp_words[k] = random.sample(unique_cats[k],7)&amp;#10;        full_ldt_words[k] = [x for x in unique_cats[k] if x not in full_amp_words[k]]&amp;#10;    if k == &quot;nonword&quot;:&amp;#10;        full_amp_words[k] = random.sample(unique_cats[k],92)&amp;#10;        full_ldt_words[k] = [x for x in unique_cats[k] if x not in full_amp_words[k]]&amp;#10;    if k ==&quot;control&quot;:&amp;#10;        full_amp_words[k] = unique_cats[k]&amp;#10;    if k == &quot;neutral&quot;:&amp;#10;        full_ldt_words[k] = unique_cats[k]&amp;#10;&amp;#10;# Generating the final list of AMP words&amp;#10;&amp;#10;amp_moral_words = [] &amp;#10;amp_nonwords = [] &amp;#10;for k,v in full_amp_words.items():&amp;#10;    if k != &quot;nonword&quot;:&amp;#10;        for i in v:&amp;#10;            amp_moral_words.append(i)&amp;#10;    if k == &quot;nonword&quot;:&amp;#10;        for i in v:&amp;#10;            amp_nonwords.append(i)&amp;#10;&amp;#10;# Taking a random sample of 10 of the nonwords to use as primes, and then adding them to the primes list amp_nonword_primes = random.sample(amp_nonwords,10) amp_primes_list = amp_moral_words + amp_nonword_primes  for x in amp_nonword_primes:   amp_nonwords.remove(x)&amp;#10;&amp;#10;amp_nonword_select = random.sample(amp_nonwords,10)&amp;#10;amp_full_list = amp_moral_words + amp_nonword_select&amp;#10;&amp;#10;for x in amp_nonword_select:&amp;#10;    amp_nonwords.remove(x)&amp;#10;&amp;#10;# Pulling the words, correct answers, and categories for all of the indices for our moral words plus our ten nonword controls &amp;#10;AMP_wordlist = words.loc[amp_full_list].words.values &amp;#10;AMP_corr_ans = words.loc[amp_full_list].correct_amp.values &amp;#10;AMP_category = words.loc[amp_full_list].category.values  &amp;#10;&amp;#10;#pulling the nonwords and masks for our targets that weren't selected to be included in the prime &amp;#10;AMP_nonwordlist = words.loc[amp_nonwords].words.values &amp;#10;AMP_masklist = words.loc[amp_nonwords].masks.values&amp;#10;&amp;#10;# df1 is the words that will be used as primes and their associated categories and correct answers&amp;#10;df1 = pd.DataFrame(&amp;#10;    {'words': AMP_wordlist.tolist(),&amp;#10;    'corr_ans': AMP_corr_ans.tolist(),&amp;#10;    'category': AMP_category.tolist()&amp;#10;    })&amp;#10;&amp;#10;# df2 is the nonwords that will be used as targets and their associated masks&amp;#10;df2 = pd.DataFrame(      &amp;#10;    {'nonwords': AMP_nonwordlist.tolist(),      &amp;#10;    'mask': AMP_masklist.tolist()&amp;#10;    })  &amp;#10;&amp;#10;# Shuffling the words once and then generating four&amp;#10;&amp;#10;primes_rep1 = df1.sample(frac=1).reset_index(drop=True) &amp;#10;targets_rep1 = df2.sample(frac=1).reset_index(drop=True)  &amp;#10;&amp;#10;primes_rep2 = df1.sample(frac=1).reset_index(drop=True) &amp;#10;targets_rep2 = df2.sample(frac=1).reset_index(drop=True)  &amp;#10;&amp;#10;primes_rep3 = df1.sample(frac=1).reset_index(drop=True) &amp;#10;targets_rep3 = df2.sample(frac=1).reset_index(drop=True)  &amp;#10;&amp;#10;primes_rep4 = df1.sample(frac=1).reset_index(drop=True) &amp;#10;targets_rep4 = df2.sample(frac=1).reset_index(drop=True)  &amp;#10;&amp;#10;# Concatenating all of the primes and targets horizontally  &amp;#10;&amp;#10;rep1 = pd.concat([primes_rep1,targets_rep1], axis = 1) &amp;#10;rep2 = pd.concat([primes_rep2,targets_rep2], axis = 1) &amp;#10;rep3 = pd.concat([primes_rep3,targets_rep3], axis = 1) &amp;#10;rep4 = pd.concat([primes_rep4,targets_rep4], axis = 1) &amp;#10;&amp;#10;# Concatenating all of the reps horizontally  &amp;#10;&amp;#10;df_full = pd.concat([rep1,rep2,rep3,rep4], axis = 0)&amp;#10;&amp;#10;df_full.reset_index(inplace=True, drop=True) &amp;#10;&amp;#10;df_full.to_csv(&quot;condition_files/AMP_conditions.csv&quot;)&amp;#10;&amp;#10;# Getting the LDT words &amp;#10;&amp;#10;ldt_wordlist = [] &amp;#10;&amp;#10;for k,v in full_ldt_words.items():&amp;#10;    if k != &quot;control&quot;:&amp;#10;        for i in v:&amp;#10;            ldt_wordlist.append(i)&amp;#10;&amp;#10;# Pulling the words, correct answers, and categories for all of the indices for our words &amp;#10;LDT_words = words.loc[ldt_wordlist].words.values &amp;#10;LDT_corr = words.loc[ldt_wordlist].correct_ldt.values &amp;#10;LDT_category = words.loc[ldt_wordlist].category.values &amp;#10;LDT_masklist = words.loc[ldt_wordlist].masks.values &amp;#10;&amp;#10;# Creating a dataframe and writing to CSV&amp;#10;df_ldt = pd.DataFrame(&amp;#10;    {'words': LDT_words.tolist(),&amp;#10;    'corr_ans': LDT_corr.tolist(),&amp;#10;    'category': LDT_category.tolist(),&amp;#10;    'mask': LDT_masklist.tolist()&amp;#10;    })&amp;#10;&amp;#10;df_ldt.to_csv(&quot;condition_files/LDT_conditions.csv&quot;)" valType="extendedCode"/>
+        <Param name="Begin Experiment" updates="constant" val="import random &amp;#10;import pandas as pd&amp;#10;import numpy as np&amp;#10;&amp;#10;# reading in the CSV so that I can generate the conditions file for the AMP&amp;#10;words = pd.read_csv(&quot;condition_files/words4exp.csv&quot;)&amp;#10;&amp;#10;# Here are the row indices for all of the words in the full CSV.&amp;#10;&amp;#10;unique_cats = {k:None for k in words.category.unique()} &amp;#10;for k,v in unique_cats.items():&amp;#10;    unique_cats[k] = list(words[words.category == k].index.values)&amp;#10;&amp;#10;# Taking a sample from each category for the AMP and plugging the rest into the LDT&amp;#10;&amp;#10;full_amp_words = {k:None for k in unique_cats.keys() if k != &quot;neutral&quot;} &amp;#10;full_ldt_words = {k:None for k in unique_cats.keys()} &amp;#10;&amp;#10;for k,v in unique_cats.items():&amp;#10;    if &quot;.&quot; in str(k):&amp;#10;        full_amp_words[k] = random.sample(unique_cats[k],7)&amp;#10;        full_ldt_words[k] = [x for x in unique_cats[k] if x not in full_amp_words[k]]&amp;#10;    if k == &quot;nonword&quot;:&amp;#10;        full_amp_words[k] = random.sample(unique_cats[k],92)&amp;#10;        full_ldt_words[k] = [x for x in unique_cats[k] if x not in full_amp_words[k]]&amp;#10;    if k ==&quot;control&quot;:&amp;#10;        full_amp_words[k] = unique_cats[k]&amp;#10;    if k == &quot;neutral&quot;:&amp;#10;        full_ldt_words[k] = unique_cats[k]&amp;#10;&amp;#10;# Generating the final list of AMP words&amp;#10;&amp;#10;amp_moral_words = [] &amp;#10;amp_nonwords = [] &amp;#10;for k,v in full_amp_words.items():&amp;#10;    if k != &quot;nonword&quot;:&amp;#10;        for i in v:&amp;#10;            amp_moral_words.append(i)&amp;#10;    if k == &quot;nonword&quot;:&amp;#10;        for i in v:&amp;#10;            amp_nonwords.append(i)&amp;#10;&amp;#10;# Taking a random sample of 10 of the nonwords to use as primes, and then adding them to the primes list amp_nonword_primes = random.sample(amp_nonwords,10) amp_primes_list = amp_moral_words + amp_nonword_primes  for x in amp_nonword_primes:   amp_nonwords.remove(x)&amp;#10;&amp;#10;amp_nonword_select = random.sample(amp_nonwords,10)&amp;#10;amp_full_list = amp_moral_words + amp_nonword_select&amp;#10;&amp;#10;for x in amp_nonword_select:&amp;#10;    amp_nonwords.remove(x)&amp;#10;&amp;#10;# Pulling the words, correct answers, and categories for all of the indices for our moral words plus our ten nonword controls &amp;#10;AMP_wordlist = words.loc[amp_full_list].words.values &amp;#10;AMP_corr_ans = words.loc[amp_full_list].correct_amp.values &amp;#10;AMP_category = words.loc[amp_full_list].category.values  &amp;#10;&amp;#10;#pulling the nonwords and masks for our targets that weren't selected to be included in the prime &amp;#10;AMP_nonwordlist = words.loc[amp_nonwords].words.values &amp;#10;AMP_masklist = words.loc[amp_nonwords].masks.values&amp;#10;&amp;#10;# df1 is the words that will be used as primes and their associated categories and correct answers&amp;#10;df1 = pd.DataFrame(&amp;#10;    {'words': AMP_wordlist.tolist(),&amp;#10;    'corr_ans': AMP_corr_ans.tolist(),&amp;#10;    'category': AMP_category.tolist()&amp;#10;    })&amp;#10;&amp;#10;# df2 is the nonwords that will be used as targets and their associated masks&amp;#10;df2 = pd.DataFrame(      &amp;#10;    {'nonwords': AMP_nonwordlist.tolist(),      &amp;#10;    'mask': AMP_masklist.tolist()&amp;#10;    })  &amp;#10;&amp;#10;# Shuffling the words once and then generating four&amp;#10;&amp;#10;primes_rep1 = df1.sample(frac=1).reset_index(drop=True) &amp;#10;targets_rep1 = df2.sample(frac=1).reset_index(drop=True)  &amp;#10;&amp;#10;primes_rep2 = df1.sample(frac=1).reset_index(drop=True) &amp;#10;targets_rep2 = df2.sample(frac=1).reset_index(drop=True)  &amp;#10;&amp;#10;primes_rep3 = df1.sample(frac=1).reset_index(drop=True) &amp;#10;targets_rep3 = df2.sample(frac=1).reset_index(drop=True)  &amp;#10;&amp;#10;primes_rep4 = df1.sample(frac=1).reset_index(drop=True) &amp;#10;targets_rep4 = df2.sample(frac=1).reset_index(drop=True)  &amp;#10;&amp;#10;# Concatenating all of the primes and targets horizontally  &amp;#10;&amp;#10;rep1 = pd.concat([primes_rep1,targets_rep1], axis = 1) &amp;#10;rep2 = pd.concat([primes_rep2,targets_rep2], axis = 1) &amp;#10;rep3 = pd.concat([primes_rep3,targets_rep3], axis = 1) &amp;#10;rep4 = pd.concat([primes_rep4,targets_rep4], axis = 1) &amp;#10;&amp;#10;# Concatenating all of the reps horizontally  &amp;#10;&amp;#10;df_full = pd.concat([rep1,rep2,rep3,rep4], axis = 0)&amp;#10;&amp;#10;df_full.reset_index(inplace=True, drop=True) &amp;#10;&amp;#10;df_full.to_csv(&quot;condition_files/AMP_conditions.csv&quot;)&amp;#10;&amp;#10;# Getting the LDT words &amp;#10;&amp;#10;ldt_wordlist = [] &amp;#10;&amp;#10;for k,v in full_ldt_words.items():&amp;#10;    if k != &quot;control&quot;:&amp;#10;        for i in v:&amp;#10;            ldt_wordlist.append(i)&amp;#10;&amp;#10;# Pulling the words, correct answers, and categories for all of the indices for our words &amp;#10;LDT_words = words.loc[ldt_wordlist].words.values &amp;#10;LDT_corr = words.loc[ldt_wordlist].correct_ldt.values &amp;#10;LDT_category = words.loc[ldt_wordlist].category.values &amp;#10;LDT_masklist = words.loc[ldt_wordlist].masks.values &amp;#10;&amp;#10;# Creating a dataframe and writing to CSV&amp;#10;df_ldt = pd.DataFrame(&amp;#10;    {'words': LDT_words.tolist(),&amp;#10;    'corr_ans': LDT_corr.tolist(),&amp;#10;    'category': LDT_category.tolist(),&amp;#10;    'mask': LDT_masklist.tolist()&amp;#10;    })&amp;#10;&amp;#10;df_ldt_shuff = df_ldt.sample(frac=1).reset_index(drop=True) &amp;#10;&amp;#10;df_ldt_shuff.to_csv(&quot;condition_files/LDT_conditions.csv&quot;)" valType="extendedCode"/>
         <Param name="Begin JS Experiment" updates="constant" val="" valType="extendedCode"/>
         <Param name="Begin JS Routine" updates="constant" val="" valType="extendedCode"/>
         <Param name="Begin Routine" updates="constant" val="" valType="extendedCode"/>
@@ -763,7 +763,7 @@
         <Param name="startVal" updates="None" val="12" valType="code"/>
         <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
         <Param name="stopVal" updates="constant" val="6" valType="code"/>
-        <Param name="text" updates="constant" val="If the tweet made you feel positive, press the RIGHT arrow key" valType="str"/>
+        <Param name="text" updates="constant" val="If the tweet made you feel pleasant, press the RIGHT arrow key" valType="str"/>
         <Param name="units" updates="None" val="from exp settings" valType="str"/>
         <Param name="wrapWidth" updates="constant" val="" valType="code"/>
       </TextComponent>
@@ -784,7 +784,7 @@
         <Param name="startVal" updates="None" val="18" valType="code"/>
         <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
         <Param name="stopVal" updates="constant" val="6" valType="code"/>
-        <Param name="text" updates="constant" val="If the tweet made you feel negative, press the LEFT arrow key" valType="str"/>
+        <Param name="text" updates="constant" val="If the tweet made you feel unpleasant, press the LEFT arrow key" valType="str"/>
         <Param name="units" updates="None" val="from exp settings" valType="str"/>
         <Param name="wrapWidth" updates="constant" val="" valType="code"/>
       </TextComponent>
@@ -1425,6 +1425,28 @@
         <Param name="End Routine" updates="constant" val="thisExp.addData('task', &quot;tweets&quot;)&amp;#10;thisExp.addData('keypress', resp_tweets.keys)&amp;#10;thisExp.addData('RT', resp_tweets.rt)" valType="extendedCode"/>
         <Param name="name" updates="None" val="code_9" valType="code"/>
       </CodeComponent>
+      <ImageComponent name="tweet_layout_reminder">
+        <Param name="color" updates="constant" val="$[1,1,1]" valType="str"/>
+        <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
+        <Param name="durationEstim" updates="None" val="" valType="code"/>
+        <Param name="flipHoriz" updates="constant" val="False" valType="bool"/>
+        <Param name="flipVert" updates="constant" val="False" valType="bool"/>
+        <Param name="image" updates="constant" val="images/layout_reminder_amp.png" valType="str"/>
+        <Param name="interpolate" updates="constant" val="linear" valType="str"/>
+        <Param name="mask" updates="constant" val="None" valType="str"/>
+        <Param name="name" updates="None" val="tweet_layout_reminder" valType="code"/>
+        <Param name="opacity" updates="constant" val="1" valType="code"/>
+        <Param name="ori" updates="constant" val="0" valType="code"/>
+        <Param name="pos" updates="constant" val="(0, -8)" valType="code"/>
+        <Param name="size" updates="constant" val="(20, 10)" valType="code"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
+        <Param name="stopVal" updates="constant" val="10" valType="code"/>
+        <Param name="texture resolution" updates="constant" val="128" valType="code"/>
+        <Param name="units" updates="None" val="deg" valType="str"/>
+      </ImageComponent>
     </Routine>
     <Routine name="break_3">
       <TextComponent name="text_3">
@@ -1562,7 +1584,7 @@
         <Param name="startType" updates="None" val="time (s)" valType="str"/>
         <Param name="startVal" updates="None" val=".06" valType="code"/>
         <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
-        <Param name="stopVal" updates="constant" val="2" valType="code"/>
+        <Param name="stopVal" updates="constant" val="" valType="code"/>
         <Param name="text" updates="set every repeat" val="$mask" valType="str"/>
         <Param name="units" updates="None" val="from exp settings" valType="str"/>
         <Param name="wrapWidth" updates="constant" val="" valType="code"/>
@@ -1578,7 +1600,7 @@
         <Param name="startType" updates="None" val="time (s)" valType="str"/>
         <Param name="startVal" updates="None" val=".06" valType="code"/>
         <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
-        <Param name="stopVal" updates="constant" val="2" valType="code"/>
+        <Param name="stopVal" updates="constant" val="" valType="code"/>
         <Param name="store" updates="constant" val="last key" valType="str"/>
         <Param name="storeCorrect" updates="constant" val="True" valType="bool"/>
         <Param name="syncScreenRefresh" updates="constant" val="True" valType="bool"/>
@@ -1615,7 +1637,7 @@
         <Param name="startType" updates="None" val="time (s)" valType="str"/>
         <Param name="startVal" updates="None" val="0.06" valType="code"/>
         <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
-        <Param name="stopVal" updates="constant" val="2" valType="code"/>
+        <Param name="stopVal" updates="constant" val="" valType="code"/>
         <Param name="texture resolution" updates="constant" val="128" valType="code"/>
         <Param name="units" updates="None" val="deg" valType="str"/>
       </ImageComponent>
@@ -1738,7 +1760,7 @@
         <Param name="startVal" updates="None" val="4" valType="code"/>
         <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
         <Param name="stopVal" updates="constant" val="6" valType="code"/>
-        <Param name="text" updates="constant" val="Remember that LEFT is negative and RIGHT is positive." valType="str"/>
+        <Param name="text" updates="constant" val="Remember that LEFT is unpleasant and RIGHT is pleasant." valType="str"/>
         <Param name="units" updates="None" val="from exp settings" valType="str"/>
         <Param name="wrapWidth" updates="constant" val="" valType="code"/>
       </TextComponent>
@@ -1824,7 +1846,7 @@
         <Param name="flip" updates="constant" val="" valType="str"/>
         <Param name="font" updates="constant" val="Verdana" valType="str"/>
         <Param name="languageStyle" updates="None" val="LTR" valType="str"/>
-        <Param name="letterHeight" updates="constant" val="0.05" valType="code"/>
+        <Param name="letterHeight" updates="constant" val=".05" valType="code"/>
         <Param name="name" updates="None" val="text" valType="code"/>
         <Param name="opacity" updates="constant" val="1" valType="code"/>
         <Param name="ori" updates="constant" val="0" valType="code"/>
@@ -1893,6 +1915,143 @@
         <Param name="name" updates="None" val="code_8" valType="code"/>
       </CodeComponent>
     </Routine>
+    <Routine name="AMP_feedback">
+      <RatingScaleComponent name="AMP_nonword_rating">
+        <Param name="categoryChoices" updates="constant" val="" valType="str"/>
+        <Param name="customize_everything" updates="constant" val="scale = &quot;To what extent did you base your ratings on the nonsense words you saw?&quot;,&amp;#10;choices=None, &amp;#10;low=1, &amp;#10;high=7, &amp;#10;pos=[0,0],&amp;#10;precision=1, &amp;#10;labels=[&quot;Not at all&quot;,&quot;Somewhat&quot;,&quot;Completely&quot;], &amp;#10;tickMarks=None, &amp;#10;showValue=False,&amp;#10;showAccept=True,&amp;#10;acceptPreText='Click a value', &amp;#10;acceptText='Accept?', &amp;#10;acceptSize=1.0,&amp;#10;tickHeight=1.0, &amp;#10;marker='slider',&amp;#10;markerStart=4, &amp;#10;textSize=1.0,&amp;#10;stretch = 1.5, &amp;#10;textColor='Black', &amp;#10;textFont='Helvetica Bold',&amp;#10;disappear=True" valType="str"/>
+        <Param name="disappear" updates="constant" val="True" valType="bool"/>
+        <Param name="durationEstim" updates="None" val="" valType="code"/>
+        <Param name="forceEndRoutine" updates="constant" val="False" valType="bool"/>
+        <Param name="high" updates="constant" val="7" valType="code"/>
+        <Param name="labels" updates="constant" val="Not at all, Completely" valType="str"/>
+        <Param name="low" updates="constant" val="1" valType="code"/>
+        <Param name="marker" updates="constant" val="triangle" valType="str"/>
+        <Param name="markerStart" updates="constant" val="" valType="str"/>
+        <Param name="name" updates="None" val="AMP_nonword_rating" valType="code"/>
+        <Param name="pos" updates="constant" val="0, 0" valType="str"/>
+        <Param name="scaleDescription" updates="constant" val="To what extent did you base your ratings on the nonsense words?" valType="str"/>
+        <Param name="showAccept" updates="constant" val="False" valType="bool"/>
+        <Param name="singleClick" updates="constant" val="False" valType="bool"/>
+        <Param name="size" updates="constant" val="2.0" valType="code"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="10" valType="code"/>
+        <Param name="stopType" updates="None" val="condition" valType="str"/>
+        <Param name="stopVal" updates="constant" val="" valType="code"/>
+        <Param name="storeHistory" updates="constant" val="False" valType="bool"/>
+        <Param name="storeRating" updates="constant" val="True" valType="bool"/>
+        <Param name="storeRatingTime" updates="constant" val="True" valType="bool"/>
+        <Param name="tickHeight" updates="constant" val="" valType="str"/>
+        <Param name="visualAnalogScale" updates="constant" val="False" valType="bool"/>
+      </RatingScaleComponent>
+      <RatingScaleComponent name="AMP_word_rating">
+        <Param name="categoryChoices" updates="constant" val="" valType="str"/>
+        <Param name="customize_everything" updates="constant" val="scale = &quot;To what extent did you base your ratings on the words that appeared before the nonsense words?&quot;,&amp;#10;choices=None, &amp;#10;low=1, &amp;#10;high=7, &amp;#10;pos=[0,0],&amp;#10;precision=1, &amp;#10;labels=[&quot;Not at all&quot;,&quot;Somewhat&quot;,&quot;Completely&quot;], &amp;#10;tickMarks=None, &amp;#10;showValue=False,&amp;#10;showAccept=True,&amp;#10;acceptPreText='Click a value', &amp;#10;acceptText='Accept?', &amp;#10;acceptSize=1.0,&amp;#10;tickHeight=1.0, &amp;#10;marker='slider',&amp;#10;markerStart=4, &amp;#10;textSize=1.0,&amp;#10;stretch = 1.5, &amp;#10;textColor='Black', &amp;#10;textFont='Helvetica Bold',&amp;#10;disappear=True" valType="str"/>
+        <Param name="disappear" updates="constant" val="True" valType="bool"/>
+        <Param name="durationEstim" updates="None" val="" valType="code"/>
+        <Param name="forceEndRoutine" updates="constant" val="False" valType="bool"/>
+        <Param name="high" updates="constant" val="7" valType="code"/>
+        <Param name="labels" updates="constant" val="Not at all, Completely" valType="str"/>
+        <Param name="low" updates="constant" val="1" valType="code"/>
+        <Param name="marker" updates="constant" val="triangle" valType="str"/>
+        <Param name="markerStart" updates="constant" val="" valType="str"/>
+        <Param name="name" updates="None" val="AMP_word_rating" valType="code"/>
+        <Param name="pos" updates="constant" val="0, 0" valType="str"/>
+        <Param name="scaleDescription" updates="constant" val="To what extent did you base your ratings on the nonsense words?" valType="str"/>
+        <Param name="showAccept" updates="constant" val="False" valType="bool"/>
+        <Param name="singleClick" updates="constant" val="False" valType="bool"/>
+        <Param name="size" updates="constant" val="2.0" valType="code"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="startType" updates="None" val="condition" valType="str"/>
+        <Param name="startVal" updates="None" val="$AMP_nonword_rating.status==FINISHED" valType="code"/>
+        <Param name="stopType" updates="None" val="condition" valType="str"/>
+        <Param name="stopVal" updates="constant" val="" valType="code"/>
+        <Param name="storeHistory" updates="constant" val="False" valType="bool"/>
+        <Param name="storeRating" updates="constant" val="True" valType="bool"/>
+        <Param name="storeRatingTime" updates="constant" val="True" valType="bool"/>
+        <Param name="tickHeight" updates="constant" val="" valType="str"/>
+        <Param name="visualAnalogScale" updates="constant" val="False" valType="bool"/>
+      </RatingScaleComponent>
+      <RatingScaleComponent name="AMP_random_rating">
+        <Param name="categoryChoices" updates="constant" val="" valType="str"/>
+        <Param name="customize_everything" updates="constant" val="scale = &quot;To what extent did you respond randomly in this task?&quot;,&amp;#10;choices=None, &amp;#10;low=1, &amp;#10;high=7, &amp;#10;pos=[0,0],&amp;#10;precision=1, &amp;#10;labels=[&quot;Not at all&quot;,&quot;Somewhat&quot;,&quot;Completely&quot;], &amp;#10;tickMarks=None, &amp;#10;showValue=False,&amp;#10;showAccept=True,&amp;#10;acceptPreText='Click a value', &amp;#10;acceptText='Accept?', &amp;#10;acceptSize=1.0,&amp;#10;tickHeight=1.0, &amp;#10;marker='slider',&amp;#10;markerStart=4, &amp;#10;textSize=1.0,&amp;#10;stretch = 1.5, &amp;#10;textColor='Black', &amp;#10;textFont='Helvetica Bold',&amp;#10;disappear=True" valType="str"/>
+        <Param name="disappear" updates="constant" val="True" valType="bool"/>
+        <Param name="durationEstim" updates="None" val="" valType="code"/>
+        <Param name="forceEndRoutine" updates="constant" val="False" valType="bool"/>
+        <Param name="high" updates="constant" val="7" valType="code"/>
+        <Param name="labels" updates="constant" val="Not at all, Completely" valType="str"/>
+        <Param name="low" updates="constant" val="1" valType="code"/>
+        <Param name="marker" updates="constant" val="triangle" valType="str"/>
+        <Param name="markerStart" updates="constant" val="" valType="str"/>
+        <Param name="name" updates="None" val="AMP_random_rating" valType="code"/>
+        <Param name="pos" updates="constant" val="0, 0" valType="str"/>
+        <Param name="scaleDescription" updates="constant" val="To what extent did you base your ratings on the nonsense words?" valType="str"/>
+        <Param name="showAccept" updates="constant" val="False" valType="bool"/>
+        <Param name="singleClick" updates="constant" val="False" valType="bool"/>
+        <Param name="size" updates="constant" val="2.0" valType="code"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="$AMP_word_rating.status==FINISHED" valType="code"/>
+        <Param name="stopType" updates="None" val="condition" valType="str"/>
+        <Param name="stopVal" updates="constant" val="" valType="code"/>
+        <Param name="storeHistory" updates="constant" val="False" valType="bool"/>
+        <Param name="storeRating" updates="constant" val="True" valType="bool"/>
+        <Param name="storeRatingTime" updates="constant" val="True" valType="bool"/>
+        <Param name="tickHeight" updates="constant" val="" valType="str"/>
+        <Param name="visualAnalogScale" updates="constant" val="False" valType="bool"/>
+      </RatingScaleComponent>
+      <TextComponent name="AMP_feedback_instr">
+        <Param name="color" updates="constant" val="#212121" valType="str"/>
+        <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
+        <Param name="durationEstim" updates="None" val="" valType="code"/>
+        <Param name="flip" updates="constant" val="" valType="str"/>
+        <Param name="font" updates="constant" val="Verdana" valType="str"/>
+        <Param name="languageStyle" updates="None" val="LTR" valType="str"/>
+        <Param name="letterHeight" updates="constant" val="0.05" valType="code"/>
+        <Param name="name" updates="None" val="AMP_feedback_instr" valType="code"/>
+        <Param name="opacity" updates="constant" val="1" valType="code"/>
+        <Param name="ori" updates="constant" val="0" valType="code"/>
+        <Param name="pos" updates="constant" val="(0, 0)" valType="code"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
+        <Param name="stopVal" updates="constant" val="10" valType="code"/>
+        <Param name="text" updates="constant" val="You will now respond to a few questions. Please note that your responses to these questions are completely anonymous and will not affect your SONA credit in any way." valType="str"/>
+        <Param name="units" updates="None" val="from exp settings" valType="str"/>
+        <Param name="wrapWidth" updates="constant" val="" valType="code"/>
+      </TextComponent>
+    </Routine>
+    <Routine name="LDT_feedback">
+      <RatingScaleComponent name="LDT_rating">
+        <Param name="categoryChoices" updates="constant" val="" valType="str"/>
+        <Param name="customize_everything" updates="constant" val="scale = &quot;To what extent did you respond randomly in this task?&quot;,&amp;#10;choices=None, &amp;#10;low=1, &amp;#10;high=7, &amp;#10;pos=[0,0],&amp;#10;precision=1, &amp;#10;labels=[&quot;Not at all&quot;,&quot;Somewhat&quot;,&quot;Completely&quot;], &amp;#10;tickMarks=None, &amp;#10;showValue=False,&amp;#10;showAccept=True,&amp;#10;acceptPreText='Click a value', &amp;#10;acceptText='Accept?', &amp;#10;acceptSize=1.0,&amp;#10;tickHeight=1.0, &amp;#10;marker='slider',&amp;#10;markerStart=4, &amp;#10;textSize=1.0,&amp;#10;stretch = 1.5, &amp;#10;textColor='Black', &amp;#10;textFont='Helvetica Bold',&amp;#10;disappear=True" valType="str"/>
+        <Param name="disappear" updates="constant" val="True" valType="bool"/>
+        <Param name="durationEstim" updates="None" val="" valType="code"/>
+        <Param name="forceEndRoutine" updates="constant" val="False" valType="bool"/>
+        <Param name="high" updates="constant" val="7" valType="code"/>
+        <Param name="labels" updates="constant" val="Not at all, Completely" valType="str"/>
+        <Param name="low" updates="constant" val="1" valType="code"/>
+        <Param name="marker" updates="constant" val="triangle" valType="str"/>
+        <Param name="markerStart" updates="constant" val="" valType="str"/>
+        <Param name="name" updates="None" val="LDT_rating" valType="code"/>
+        <Param name="pos" updates="constant" val="0, 0" valType="str"/>
+        <Param name="scaleDescription" updates="constant" val="To what extent did you base your ratings on the nonsense words?" valType="str"/>
+        <Param name="showAccept" updates="constant" val="False" valType="bool"/>
+        <Param name="singleClick" updates="constant" val="False" valType="bool"/>
+        <Param name="size" updates="constant" val="2.0" valType="code"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="stopType" updates="None" val="condition" valType="str"/>
+        <Param name="stopVal" updates="constant" val="" valType="code"/>
+        <Param name="storeHistory" updates="constant" val="False" valType="bool"/>
+        <Param name="storeRating" updates="constant" val="True" valType="bool"/>
+        <Param name="storeRatingTime" updates="constant" val="True" valType="bool"/>
+        <Param name="tickHeight" updates="constant" val="" valType="str"/>
+        <Param name="visualAnalogScale" updates="constant" val="False" valType="bool"/>
+      </RatingScaleComponent>
+    </Routine>
   </Routines>
   <Flow>
     <Routine name="hold"/>
@@ -1930,6 +2089,7 @@
     <Routine name="AMP_word"/>
     <Routine name="AMP_nonword"/>
     <LoopTerminator name="AMP_trials"/>
+    <Routine name="AMP_feedback"/>
     <Routine name="instr_LDT"/>
     <LoopInitiator loopType="TrialHandler" name="LDT_prac_loop">
       <Param name="Selected rows" updates="None" val="" valType="str"/>
@@ -1960,6 +2120,7 @@
     <Routine name="fix"/>
     <Routine name="LDT_trial"/>
     <LoopTerminator name="LDT_loop"/>
+    <Routine name="LDT_feedback"/>
     <Routine name="instr_tweets"/>
     <LoopInitiator loopType="TrialHandler" name="tweet_loop">
       <Param name="Selected rows" updates="None" val="" valType="str"/>
