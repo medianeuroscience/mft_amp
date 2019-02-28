@@ -339,8 +339,8 @@
 337,Boeinf,nonword,,right,&&&&&&
 338,focomotive,nonword,,right,&&&&&&&&&&
 339,elduringly,nonword,,right,&&&&&&&&&&
-340,positive,control,,left,&&&&&&&&
-341,negative,control,,right,&&&&&&&&
+340,pleasant,control,,left,&&&&&&&
+341,unpleasant,control,,right,&&&&&&&&&
 342,openet,nonword,,,&&&&&&
 343,gillipede,nonword,,,&&&&&&&&&
 344,pumber,nonword,,,&&&&&&
