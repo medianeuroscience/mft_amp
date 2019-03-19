@@ -1,0 +1,112 @@
+---
+title: "Language & Emotion | Preliminary Analysis"
+output: html_notebook
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r importing packages}
+library(knitr)
+library(tidyverse)
+library(kableExtra)
+```
+
+
+```{r importing data}
+surveydata = read.csv("data/surveydata.csv")
+files = list.files(path ="data", pattern="^10.*.csv$", full.names = TRUE)
+expdata_full = do.call(bind_rows, lapply(files, function(x) read.csv(x, stringsAsFactors = FALSE)))
+expdata <- expdata_full %>% select(participant, words, mask, corr_ans, category, nonwords, tweets, topic, task, keypress, RT, corr, participant, AMP_nonword_rating.response,	AMP_word_rating.response,	AMP_random_rating.response,	LDT_rating.response)
+```
+
+# Recoding and Data Checks
+
+:et's do some recoding. For some reason PsychoPy records correct as 0 and incorrect as 1, so let's switch those.
+
+```{r}
+expdata <- expdata %>% mutate(corr = ifelse(corr == 1, 0,
+                                            ifelse(corr == 0, 1, NA)))
+```
+
+First, let's make sure that we have all of the data and that we don't hvae duplicate subject numbers. For this we need to get the LDT trials and the AMP trials specifically, and then check to see how many trials we have per subject.
+
+```{r}
+AMP_trials <- expdata %>% filter(task == "AMP")
+LDT_trials <- expdata %>% filter(task == "LDT")
+
+AMP_trials %>% group_by(participant) %>% summarize(n = n())
+LDT_trials %>% group_by(participant) %>% summarize(n = n())
+```
+
+Looks like it's all there. 
+
+
+# Data cleaning
+
+Now we need to do a little bit of cleaning to try our best to get rid of outlying STRTs as well as those who didn't actually try in the task(s). I'm going to look at a few things: a) who they self-reported random responses, b) chance accuracy in the LDT, c) distributions of response times, d) the participants that the RA's called out as not paying attention
+
+First, lets look at self-reported ratings. These are going to be fairly interesting. 
+
+```{r rating responses}
+
+df <- expdata %>% 
+  select(participant, AMP_nonword_rating.response,	AMP_word_rating.response,	AMP_random_rating.response,	LDT_rating.response) %>% 
+  group_by(participant) %>%
+  summarize(AMP_word = mean(AMP_word_rating.response, na.rm=TRUE), AMP_nonword = mean(AMP_nonword_rating.response, na.rm=TRUE), AMP_random = mean(AMP_random_rating.response, na.rm=TRUE), LDT_random = mean(LDT_rating.response, na.rm=TRUE))
+
+df <- df %>% gather("task", "response", -participant)
+
+ggplot(df, aes(x = response, y = ..count.., fill = task)) + geom_histogram(position = "dodge")
+
+```
+
+Looks like people were more willing to admit they responded randomly in the LDT. Let's look at accuracy in the LDT
+
+```{r}
+LDT_trials <- expdata %>% 
+  group_by(participant) %>% 
+  mutate(LDT_random = mean(LDT_rating.response, na.rm=TRUE)) %>%
+  ungroup() %>%
+  filter(task == "LDT") %>%
+  mutate(wordcat = ifelse(category == "neutral", "neutral",
+                          ifelse(category == "nonword", "nonword","moralword")))
+
+df <- LDT_trials %>% group_by(participant, wordcat) %>% summarize(corr = mean(corr))
+ggplot(df, aes(x = corr, fill = wordcat)) + geom_density()
+
+LDT_trials %>% group_by(wordcat) %>% summarize(corr = mean(corr), rt = mean(RT))
+
+#Let's see if there are any correctness outliers.
+
+df <- LDT_trials %>% group_by(participant) %>% summarize(corr = mean(corr))
+mean(df$corr) + 3 * sd(df$corr)
+
+#Doesn't look like it
+
+```
+
+Now let's looks at reaction times in the AMP and the LDT. I'm not sure that we are going to be able to pick out people who are just clicking through based on reaction time, but I'll do some cross referencing with the people who the RA's said were just clicking through without looking at the screen and see if I can get an idea. 
+
+```{r reaction times}
+df <- expdata %>% filter(task == "AMP" | task == "LDT") %>% group_by(participant, task) %>% summarize (rt = mean(RT))
+
+df %>% arrange(by = rt)
+
+ggplot(df, aes(x = participant, y = rt, fill = task)) + geom_bar(stat = "identity", position = "dodge")
+```
+
+Looks like we may have a few outliers, both on the low and the high end. And the low end outliers largely correspond to the people that that the RA's said weren't responding. 
+
+Moral words were more accurately responded to as words than were nonwords. Looks like there are a few people that hover around chance in their responses but they aren't technically outliers. 
+
+Looks like we are good to go. Now let's do some EDA plotting
+
+```{r}
+# First, let's look at neutral words vs. nonwords vs. moral words
+
+df <- LDT_trials %>% group_by(participant, wordcat) %>% summarize(meanrt = mean(RT)) %>% filter(wordcat != "nonword")
+ggplot(df, aes(x = wordcat, y = meanrt, fill = wordcat)) + geom_boxplot() + coord_flip()
+
+
+```
+
