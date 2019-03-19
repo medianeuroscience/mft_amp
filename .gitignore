@@ -1,2 +1,5 @@
 exp_files/data/*
 exp_files/AMP_conditions.csv
+.Rproj.user
+expdata.csv
+prelim_analysis.nb.html
