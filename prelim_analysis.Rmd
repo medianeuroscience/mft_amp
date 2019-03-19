@@ -8,15 +8,20 @@ editor_options:
 ```{r importing packages}
 library(knitr)
 library(tidyverse)
-library(kableExtra)
 ```
 
 
-```{r importing data}
+```{r importing data and defining functions}
 surveydata = read.csv("data/surveydata.csv")
 files = list.files(path ="data", pattern="^10.*.csv$", full.names = TRUE)
 expdata_full = do.call(bind_rows, lapply(files, function(x) read.csv(x, stringsAsFactors = FALSE)))
 expdata <- expdata_full %>% select(participant, words, mask, corr_ans, category, nonwords, tweets, topic, task, keypress, RT, corr, participant, AMP_nonword_rating.response,	AMP_word_rating.response,	AMP_random_rating.response,	LDT_rating.response)
+
+# This function will check to see whether an observation is an outlier based on median absolute deviation (MAD)
+
+out_mad <- function(x, thres = 3, na.rm = TRUE) {
+  abs(x - median(x, na.rm = na.rm)) >= thres * mad(x, na.rm = na.rm)
+}
 ```
 
 # Recoding and Data Checks
@@ -25,10 +30,16 @@ expdata <- expdata_full %>% select(participant, words, mask, corr_ans, category,
 
 ```{r}
 expdata <- expdata %>% mutate(corr = ifelse(corr == 1, 0,
-                                            ifelse(corr == 0, 1, NA)))
+                                            ifelse(corr == 0, 1, NA)),
+                              wordcat = ifelse(category == "neutral", "neutral",
+                                               ifelse(category == "nonword", "nonword",
+                                                      ifelse(!is.na(category), "moralword", NA))))
+
+expdata <- expdata %>% separate(category, c("foundation", "valence"), "[.]")
+
 ```
 
-First, let's make sure that we have all of the data and that we don't hvae duplicate subject numbers. For this we need to get the LDT trials and the AMP trials specifically, and then check to see how many trials we have per subject.
+First, let's make sure that we have all of the data and that we don't have duplicate subject numbers. For this we need to get the LDT trials and the AMP trials specifically, and then check to see how many trials we have per subject.
 
 ```{r}
 AMP_trials <- expdata %>% filter(task == "AMP")
@@ -39,7 +50,6 @@ LDT_trials %>% group_by(participant) %>% summarize(n = n())
 ```
 
 Looks like it's all there. 
-
 
 # Data cleaning
 
@@ -56,7 +66,11 @@ df <- expdata %>%
 
 df <- df %>% gather("task", "response", -participant)
 
-ggplot(df, aes(x = response, y = ..count.., fill = task)) + geom_histogram(position = "dodge")
+ggplot(df, aes(x = response, y = ..count.., fill = task)) + 
+  geom_bar(position = "dodge") + 
+  scale_x_continuous(breaks=1:7,labels=c("not at all","","","somewhat","","","completely")) + 
+  scale_fill_discrete(labels=c("AMP judgment based on targets","AMP judgment based on primes","AMP responded randomly", "LDT responded randomly")) + 
+  labs(title = "Post-task Responses")
 
 ```
 
@@ -67,46 +81,101 @@ LDT_trials <- expdata %>%
   group_by(participant) %>% 
   mutate(LDT_random = mean(LDT_rating.response, na.rm=TRUE)) %>%
   ungroup() %>%
-  filter(task == "LDT") %>%
-  mutate(wordcat = ifelse(category == "neutral", "neutral",
-                          ifelse(category == "nonword", "nonword","moralword")))
+  filter(task == "LDT")
 
 df <- LDT_trials %>% group_by(participant, wordcat) %>% summarize(corr = mean(corr))
 ggplot(df, aes(x = corr, fill = wordcat)) + geom_density()
 
 LDT_trials %>% group_by(wordcat) %>% summarize(corr = mean(corr), rt = mean(RT))
 
-#Let's see if there are any correctness outliers.
+ggplot(df, aes(x = corr, fill = wordcat)) + geom_density()
+
+#Let's see if there are any participants who are correctness outliers.
 
 df <- LDT_trials %>% group_by(participant) %>% summarize(corr = mean(corr))
-mean(df$corr) + 3 * sd(df$corr)
 
-#Doesn't look like it
+df_indouts <- df %>% 
+  select(participant, corr) %>% 
+  mutate_if(is.numeric, funs(mad = out_mad))
+
+#Doesn't look like it. Let's look at this based on words. Should be interesting but I don't know if we have enough data for strong conclusions here yet. 
+
+df <- LDT_trials %>% group_by(words) %>% summarize(corr = mean(corr), n = n())
+
+df_wordouts <- df %>% 
+  select(words, corr, n) %>% 
+  mutate_if(is.numeric, funs(mad = out_mad))
+
+# Only one word is an outlier, the non-word "ammessment." Only 27% of people got it correct.
 
 ```
+
+Moral words were more accurately responded to as words than were nonwords. Looks like there are a few people that hover around chance in their responses but they aren't technically outliers. 
 
 Now let's looks at reaction times in the AMP and the LDT. I'm not sure that we are going to be able to pick out people who are just clicking through based on reaction time, but I'll do some cross referencing with the people who the RA's said were just clicking through without looking at the screen and see if I can get an idea. 
 
 ```{r reaction times}
-df <- expdata %>% filter(task == "AMP" | task == "LDT") %>% group_by(participant, task) %>% summarize (rt = mean(RT))
 
-df %>% arrange(by = rt)
+df <- expdata %>% filter(task == "AMP" | task == "LDT")
 
-ggplot(df, aes(x = participant, y = rt, fill = task)) + geom_bar(stat = "identity", position = "dodge")
+ggplot(df, aes(x = RT)) + geom_histogram()
+
+# Pretty highly right-skewed. Let's remove outliers within subjects and conditions and then check to see how we look. Creating a column using the `out_mad` function that gives me "TRUE" if the value is >= 3 standard deviations away from the median for that participant and that task.
+
+df_indouts <- df %>% 
+  group_by(participant, task) %>% 
+  select(participant, RT, foundation, valence, wordcat, task, words, corr) %>% 
+  mutate_if(is.numeric, funs(mad = out_mad))
+
+# Filtering based on that column
+df_ind_filt <- filter(df_indouts, RT_mad == FALSE) 
+
+df_ind_filt %>% arrange(by = RT)
+
+plot_data = df_ind_filt %>% filter(!is.na(RT)) %>% summarize(meanrt = mean(RT))
+
+ggplot(plot_data, aes(x = reorder(participant, meanrt), y = meanrt, fill = task)) + geom_bar(stat = "identity", position = "dodge") + theme(axis.text.x = element_text(angle = 90, vjust = .5))
+
+# Let's see if we have any partipant outliers. Here I'll go back to the unfiltered dataset and run the same procedure on the participant means.
+
+df_groupouts <- df %>% 
+  group_by(participant, task) %>%
+  summarize(meanrt = mean(RT, na.rm=TRUE)) %>%
+  ungroup() %>%
+  group_by(task) %>%
+  select(participant, task, meanrt, foundation, valence, wordcat) %>% 
+  mutate_if(is.numeric, funs(mad = out_mad))
+
+# Looks like we have a few outliers, but I'm hestitant to toss them since they're on the long end, suggesting that they are thinking about their answers rather than just thumbing through mindlessly. We can do some thinking on this.
 ```
 
-Looks like we may have a few outliers, both on the low and the high end. And the low end outliers largely correspond to the people that that the RA's said weren't responding. 
+Ok now that we have filtered, we can go on to some some preliminary analysis. Let's do some EDA plotting
 
-Moral words were more accurately responded to as words than were nonwords. Looks like there are a few people that hover around chance in their responses but they aren't technically outliers. 
-
-Looks like we are good to go. Now let's do some EDA plotting
+# LDT EDA
 
 ```{r}
 # First, let's look at neutral words vs. nonwords vs. moral words
 
-df <- LDT_trials %>% group_by(participant, wordcat) %>% summarize(meanrt = mean(RT)) %>% filter(wordcat != "nonword")
-ggplot(df, aes(x = wordcat, y = meanrt, fill = wordcat)) + geom_boxplot() + coord_flip()
+df <- df_ind_filt %>% filter(task == "LDT") %>% group_by(wordcat)
 
+# Boxplot of RT by category
+ggplot(df, aes(x = wordcat, y = RT, fill = wordcat)) + geom_boxplot() + coord_flip()
+
+#Density plot of RT by category
+ggplot(df,aes(x = RT, fill = wordcat)) + geom_density()
+
+# Importing the weights to see how they correlate with response times and accuracy.
+
+weights = read.csv("data/mfd_weights.csv")
+weights <- weights %>% select(-X) %>% rename(words = word)
+
+LDT_words <- df_ind_filt %>% filter(task == "LDT" & wordcat == "moralword") %>% group_by(words) %>% summarize(meancorr = mean(corr), meanrt = mean(RT), cat = paste(unique(foundation), collapse = ', '), val = paste(unique(valence), collapse = ', '))
+
+LDT_weighted <- left_join(LDT_words, weights, by = "words")
+
+plot_data <- filter(LDT_weighted, !is.na(weight))
+
+ggplot(plot_data, aes(x = weight, y = meancorr, color = val)) + geom_point() + geom_smooth(method='lm',formula=y~x, se=F)
 
 ```
 
