@@ -7,14 +7,11 @@ File is added. As quick reminder, I had to create two columns for correct respon
 
 ## AMP
 
-- word for .75 secs
-- blank for .125 secs
-- nonword for .75 secs
-- mask for up to 3.25 secs
+- word for 100 msec
+- blank for 125 msec
+- nonword for 300 msec
+- mask until response is given
 
 ## LDT
-
-**NOTE 2/17/19**
-A couple of things that I've noticed:
-- The arrow that they should press seems a bit unintuitive to me.  I would suggest that negative should be left and positive should be right in the AMP and non-word should be left and word should be right in the LDT.
-- Should we give them feedback as to the choice that they made in the AMP? I could see someone forgetting which direction is which and then responding backwards the whole experiment. Even just a smiley or frowny face denoting that they chose positive or negative?
+- word or nonword for 60 msec
+- mask until response is given
