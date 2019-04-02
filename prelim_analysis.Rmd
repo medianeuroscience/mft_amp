@@ -55,6 +55,13 @@ expdata <- expdata_full %>%
 out_mad <- function(x, thres = 3, na.rm = TRUE) {
   abs(x - median(x, na.rm = na.rm)) >= thres * mad(x, na.rm = na.rm)
 }
+
+out_replace = function(dataframe, cols, rows, newValue = NA) {
+    if (any(rows)) {
+        set(dataframe, rows, cols, newValue)
+    }
+}
+
 ```
 
 # Recoding and Data Checks
@@ -232,6 +239,11 @@ df_indouts <- df %>%
 # Filtering based on that column
 expdata_rtfilt <- filter(df_indouts, RT_mad == FALSE) 
 
+# Additionally replacing RTs less than 100msec with 100msec, following Whelan (2008)
+
+expdata_rtfilt <- expdata_rtfilt %>% 
+  mutate(RT = ifelse(RT <= .1, .1, RT))
+
 ggplot(expdata_rtfilt, aes(x = RT)) + geom_histogram()
 
 ```
@@ -261,25 +273,32 @@ So the only cleaning that that we've done so far is re: reaction times. We can p
 # First, let's look at neutral words vs. nonwords vs. moral words
 
 plt_data <- expdata_rtfilt %>% 
-  filter(task == "LDT") %>%
+  filter(task == "LDT" & wordcat != "nonword") %>%
   group_by(participant, wordcat) %>% 
-  summarize(corr = mean(corr), RT = mean(RT))
+  mutate(meanrt = mean(RT)) %>% 
+  group_by(participant, wordcat) %>% 
+  summarize(wordrt = mean(RT),
+            corr = mean(corr),
+            n = n()) %>%
+  ungroup()
+
+plt_data %>% do(broom::tidy(t.test(corr~wordcat, data=.)))
 
 # Box plot of correctness by category
 plt1 <- ggplot(plt_data, aes(x = wordcat, y = corr, fill = wordcat)) + 
-  geom_boxplot() + coord_flip()
+  geom_boxplot() + coord_flip() + labs(title = "Response Correctness by Category", x = "Word Category", y = "Mean Correctness") + theme_minimal() + theme(legend.title=element_blank())
 
 # Density plot of correctness by category
 plt2 <- ggplot(plt_data, aes(x = corr, fill = wordcat, color = wordcat)) + 
-  geom_density(alpha = .8)
+  geom_density(alpha = .8) + labs(title = "Response Correctness by Category", x = "Mean Correctness") + theme_minimal() + theme(legend.title=element_blank())
 
 # Boxplot of RT by category
-plt3 <- ggplot(plt_data, aes(x = wordcat, y = RT, fill = wordcat)) + 
-  geom_boxplot() + coord_flip()
+plt3 <- ggplot(plt_data, aes(x = wordcat, y = meanrt, fill = wordcat)) + 
+  geom_boxplot() + coord_flip() + labs(title = "Reaction Times by Category", x = "Word Category", y = "Mean Reaction Time") + theme_minimal() + theme(legend.title=element_blank())
 
 #Density plot of RT by category
-plt4 <- ggplot(plt_data, aes(x = RT, fill = wordcat, color = wordcat)) + 
-  geom_density(alpha = .8)
+plt4 <- ggplot(plt_data, aes(x = meanrt, fill = wordcat, color = wordcat)) + 
+  geom_density(alpha = .8) + labs(title = "Reaction Times by Category", x = "Mean Reaction Time") + theme_minimal() + theme(legend.title=element_blank())
 
 grid.arrange(plt1, plt2, plt3, plt4)
 
@@ -334,8 +353,7 @@ AMP_trials_long <- AMP_trials %>%
                                ifelse(prime_target == "nonwords", "target", NA)),
          val_response = ifelse(keypress == "left", -1, 1),
          prime_val = ifelse(is.na(prime_val), "nonword", prime_val)) %>%
-  arrange(by = sub_trial) %>%
-  select(-c(LDT_rating.response, AMP_loop.thisN, AMP_trials.thisN, tweets, topic))
+  arrange(by = sub_trial)
 
 ```
 
@@ -351,23 +369,37 @@ I still haven't incorporated the survey data but I'll do that in the next sectio
 
 ```{r}
 plot_data <- AMP_trials_long %>% 
-  group_by(words, prime_foundation, prime_val) %>% 
+  group_by(participant) %>% 
+  mutate(meanRT = mean(RT)) %>%
+  ungroup() %>%
+  #filter(!(prime_foundation %in% c("control", "nonword"))) %>%
+  group_by(prime_val) %>% 
   filter(prime_target == "prime") %>% 
-  summarize(mean_val_response = mean(val_response), meanrt = mean(RT))
+  summarize(mean_val_response = mean(val_response), rt = mean(RT), meanRT = mean(meanRT)) %>% 
+  mutate(phi = (1/(rt/meanRT)) * mean_val_response) %>%
+  ungroup()
 
+plot_data %>% do(broom::tidy(t.test(mean_val_response~prime_val, data=.)))
+  
 p1 <- ggplot(plot_data, aes(x = mean_val_response, fill = prime_val, color = prime_val)) + 
   geom_density(alpha = .8) + 
   labs(title = "Mean valence of responses by prime category", 
        x = "Valence", 
        y = "Density")
 
-p2 <- ggplot(plot_data, aes(x = meanrt, fill = prime_val, color = prime_val)) + 
+p2 <- ggplot(plot_data, aes(x = rt, fill = prime_val, color = prime_val)) + 
   geom_density(alpha = .8) + 
   labs(title = "Mean RT of responses by prime category", 
        x = "RT", 
        y = "Density")
 
-grid.arrange(p1, p2, ncol = 2)
+p3 <- ggplot(plot_data, aes(x = phi, fill = prime_val, color = prime_val)) + 
+  geom_density(alpha = .8) + 
+  labs(title = "Salience of responses by prime category (phi)", 
+       x = "Salience", 
+       y = "Density")
+
+grid.arrange(p1, p2, p3, ncol = 2)
 ```
 
 Interesting! Looks like the procedure works, but need to test statistically to be sure. Vice words elicit negative valence, virtue words elicit positive valence, and nonwords are somewhere in the middle. Nothing really interesting for RTs. Let's look at the foundations and the weights. 
@@ -387,8 +419,8 @@ ggplot(plot_data, aes(x = mean_val_response,
                       position = "raincloud") +
   scale_fill_manual(values=c("#FF6C67", "#00B2FD", "#00BE0D")) + 
   scale_color_manual(values=c("#FF6C67", "#00B2FD", "#00BE0D")) +
-  labs(title = "Mean valence of responses by foundation", 
-       x = "Valence", 
+  labs(title = "Mean salience of responses by foundation", 
+       x = "Salience", 
        y = "Density")
 ```
 
@@ -400,11 +432,21 @@ AMP_weights <- left_join(AMP_trials_long, weights, by = "words")
 
 plot_data <- AMP_weights %>% 
   filter(prime_cat == "moralword" & prime_target == "prime" & !is.na(weight)) %>%
+  group_by(participant) %>%
+  mutate(meanrt = mean(RT)) %>%
+  ungroup() %>%
+  group_by(participant, words, prime_val) %>%
+  summarize(meanval = mean(val_response), 
+            weights = mean(weight, na.rm=TRUE), 
+            rt = mean(RT), 
+            meanrt = mean(meanrt)) %>%
+  mutate(phi = (1/(rt/meanrt)) * meanval) %>% 
+  ungroup() %>%
   group_by(words, prime_val) %>%
-  summarize(meanval = mean(val_response), weights = mean(weight, na.rm=TRUE))
+  summarize(phi = mean(phi), meanval = mean(meanval), weights = mean(weights))
 
 ggplot(plot_data, aes(x = weights, y = meanval, color = prime_val)) + 
-  geom_point() + geom_smooth(method = "lm", formula = y ~ x)
+  geom_point() + geom_smooth(method = "lm", formula = y ~ x) + labs(title = "Correlation Between E-MFD Weighting and MF-AMP Responses", x = "E-MFD Weights", y = "Mean Reported Valence") + theme_minimal() + theme(legend.title=element_blank())
 
 df <- plot_data %>% filter(prime_val == "negative")
 Hmisc::rcorr(df$meanval, df$weights)
@@ -428,6 +470,7 @@ surveydata_w <- surveydata %>% slice(-c(0,1)) %>% select(-c(1:17))
 
 surveydata_w <- surveydata_w %>% 
   rename("participant" = "Q1",
+         "age" = "Q1.1",
          "sex" = "Q1.2",
          "eth" = "Q1.3",
          "pol_or" = "Q5",
@@ -677,59 +720,141 @@ Let's look at the influence of overall moral salience on responses to positive a
 
 plot_data <- AMP_trials_long %>% 
   filter(prime_cat == "moralword") %>%
-  group_by(participant, prime_val) %>% 
+  group_by(participant) %>%
   filter(prime_target == "prime") %>%
+  mutate(meanrt = mean(RT, na.rm=TRUE)) %>%
+  group_by(participant, words) %>%
   summarize(meanval = mean(val_response), 
-            meanrt = mean(RT),
-            salience = mean(MFQ_mean))
+            rt = mean(RT),
+            meanrt = mean(meanrt),
+            MFQ_mean = mean(MFQ_mean),
+            foundation = paste(unique(prime_foundation), collapse = ', '),
+            valence = paste(unique(prime_val), collapse = ', ')) %>%
+  mutate(phi = (1/(rt/meanrt)) * meanval)
 
-ggplot(plot_data, aes(x = salience, y = meanval)) + 
+ggplot(plot_data, aes(x = MFQ_mean, y = phi)) + 
   geom_point() + 
   geom_smooth(method = "lm", formula = y~x) + 
-  facet_wrap(. ~ prime_val)
+  facet_wrap(. ~ valence)
 ```
 
 Interesting. We get a slightly positive correlation between MFQ salience and valence, but it's not significant. Not exactly what I expected. Let's look at individual domains.
 
 ```{r}
 plot_data <- AMP_trials_long %>% 
-  group_by(participant, prime_foundation, prime_val) %>%
+  filter(prime_cat == "moralword") %>%
+  group_by(participant) %>%
   filter(prime_target == "prime") %>%
-  summarize(meanrt = mean(RT),
+  mutate(meanrt = mean(RT, na.rm=TRUE)) %>%
+  ungroup() %>%
+  group_by(participant, words) %>%
+  summarize(rt = mean(RT),
+            meanrt = mean(meanrt),
             meanval = mean(val_response),
             care_sal = mean(care_mean),
             fair_sal = mean(fair_mean),
             loyal_sal = mean(loyal_mean),
             auth_sal = mean(auth_mean),
             sanc_sal = mean(sanc_mean),
-            n = n())
+            pol_or = mean(as.numeric(as.character(pol_or)), na.rm=TRUE),
+            relig = mean(as.numeric(as.character(religion)), na.rm = TRUE),
+            prime_foundation = paste(unique(prime_foundation), collapse = ', '),
+            prime_val = paste(unique(prime_val), collapse = ', '),
+            n = n()) %>%
+  ungroup() %>%
+  mutate(phi = (1/(rt/meanrt)) * meanval) %>%
+  group_by(participant, words) %>%
+  mutate(phi = mean(phi))
 
 p1 <- ggplot(data = filter(plot_data, prime_foundation == "care"), 
-             aes(x = care_sal, y = meanval, color = prime_val)) +
+             aes(x = care_sal, y = phi, color = prime_val)) +
   geom_point() + 
   geom_smooth(method = "lm", formula = y ~ x)
 
 p2 <- ggplot(data = filter(plot_data, prime_foundation == "fairness"), 
-             aes(x = fair_sal, y = meanval, color = prime_val)) +
+             aes(x = fair_sal, y = phi, color = prime_val)) +
   geom_point() + 
   geom_smooth(method = "lm", formula = y ~ x)
 
 p3 <- ggplot(data = filter(plot_data, prime_foundation == "loyalty"), 
-             aes(x = loyal_sal, y = meanval, color = prime_val)) +
+             aes(x = loyal_sal, y = phi, color = prime_val)) +
   geom_point() + 
   geom_smooth(method = "lm", formula = y ~ x)
 
 p4 <- ggplot(data = filter(plot_data, prime_foundation == "authority"), 
-             aes(x = auth_sal, y = meanval, color = prime_val)) +
+             aes(x = auth_sal, y = phi, color = prime_val)) +
   geom_point() + 
   geom_smooth(method = "lm", formula = y ~ x)
 
 p5 <- ggplot(data = filter(plot_data, prime_foundation == "sanctity"), 
-             aes(x = sanc_sal, y = meanval, color = prime_val)) +
+             aes(x = sanc_sal, y = phi, color = prime_val)) +
   geom_point() + 
   geom_smooth(method = "lm", formula = y ~ x)
 
 grid.arrange(p1, p2, p3, p4, p5, ncol = 2)
 ```
 
-Pretty uninterpretable IMHO. Main effect of valence, but not really anything with MFQ salience as far as I can tell.
+Pretty uninterpretable IMHO. Main effect of valence, but not really anything with MFQ salience as far as I can tell. Let's look at a couple of the other self-report things., namely religiosity and political affiliation. 
+
+```{r}
+
+plot_data <- AMP_trials_long %>% 
+  filter(prime_cat == "moralword") %>%
+  group_by(participant) %>%
+  filter(prime_target == "prime") %>%
+  mutate(meanrt = psych::harmonic.mean(RT, na.rm=TRUE)) %>%
+  ungroup() %>%
+  group_by(participant, prime_foundation) %>%
+  summarize(rt = psych::harmonic.mean(RT),
+            meanval = mean(val_response),
+            phi = mean((1/(rt/meanrt)) * meanval),
+            pol_or = mean(as.numeric(as.character(pol_or)), na.rm=TRUE)) %>%
+  ungroup()
+
+ggplot(plot_data, aes(x = pol_or, y = phi)) + geom_point() + geom_smooth(method= "lm", formula=y~x) + facet_wrap(.~prime_foundation) + labs(title = "Relationship between political orientation and moral salience within foundations", x = "Political Orientation", y = "Salience (φ)") + theme_minimal()
+
+```
+
+Let's follow up on that political orientation plot and just do some bar plots.
+
+```{r}
+
+plot_data <- AMP_trials_long %>% 
+  filter(prime_cat == "moralword") %>%
+  group_by(participant) %>%
+  filter(prime_target == "prime") %>%
+  mutate(meanrt = psych::harmonic.mean(RT, na.rm=TRUE)) %>%
+  ungroup() %>%
+  group_by(participant, sub_trial) %>%
+  summarize(rt = psych::harmonic.mean(RT),
+            meanval = mean(val_response),
+            phi = (1/(rt/meanrt)) * meanval,
+            pol_or = mean(as.numeric(as.character(pol_or)), na.rm=TRUE),
+            prime_foundation = paste(unique(prime_foundation), collapse = ', '),
+            prime_val = paste(unique(prime_val), collapse = ', '),
+            words = paste(unique(words), collapse = ', ')) %>%
+  ungroup() %>%
+  group_by(participant,words) %>%
+  mutate(meanval = mean(meanval),
+         sd = sd(phi),
+         n = n(),
+         pol_cat = ifelse(pol_or > 3, 2,
+                          ifelse(pol_or < 3, 1, NA))) %>%
+  ungroup()
+
+plot_data <- plot_data %>% 
+  filter(!is.na(pol_cat)) %>%
+  group_by(pol_cat, words, prime_foundation, prime_val) %>%
+  summarize(sd = sd(phi), phi = mean(phi)) %>%
+  ungroup() %>%
+  group_by(pol_cat, prime_foundation, prime_val) %>%
+  summarize(sd = sd(phi), phi = mean(phi))
+  
+
+ggplot(plot_data, aes(fill = as.factor(pol_cat), y = phi, x = prime_val)) + 
+  geom_bar(stat="summary", fun.y="mean", position = "dodge") +
+  geom_errorbar(aes(ymin=phi-sd, ymax=phi+sd), 
+                width=.2, position=position_dodge(.9)) + 
+  facet_wrap(.~prime_foundation)
+```
+

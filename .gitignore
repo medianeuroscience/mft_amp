@@ -3,3 +3,7 @@ exp_files/AMP_conditions.csv
 .Rproj.user
 expdata.csv
 prelim_analysis.nb.html
+AMP_figures.ai
+cormat.R
+misc/*
+test.csv
