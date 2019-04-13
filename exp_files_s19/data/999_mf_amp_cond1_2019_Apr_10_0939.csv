@@ -1,0 +1,8 @@
+﻿logo_trials.thisRepN,logo_trials.thisTrialN,logo_trials.thisN,logo_trials.thisIndex,AMP_pracs.thisRepN,AMP_pracs.thisTrialN,AMP_pracs.thisN,AMP_pracs.thisIndex,words,symbols,begin_key.keys,begin_key.rt,key_resp_AMP_instr1.keys,key_resp_AMP_instr1.rt,exp_time,resp_logo_rate.keys,resp_logo_rate.rt,keypress_logo_prac.keys,keypress_logo_prac.rt,resp_logo_ready_2.keys,resp_logo_ready_2.rt,keypress_logo_trial.keys,keypress_logo_trial.rt,symbol_index,resp_AMP_ready1.keys,resp_AMP_ready1.rt,resp_AMP.keys,resp_AMP.rt,task,participant,date,expName,psychopyVersion,frameRate,
+,,,,,,,,,,right,10.221650006002164,,,,,,,,,,,,,,,,,,999,2019_Apr_10_0939,mf_amp_cond1,3.0.7,59.87311139426039,
+,,,,,,,,,,,,right,2.084203295002226,,,,,,,,,,,,,,,,999,2019_Apr_10_0939,mf_amp_cond1,3.0.7,59.87311139426039,
+,,,,,,,,,,,,,,50.355609593003464,right,2.254020266002044,,,,,,,,,,,,,999,2019_Apr_10_0939,mf_amp_cond1,3.0.7,59.87311139426039,
+,,,,,,,,,,,,,,114.64176661400415,,,left,1.519691989000421,,,,,,,,,,,999,2019_Apr_10_0939,mf_amp_cond1,3.0.7,59.87311139426039,
+,,,,,,,,,,,,,,,,,,,right,1.302853850997053,,,,,,,,,999,2019_Apr_10_0939,mf_amp_cond1,3.0.7,59.87311139426039,
+,,,,,,,,,,,,,,133.82090581100056,,,,,,,right,0.08080526100093266,15,right,1.1035029910053709,,,,999,2019_Apr_10_0939,mf_amp_cond1,3.0.7,59.87311139426039,
+,,,,,,,,,,,,,,231.2728208270055,,,,,,,,,,,,right,1.9508121390026645,AMP_prac,,,,,,

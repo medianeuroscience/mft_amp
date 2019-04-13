@@ -26,7 +26,7 @@
     <Param name="blendMode" updates="None" val="avg" valType="str"/>
     <Param name="color" updates="None" val="$[0.765,0.765,0.765]" valType="str"/>
     <Param name="colorSpace" updates="None" val="rgb" valType="str"/>
-    <Param name="expName" updates="None" val="mf_amp_cond1" valType="str"/>
+    <Param name="expName" updates="None" val="mf_amp_cond2" valType="str"/>
     <Param name="exportHTML" updates="None" val="on Sync" valType="str"/>
     <Param name="logging level" updates="None" val="warning" valType="code"/>
   </Settings>
@@ -49,7 +49,7 @@
         <Param name="startVal" updates="None" val="0.0" valType="code"/>
         <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
         <Param name="stopVal" updates="constant" val="6" valType="code"/>
-        <Param name="text" updates="constant" val="Welcome to the second task! In this task, you will see the same symbols you just rated." valType="str"/>
+        <Param name="text" updates="constant" val="Welcome to the third task! In this task, you will see the same symbols you just rated." valType="str"/>
         <Param name="units" updates="None" val="from exp settings" valType="str"/>
         <Param name="wrapWidth" updates="constant" val="" valType="code"/>
       </TextComponent>
@@ -430,7 +430,7 @@
         <Param name="startVal" updates="None" val="0.0" valType="code"/>
         <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
         <Param name="stopVal" updates="constant" val="6" valType="code"/>
-        <Param name="text" updates="constant" val="Welcome to the final task! In this task, you will see a selection of real words and nonsense words." valType="str"/>
+        <Param name="text" updates="constant" val="Welcome to the first task! In this task, you will see a selection of real words and nonsense words." valType="str"/>
         <Param name="units" updates="None" val="from exp settings" valType="str"/>
         <Param name="wrapWidth" updates="constant" val="" valType="code"/>
       </TextComponent>
@@ -1537,7 +1537,7 @@
         <Param name="startVal" updates="None" val="0.0" valType="code"/>
         <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
         <Param name="stopVal" updates="constant" val="10" valType="code"/>
-        <Param name="text" updates="constant" val="Welcome to the third task! In this task, you will see a selection of words you saw in this experiment, along with words you did NOT see." valType="str"/>
+        <Param name="text" updates="constant" val="Welcome to the final task! In this task, you will see a selection of words you saw in this experiment, along with words you did NOT see." valType="str"/>
         <Param name="units" updates="None" val="from exp settings" valType="str"/>
         <Param name="wrapWidth" updates="constant" val="" valType="code"/>
       </TextComponent>
@@ -1990,7 +1990,7 @@
         <Param name="startVal" updates="None" val="0.0" valType="code"/>
         <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
         <Param name="stopVal" updates="constant" val="6" valType="code"/>
-        <Param name="text" updates="constant" val="Welcome to the first task! In this task, you will see a selection of symbols." valType="str"/>
+        <Param name="text" updates="constant" val="Welcome to the second task! In this task, you will see a selection of symbols." valType="str"/>
         <Param name="units" updates="None" val="from exp settings" valType="str"/>
         <Param name="wrapWidth" updates="constant" val="" valType="code"/>
       </TextComponent>
@@ -2613,6 +2613,37 @@
   <Flow>
     <Routine name="hold"/>
     <Routine name="instr_main"/>
+    <Routine name="instr_LDT"/>
+    <LoopInitiator loopType="TrialHandler" name="LDT_pracs">
+      <Param name="Selected rows" updates="None" val="" valType="str"/>
+      <Param name="conditions" updates="None" val="None" valType="str"/>
+      <Param name="conditionsFile" updates="None" val="condition_files/ldt_testrun.csv" valType="str"/>
+      <Param name="endPoints" updates="None" val="[0, 1]" valType="num"/>
+      <Param name="isTrials" updates="None" val="True" valType="bool"/>
+      <Param name="loopType" updates="None" val="random" valType="str"/>
+      <Param name="nReps" updates="None" val="1" valType="code"/>
+      <Param name="name" updates="None" val="LDT_pracs" valType="code"/>
+      <Param name="random seed" updates="None" val="" valType="code"/>
+    </LoopInitiator>
+    <Routine name="fix"/>
+    <Routine name="LDT_prac"/>
+    <LoopTerminator name="LDT_pracs"/>
+    <Routine name="instr_LDT_2"/>
+    <LoopInitiator loopType="TrialHandler" name="LDT_trials">
+      <Param name="Selected rows" updates="None" val="" valType="str"/>
+      <Param name="conditions" updates="None" val="None" valType="str"/>
+      <Param name="conditionsFile" updates="None" val="condition_files/LDT_conditions.csv" valType="str"/>
+      <Param name="endPoints" updates="None" val="[0, 1]" valType="num"/>
+      <Param name="isTrials" updates="None" val="True" valType="bool"/>
+      <Param name="loopType" updates="None" val="random" valType="str"/>
+      <Param name="nReps" updates="None" val="1" valType="code"/>
+      <Param name="name" updates="None" val="LDT_trials" valType="code"/>
+      <Param name="random seed" updates="None" val="" valType="code"/>
+    </LoopInitiator>
+    <Routine name="fix"/>
+    <Routine name="LDT_trial"/>
+    <LoopTerminator name="LDT_trials"/>
+    <Routine name="LDT_feedback"/>
     <Routine name="instr_symbol"/>
     <Routine name="symbol_prac"/>
     <Routine name="instr_symbol2"/>
@@ -2677,7 +2708,7 @@
     <Routine name="instr_memtask"/>
     <LoopInitiator loopType="TrialHandler" name="memtask_trials">
       <Param name="Selected rows" updates="None" val="" valType="str"/>
-      <Param name="conditions" updates="None" val="None" valType="str"/>
+      <Param name="conditions" updates="None" val="[OrderedDict([('words', 'scandal'), ('corr_ans', 'right'), ('category', 'sanctity.vice')]), OrderedDict([('words', 'proud'), ('corr_ans', 'left'), ('category', 'loyalty.virtue')]), OrderedDict([('words', 'energy'), ('corr_ans', 'right'), ('category', 'sanctity.virtue')]), OrderedDict([('words', 'doars'), ('corr_ans', 'right'), ('category', 'nonword')]), OrderedDict([('words', 'splysed'), ('corr_ans', 'right'), ('category', 'nonword')]), OrderedDict([('words', 'accused'), ('corr_ans', 'right'), ('category', 'fairness.vice')]), OrderedDict([('words', 'wounded'), ('corr_ans', 'left'), ('category', 'care.vice')]), OrderedDict([('words', 'approval'), ('corr_ans', 'left'), ('category', 'fairness.virtue')]), OrderedDict([('words', 'terrorist'), ('corr_ans', 'right'), ('category', 'loyalty.vice')]), OrderedDict([('words', 'pleasant'), ('corr_ans', 'right'), ('category', 'control')]), OrderedDict([('words', 'progress'), ('corr_ans', 'right'), ('category', 'authority.virtue')]), OrderedDict([('words', 'army'), ('corr_ans', 'right'), ('category', 'loyalty.vice')]), OrderedDict([('words', 'hope'), ('corr_ans', 'right'), ('category', 'loyalty.virtue')]), OrderedDict([('words', 'impressed'), ('corr_ans', 'left'), ('category', 'care.virtue')]), OrderedDict([('words', 'free'), ('corr_ans', 'right'), ('category', 'fairness.virtue')]), OrderedDict([('words', 'peizz'), ('corr_ans', 'right'), ('category', 'nonword')]), OrderedDict([('words', 'yacte'), ('corr_ans', 'left'), ('category', 'nonword')]), OrderedDict([('words', 'terrorists'), ('corr_ans', 'right'), ('category', 'fairness.vice')]), OrderedDict([('words', 'bureaus'), ('corr_ans', 'left'), ('category', 'fairness.virtue')]), OrderedDict([('words', 'promises'), ('corr_ans', 'right'), ('category', 'fairness.virtue')]), OrderedDict([('words', 'wealth'), ('corr_ans', 'left'), ('category', 'sanctity.virtue')]), OrderedDict([('words', 'powerful'), ('corr_ans', 'right'), ('category', 'authority.virtue')]), OrderedDict([('words', 'twild'), ('corr_ans', 'right'), ('category', 'nonword')]), OrderedDict([('words', 'want'), ('corr_ans', 'left'), ('category', 'loyalty.virtue')]), OrderedDict([('words', 'crisis'), ('corr_ans', 'left'), ('category', 'fairness.vice')]), OrderedDict([('words', 'arrests'), ('corr_ans', 'right'), ('category', 'authority.vice')]), OrderedDict([('words', 'treat'), ('corr_ans', 'left'), ('category', 'fairness.virtue')]), OrderedDict([('words', 'restore'), ('corr_ans', 'right'), ('category', 'care.virtue')]), OrderedDict([('words', 'preighs'), ('corr_ans', 'right'), ('category', 'nonword')]), OrderedDict([('words', 'bomb'), ('corr_ans', 'left'), ('category', 'care.vice')]), OrderedDict([('words', 'civilians'), ('corr_ans', 'right'), ('category', 'care.vice')]), OrderedDict([('words', 'fighters'), ('corr_ans', 'right'), ('category', 'authority.vice')]), OrderedDict([('words', 'rebels'), ('corr_ans', 'right'), ('category', 'authority.vice')]), OrderedDict([('words', 'appreciated'), ('corr_ans', 'left'), ('category', 'authority.virtue')]), OrderedDict([('words', 'military'), ('corr_ans', 'left'), ('category', 'authority.vice')]), OrderedDict([('words', 'expand'), ('corr_ans', 'left'), ('category', 'care.virtue')]), OrderedDict([('words', 'stintz'), ('corr_ans', 'right'), ('category', 'nonword')]), OrderedDict([('words', 'hostility'), ('corr_ans', 'left'), ('category', 'loyalty.vice')]), OrderedDict([('words', 'poor'), ('corr_ans', 'left'), ('category', 'fairness.vice')]), OrderedDict([('words', 'promised'), ('corr_ans', 'right'), ('category', 'loyalty.virtue')]), OrderedDict([('words', 'agents'), ('corr_ans', 'left'), ('category', 'authority.vice')]), OrderedDict([('words', 'staughld'), ('corr_ans', 'left'), ('category', 'nonword')]), OrderedDict([('words', 'confidence'), ('corr_ans', 'left'), ('category', 'loyalty.virtue')]), OrderedDict([('words', 'peace'), ('corr_ans', 'right'), ('category', 'care.virtue')]), OrderedDict([('words', 'values'), ('corr_ans', 'right'), ('category', 'sanctity.virtue')]), OrderedDict([('words', 'injured'), ('corr_ans', 'right'), ('category', 'care.vice')]), OrderedDict([('words', 'illegal'), ('corr_ans', 'right'), ('category', 'fairness.vice')]), OrderedDict([('words', 'safety'), ('corr_ans', 'right'), ('category', 'care.virtue')]), OrderedDict([('words', 'faith'), ('corr_ans', 'right'), ('category', 'sanctity.virtue')]), OrderedDict([('words', 'passionate'), ('corr_ans', 'left'), ('category', 'loyalty.virtue')]), OrderedDict([('words', 'strength'), ('corr_ans', 'right'), ('category', 'sanctity.virtue')]), OrderedDict([('words', 'sloaze'), ('corr_ans', 'left'), ('category', 'nonword')]), OrderedDict([('words', 'heroin'), ('corr_ans', 'left'), ('category', 'sanctity.vice')]), OrderedDict([('words', 'immigrants'), ('corr_ans', 'left'), ('category', 'fairness.vice')]), OrderedDict([('words', 'protesters'), ('corr_ans', 'right'), ('category', 'authority.vice')]), OrderedDict([('words', 'true'), ('corr_ans', 'left'), ('category', 'fairness.virtue')]), OrderedDict([('words', 'phlaizz'), ('corr_ans', 'left'), ('category', 'nonword')]), OrderedDict([('words', 'caregivers'), ('corr_ans', 'left'), ('category', 'care.virtue')]), OrderedDict([('words', 'blamed'), ('corr_ans', 'right'), ('category', 'loyalty.vice')]), OrderedDict([('words', 'diet'), ('corr_ans', 'left'), ('category', 'sanctity.virtue')]), OrderedDict([('words', 'coup'), ('corr_ans', 'left'), ('category', 'loyalty.vice')]), OrderedDict([('words', 'war'), ('corr_ans', 'right'), ('category', 'sanctity.vice')]), OrderedDict([('words', 'easy'), ('corr_ans', 'left'), ('category', 'authority.virtue')]), OrderedDict([('words', 'suspects'), ('corr_ans', 'left'), ('category', 'care.vice')]), OrderedDict([('words', 'violence'), ('corr_ans', 'right'), ('category', 'care.vice')]), OrderedDict([('words', 'enjoy'), ('corr_ans', 'left'), ('category', 'care.virtue')]), OrderedDict([('words', 'serial'), ('corr_ans', 'right'), ('category', 'sanctity.vice')]), OrderedDict([('words', 'gang'), ('corr_ans', 'left'), ('category', 'sanctity.vice')]), OrderedDict([('words', 'hand'), ('corr_ans', 'right'), ('category', 'sanctity.virtue')]), OrderedDict([('words', 'sypht'), ('corr_ans', 'left'), ('category', 'nonword')]), OrderedDict([('words', 'whoond'), ('corr_ans', 'left'), ('category', 'nonword')]), OrderedDict([('words', 'betrayal'), ('corr_ans', 'right'), ('category', 'loyalty.vice')]), OrderedDict([('words', 'assault'), ('corr_ans', 'left'), ('category', 'care.vice')]), OrderedDict([('words', 'refused'), ('corr_ans', 'right'), ('category', 'authority.vice')]), OrderedDict([('words', 'scylde'), ('corr_ans', 'left'), ('category', 'nonword')]), OrderedDict([('words', 'forced'), ('corr_ans', 'right'), ('category', 'fairness.vice')]), OrderedDict([('words', 'failure'), ('corr_ans', 'right'), ('category', 'loyalty.vice')]), OrderedDict([('words', 'generosity'), ('corr_ans', 'left'), ('category', 'sanctity.virtue')]), OrderedDict([('words', 'opportunity'), ('corr_ans', 'right'), ('category', 'fairness.virtue')]), OrderedDict([('words', 'build'), ('corr_ans', 'left'), ('category', 'authority.virtue')]), OrderedDict([('words', 'hunger'), ('corr_ans', 'left'), ('category', 'sanctity.vice')]), OrderedDict([('words', 'kneighed'), ('corr_ans', 'left'), ('category', 'nonword')]), OrderedDict([('words', 'cabinets'), ('corr_ans', 'left'), ('category', 'authority.virtue')]), OrderedDict([('words', 'city'), ('corr_ans', 'left'), ('category', 'loyalty.vice')]), OrderedDict([('words', 'kind'), ('corr_ans', 'left'), ('category', 'sanctity.virtue')]), OrderedDict([('words', 'conspiracy'), ('corr_ans', 'right'), ('category', 'sanctity.vice')]), OrderedDict([('words', 'weild'), ('corr_ans', 'left'), ('category', 'nonword')]), OrderedDict([('words', 'rage'), ('corr_ans', 'left'), ('category', 'loyalty.vice')]), OrderedDict([('words', 'interests'), ('corr_ans', 'right'), ('category', 'fairness.virtue')]), OrderedDict([('words', 'unpleasant'), ('corr_ans', 'right'), ('category', 'control')]), OrderedDict([('words', 'enemies'), ('corr_ans', 'left'), ('category', 'sanctity.vice')]), OrderedDict([('words', 'detention'), ('corr_ans', 'left'), ('category', 'fairness.vice')]), OrderedDict([('words', 'combat'), ('corr_ans', 'left'), ('category', 'authority.vice')]), OrderedDict([('words', 'queighld'), ('corr_ans', 'left'), ('category', 'nonword')]), OrderedDict([('words', 'corruption'), ('corr_ans', 'right'), ('category', 'sanctity.vice')]), OrderedDict([('words', 'authorities'), ('corr_ans', 'left'), ('category', 'authority.vice')]), OrderedDict([('words', 'good'), ('corr_ans', 'right'), ('category', 'care.virtue')]), OrderedDict([('words', 'help'), ('corr_ans', 'right'), ('category', 'care.virtue')]), OrderedDict([('words', 'sharing'), ('corr_ans', 'right'), ('category', 'loyalty.virtue')]), OrderedDict([('words', 'embrace'), ('corr_ans', 'right'), ('category', 'authority.virtue')])]" valType="str"/>
       <Param name="conditionsFile" updates="None" val="condition_files/memtask_conditions.csv" valType="str"/>
       <Param name="endPoints" updates="None" val="[0, 1]" valType="num"/>
       <Param name="isTrials" updates="None" val="True" valType="bool"/>
@@ -2688,37 +2719,6 @@
     </LoopInitiator>
     <Routine name="memtask"/>
     <LoopTerminator name="memtask_trials"/>
-    <Routine name="instr_LDT"/>
-    <LoopInitiator loopType="TrialHandler" name="LDT_pracs">
-      <Param name="Selected rows" updates="None" val="" valType="str"/>
-      <Param name="conditions" updates="None" val="None" valType="str"/>
-      <Param name="conditionsFile" updates="None" val="condition_files/ldt_testrun.csv" valType="str"/>
-      <Param name="endPoints" updates="None" val="[0, 1]" valType="num"/>
-      <Param name="isTrials" updates="None" val="True" valType="bool"/>
-      <Param name="loopType" updates="None" val="random" valType="str"/>
-      <Param name="nReps" updates="None" val="1" valType="code"/>
-      <Param name="name" updates="None" val="LDT_pracs" valType="code"/>
-      <Param name="random seed" updates="None" val="" valType="code"/>
-    </LoopInitiator>
-    <Routine name="fix"/>
-    <Routine name="LDT_prac"/>
-    <LoopTerminator name="LDT_pracs"/>
-    <Routine name="instr_LDT_2"/>
-    <LoopInitiator loopType="TrialHandler" name="LDT_trials">
-      <Param name="Selected rows" updates="None" val="" valType="str"/>
-      <Param name="conditions" updates="None" val="None" valType="str"/>
-      <Param name="conditionsFile" updates="None" val="condition_files/LDT_conditions.csv" valType="str"/>
-      <Param name="endPoints" updates="None" val="[0, 1]" valType="num"/>
-      <Param name="isTrials" updates="None" val="True" valType="bool"/>
-      <Param name="loopType" updates="None" val="random" valType="str"/>
-      <Param name="nReps" updates="None" val="1" valType="code"/>
-      <Param name="name" updates="None" val="LDT_trials" valType="code"/>
-      <Param name="random seed" updates="None" val="" valType="code"/>
-    </LoopInitiator>
-    <Routine name="fix"/>
-    <Routine name="LDT_trial"/>
-    <LoopTerminator name="LDT_trials"/>
-    <Routine name="LDT_feedback"/>
     <Routine name="end"/>
   </Flow>
 </PsychoPy2experiment>
