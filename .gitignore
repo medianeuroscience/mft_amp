@@ -1,0 +1,6 @@
+data/*
+docs/*
+misc/*
+exp_files_s19/data*
+exp_files_w19/data*
+mf_amp.Rproj
