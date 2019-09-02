@@ -49,7 +49,7 @@
         <Param name="startVal" updates="None" val="0.0" valType="code"/>
         <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
         <Param name="stopVal" updates="constant" val="6" valType="code"/>
-        <Param name="text" updates="constant" val="Welcome to the second task! In this task, you will see the same symbols you just rated." valType="str"/>
+        <Param name="text" updates="constant" val="In this task, you will see the same symbols you just rated." valType="str"/>
         <Param name="units" updates="None" val="from exp settings" valType="str"/>
         <Param name="wrapWidth" updates="constant" val="" valType="code"/>
       </TextComponent>
@@ -430,7 +430,7 @@
         <Param name="startVal" updates="None" val="0.0" valType="code"/>
         <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
         <Param name="stopVal" updates="constant" val="6" valType="code"/>
-        <Param name="text" updates="constant" val="Welcome to the final task! In this task, you will see a selection of real words and nonsense words." valType="str"/>
+        <Param name="text" updates="constant" val="In this task, you will see a selection of real words and nonsense words." valType="str"/>
         <Param name="units" updates="None" val="from exp settings" valType="str"/>
         <Param name="wrapWidth" updates="constant" val="" valType="code"/>
       </TextComponent>
@@ -1537,7 +1537,7 @@
         <Param name="startVal" updates="None" val="0.0" valType="code"/>
         <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
         <Param name="stopVal" updates="constant" val="10" valType="code"/>
-        <Param name="text" updates="constant" val="Welcome to the third task! In this task, you will see a selection of words you saw in this experiment, along with words you did NOT see." valType="str"/>
+        <Param name="text" updates="constant" val="In this task, you will see a selection of words you saw in this experiment, along with words you did NOT see." valType="str"/>
         <Param name="units" updates="None" val="from exp settings" valType="str"/>
         <Param name="wrapWidth" updates="constant" val="" valType="code"/>
       </TextComponent>
@@ -1990,7 +1990,7 @@
         <Param name="startVal" updates="None" val="0.0" valType="code"/>
         <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
         <Param name="stopVal" updates="constant" val="6" valType="code"/>
-        <Param name="text" updates="constant" val="Welcome to the first task! In this task, you will see a selection of symbols." valType="str"/>
+        <Param name="text" updates="constant" val="In this task, you will see a selection of symbols." valType="str"/>
         <Param name="units" updates="None" val="from exp settings" valType="str"/>
         <Param name="wrapWidth" updates="constant" val="" valType="code"/>
       </TextComponent>
@@ -2613,6 +2613,49 @@
   <Flow>
     <Routine name="hold"/>
     <Routine name="instr_main"/>
+    <LoopInitiator loopType="TrialHandler" name="LDT_trials_cond2">
+      <Param name="Selected rows" updates="None" val="" valType="str"/>
+      <Param name="conditions" updates="None" val="None" valType="str"/>
+      <Param name="conditionsFile" updates="None" val="" valType="str"/>
+      <Param name="endPoints" updates="None" val="[0, 1]" valType="num"/>
+      <Param name="isTrials" updates="None" val="True" valType="bool"/>
+      <Param name="loopType" updates="None" val="random" valType="str"/>
+      <Param name="nReps" updates="None" val="int(expInfo['participant ID']) % 2 == 1" valType="code"/>
+      <Param name="name" updates="None" val="LDT_trials_cond2" valType="code"/>
+      <Param name="random seed" updates="None" val="" valType="code"/>
+    </LoopInitiator>
+    <Routine name="instr_LDT"/>
+    <LoopInitiator loopType="TrialHandler" name="LDT_pracs_1">
+      <Param name="Selected rows" updates="None" val="" valType="str"/>
+      <Param name="conditions" updates="None" val="[OrderedDict([('words', 'keyboard'), ('mask', '&amp;&amp;&amp;&amp;&amp;&amp;&amp;')]), OrderedDict([('words', 'bisebell'), ('mask', '&amp;&amp;&amp;&amp;&amp;&amp;&amp;')])]" valType="str"/>
+      <Param name="conditionsFile" updates="None" val="condition_files/ldt_testrun.csv" valType="str"/>
+      <Param name="endPoints" updates="None" val="[0, 1]" valType="num"/>
+      <Param name="isTrials" updates="None" val="True" valType="bool"/>
+      <Param name="loopType" updates="None" val="random" valType="str"/>
+      <Param name="nReps" updates="None" val="1" valType="code"/>
+      <Param name="name" updates="None" val="LDT_pracs_1" valType="code"/>
+      <Param name="random seed" updates="None" val="" valType="code"/>
+    </LoopInitiator>
+    <Routine name="fix"/>
+    <Routine name="LDT_prac"/>
+    <LoopTerminator name="LDT_pracs_1"/>
+    <Routine name="instr_LDT_2"/>
+    <LoopInitiator loopType="TrialHandler" name="LDT_trials_1">
+      <Param name="Selected rows" updates="None" val="" valType="str"/>
+      <Param name="conditions" updates="None" val="None" valType="str"/>
+      <Param name="conditionsFile" updates="None" val="" valType="str"/>
+      <Param name="endPoints" updates="None" val="[0, 1]" valType="num"/>
+      <Param name="isTrials" updates="None" val="True" valType="bool"/>
+      <Param name="loopType" updates="None" val="random" valType="str"/>
+      <Param name="nReps" updates="None" val="1" valType="code"/>
+      <Param name="name" updates="None" val="LDT_trials_1" valType="code"/>
+      <Param name="random seed" updates="None" val="" valType="code"/>
+    </LoopInitiator>
+    <Routine name="fix"/>
+    <Routine name="LDT_trial"/>
+    <LoopTerminator name="LDT_trials_1"/>
+    <Routine name="LDT_feedback"/>
+    <LoopTerminator name="LDT_trials_cond2"/>
     <Routine name="instr_symbol"/>
     <Routine name="symbol_prac"/>
     <Routine name="instr_symbol2"/>
@@ -2688,6 +2731,17 @@
     </LoopInitiator>
     <Routine name="memtask"/>
     <LoopTerminator name="memtask_trials"/>
+    <LoopInitiator loopType="TrialHandler" name="LDT_cond1">
+      <Param name="Selected rows" updates="None" val="" valType="str"/>
+      <Param name="conditions" updates="None" val="None" valType="str"/>
+      <Param name="conditionsFile" updates="None" val="" valType="str"/>
+      <Param name="endPoints" updates="None" val="[0, 1]" valType="num"/>
+      <Param name="isTrials" updates="None" val="True" valType="bool"/>
+      <Param name="loopType" updates="None" val="random" valType="str"/>
+      <Param name="nReps" updates="None" val="int(expInfo['participant ID']) % 2 == 0" valType="code"/>
+      <Param name="name" updates="None" val="LDT_cond1" valType="code"/>
+      <Param name="random seed" updates="None" val="" valType="code"/>
+    </LoopInitiator>
     <Routine name="instr_LDT"/>
     <LoopInitiator loopType="TrialHandler" name="LDT_pracs">
       <Param name="Selected rows" updates="None" val="" valType="str"/>
@@ -2719,6 +2773,7 @@
     <Routine name="LDT_trial"/>
     <LoopTerminator name="LDT_trials"/>
     <Routine name="LDT_feedback"/>
+    <LoopTerminator name="LDT_cond1"/>
     <Routine name="end"/>
   </Flow>
 </PsychoPy2experiment>

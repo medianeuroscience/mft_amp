@@ -1,9 +1,6 @@
-exp_files/data/*
-exp_files/AMP_conditions.csv
-.Rproj.user
-expdata.csv
-prelim_analysis.nb.html
-AMP_figures.ai
-cormat.R
+data/*
+docs/*
 misc/*
-test.csv
+exp_files_s19/data*
+exp_files_w19/data*
+mf_amp.Rproj
