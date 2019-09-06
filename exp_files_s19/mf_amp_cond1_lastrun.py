@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy3 Experiment Builder (v3.2.0),
-    on Fri Sep  6 11:37:57 2019
+    on Fri Sep  6 12:29:22 2019
 If you publish work using this script the most relevant publication is:
 
     Peirce J, Gray JR, Simpson S, MacAskill M, Höchenberger R, Sogo H, Kastman E, Lindeløv JK. (2019) 
@@ -4584,7 +4584,7 @@ while continueRoutine:
     frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
     # update/draw components on each frame
     # *AMP_nonword_rating* updates
-    if AMP_nonword_rating.status == NOT_STARTED and t >= 10-frameTolerance:
+    if AMP_nonword_rating.status == NOT_STARTED and AMP_feedback_instr.status==FINISHED:
         # keep track of start time/frame for later
         AMP_nonword_rating.frameNStart = frameN  # exact frame index
         AMP_nonword_rating.tStart = t  # local t and not account for scr refresh

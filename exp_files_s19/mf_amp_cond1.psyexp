@@ -1054,13 +1054,13 @@
         <Param name="name" updates="None" val="AMP_nonword_rating" valType="code"/>
         <Param name="pos" updates="constant" val="0, 0" valType="str"/>
         <Param name="saveStartStop" updates="None" val="True" valType="bool"/>
-        <Param name="scaleDescription" updates="constant" val="To what extent did you base your ratings on the nonsense words?" valType="str"/>
+        <Param name="scaleDescription" updates="constant" val="To what extent did you base your ratings on the symbols that you saw?" valType="str"/>
         <Param name="showAccept" updates="constant" val="False" valType="bool"/>
         <Param name="singleClick" updates="constant" val="False" valType="bool"/>
         <Param name="size" updates="constant" val="2.0" valType="code"/>
         <Param name="startEstim" updates="None" val="" valType="code"/>
-        <Param name="startType" updates="None" val="time (s)" valType="str"/>
-        <Param name="startVal" updates="None" val="$AMP_word_rating.status==FINISHED" valType="code"/>
+        <Param name="startType" updates="None" val="condition" valType="str"/>
+        <Param name="startVal" updates="None" val="$AMP_feedback_instr.status==FINISHED" valType="code"/>
         <Param name="stopType" updates="None" val="condition" valType="str"/>
         <Param name="stopVal" updates="constant" val="" valType="code"/>
         <Param name="storeHistory" updates="constant" val="False" valType="bool"/>
@@ -1121,7 +1121,7 @@
         <Param name="singleClick" updates="constant" val="False" valType="bool"/>
         <Param name="size" updates="constant" val="2.0" valType="code"/>
         <Param name="startEstim" updates="None" val="" valType="code"/>
-        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="startType" updates="None" val="condition" valType="str"/>
         <Param name="startVal" updates="None" val="$AMP_word_rating.status==FINISHED" valType="code"/>
         <Param name="stopType" updates="None" val="condition" valType="str"/>
         <Param name="stopVal" updates="constant" val="" valType="code"/>
