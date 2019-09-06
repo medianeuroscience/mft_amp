@@ -4,7 +4,7 @@
     <Param name="Completed URL" updates="None" val="" valType="str"/>
     <Param name="Data filename" updates="None" val="u'data/%s_%s_%s' % (expInfo['participant ID'], expName, expInfo['date'])" valType="code"/>
     <Param name="Enable Escape" updates="None" val="True" valType="bool"/>
-    <Param name="Experiment info" updates="None" val="{'participant ID': ''}" valType="code"/>
+    <Param name="Experiment info" updates="None" val="{'participant ID': '', 'condition': ''}" valType="code"/>
     <Param name="Force stereo" updates="None" val="False" valType="bool"/>
     <Param name="Full-screen window" updates="None" val="True" valType="bool"/>
     <Param name="HTML path" updates="None" val="html" valType="str"/>
@@ -2948,7 +2948,7 @@
       <Param name="endPoints" updates="None" val="[0, 1]" valType="num"/>
       <Param name="isTrials" updates="None" val="True" valType="bool"/>
       <Param name="loopType" updates="None" val="random" valType="str"/>
-      <Param name="nReps" updates="None" val="int(expInfo['participant ID']) % 2 == 1" valType="code"/>
+      <Param name="nReps" updates="None" val="int(expInfo['condition']) % 2 == 1" valType="code"/>
       <Param name="name" updates="None" val="LDT_trials_cond2" valType="code"/>
       <Param name="random seed" updates="None" val="" valType="code"/>
     </LoopInitiator>
@@ -3066,7 +3066,7 @@
       <Param name="endPoints" updates="None" val="[0, 1]" valType="num"/>
       <Param name="isTrials" updates="None" val="True" valType="bool"/>
       <Param name="loopType" updates="None" val="random" valType="str"/>
-      <Param name="nReps" updates="None" val="int(expInfo['participant ID']) % 2 == 0" valType="code"/>
+      <Param name="nReps" updates="None" val="int(expInfo['condition']) % 2 == 0" valType="code"/>
       <Param name="name" updates="None" val="LDT_cond1" valType="code"/>
       <Param name="random seed" updates="None" val="" valType="code"/>
     </LoopInitiator>

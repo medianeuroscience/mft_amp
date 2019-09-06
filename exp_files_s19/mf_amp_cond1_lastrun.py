@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy3 Experiment Builder (v3.2.0),
-    on Wed Sep  4 08:53:44 2019
+    on Fri Sep  6 10:46:08 2019
 If you publish work using this script the most relevant publication is:
 
     Peirce J, Gray JR, Simpson S, MacAskill M, Höchenberger R, Sogo H, Kastman E, Lindeløv JK. (2019) 
@@ -39,7 +39,7 @@ os.chdir(_thisDir)
 # Store info about the experiment session
 psychopyVersion = '3.2.0'
 expName = 'mf_amp_cond1'  # from the Builder filename that created this script
-expInfo = {'participant ID': ''}
+expInfo = {'participant ID': '', 'condition': ''}
 dlg = gui.DlgFromDict(dictionary=expInfo, sortKeys=False, title=expName)
 if dlg.OK == False:
     core.quit()  # user pressed cancel
@@ -1619,7 +1619,7 @@ thisExp.addData('exp_time', globalClock.getTime())
 routineTimer.reset()
 
 # set up handler to look after randomisation of conditions etc
-LDT_trials_cond2 = data.TrialHandler(nReps=int(expInfo['participant ID']) % 2 == 1, method='random', 
+LDT_trials_cond2 = data.TrialHandler(nReps=int(expInfo['condition']) % 2 == 1, method='random', 
     extraInfo=expInfo, originPath=-1,
     trialList=[None],
     seed=None, name='LDT_trials_cond2')
@@ -2324,7 +2324,7 @@ for thisLDT_trials_cond2 in LDT_trials_cond2:
     # set up handler to look after randomisation of conditions etc
     LDT_trials_1 = data.TrialHandler(nReps=1, method='random', 
         extraInfo=expInfo, originPath=-1,
-        trialList=[None],
+        trialList=data.importConditions('condition_files/LDT_conditions.csv'),
         seed=None, name='LDT_trials_1')
     thisExp.addLoop(LDT_trials_1)  # add the loop to the experiment
     thisLDT_trial_1 = LDT_trials_1.trialList[0]  # so we can initialise stimuli with some values
@@ -2644,7 +2644,7 @@ for thisLDT_trials_cond2 in LDT_trials_cond2:
     routineTimer.reset()
     thisExp.nextEntry()
     
-# completed int(expInfo['participant ID']) % 2 == 1 repeats of 'LDT_trials_cond2'
+# completed int(expInfo['condition']) % 2 == 1 repeats of 'LDT_trials_cond2'
 
 
 # ------Prepare to start Routine "instr_symbol"-------
@@ -5025,7 +5025,7 @@ for thisMemtask_trial in memtask_trials:
 
 
 # set up handler to look after randomisation of conditions etc
-LDT_cond1 = data.TrialHandler(nReps=int(expInfo['participant ID']) % 2 == 0, method='random', 
+LDT_cond1 = data.TrialHandler(nReps=int(expInfo['condition']) % 2 == 0, method='random', 
     extraInfo=expInfo, originPath=-1,
     trialList=[None],
     seed=None, name='LDT_cond1')
@@ -6050,7 +6050,7 @@ for thisLDT_cond1 in LDT_cond1:
     routineTimer.reset()
     thisExp.nextEntry()
     
-# completed int(expInfo['participant ID']) % 2 == 0 repeats of 'LDT_cond1'
+# completed int(expInfo['condition']) % 2 == 0 repeats of 'LDT_cond1'
 
 
 # ------Prepare to start Routine "end"-------
