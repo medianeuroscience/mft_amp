@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy3 Experiment Builder (v3.2.0),
-    on Wed Sep  4 08:36:01 2019
+    on Fri Sep  6 08:56:03 2019
 If you publish work using this script the most relevant publication is:
 
     Peirce J, Gray JR, Simpson S, MacAskill M, Höchenberger R, Sogo H, Kastman E, Lindeløv JK. (2019) 
@@ -96,6 +96,9 @@ import random
 import pandas as pd
 import numpy as np
 import webbrowser
+
+globalClock = core.Clock()
+routineClock = core.Clock()
 
 # Reading in the CSVs
 
@@ -2101,7 +2104,7 @@ for thisLDT_trials_cond2 in LDT_trials_cond2:
             keys = event.getKeys()
             if 'j' in keys:
                     continueRoutine = False
-                    LDT_pracs.finished = True
+                    LDT_pracs_1.finished = True
             
             # *key_reminder_3* updates
             if key_reminder_3.status == NOT_STARTED and tThisFlip >= 0-frameTolerance:
@@ -2321,7 +2324,7 @@ for thisLDT_trials_cond2 in LDT_trials_cond2:
     # set up handler to look after randomisation of conditions etc
     LDT_trials_1 = data.TrialHandler(nReps=1, method='random', 
         extraInfo=expInfo, originPath=-1,
-        trialList=[None],
+        trialList=data.importConditions('condition_files/LDT_conditions.csv'),
         seed=None, name='LDT_trials_1')
     thisExp.addLoop(LDT_trials_1)  # add the loop to the experiment
     thisLDT_trial_1 = LDT_trials_1.trialList[0]  # so we can initialise stimuli with some values
@@ -2494,7 +2497,7 @@ for thisLDT_trials_cond2 in LDT_trials_cond2:
             keys = event.getKeys()
             if 'j' in keys:
                     continueRoutine = False
-                    LDT_trials.finished = True
+                    LDT_trials_1.finished = True
             
             # *key_reminder* updates
             if key_reminder.status == NOT_STARTED and tThisFlip >= 0-frameTolerance:
@@ -5507,7 +5510,7 @@ for thisLDT_cond1 in LDT_cond1:
             keys = event.getKeys()
             if 'j' in keys:
                     continueRoutine = False
-                    LDT_pracs.finished = True
+                    LDT_pracs_1.finished = True
             
             # *key_reminder_3* updates
             if key_reminder_3.status == NOT_STARTED and tThisFlip >= 0-frameTolerance:
@@ -5900,7 +5903,7 @@ for thisLDT_cond1 in LDT_cond1:
             keys = event.getKeys()
             if 'j' in keys:
                     continueRoutine = False
-                    LDT_trials.finished = True
+                    LDT_trials_1.finished = True
             
             # *key_reminder* updates
             if key_reminder.status == NOT_STARTED and tThisFlip >= 0-frameTolerance:
