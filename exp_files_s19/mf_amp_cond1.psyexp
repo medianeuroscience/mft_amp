@@ -1059,8 +1059,8 @@
         <Param name="singleClick" updates="constant" val="False" valType="bool"/>
         <Param name="size" updates="constant" val="2.0" valType="code"/>
         <Param name="startEstim" updates="None" val="" valType="code"/>
-        <Param name="startType" updates="None" val="time (s)" valType="str"/>
-        <Param name="startVal" updates="None" val="$AMP_word_rating.status==FINISHED" valType="code"/>
+        <Param name="startType" updates="None" val="condition" valType="str"/>
+        <Param name="startVal" updates="None" val="$AMP_random_rating.status==FINISHED" valType="code"/>
         <Param name="stopType" updates="None" val="condition" valType="str"/>
         <Param name="stopVal" updates="constant" val="" valType="code"/>
         <Param name="storeHistory" updates="constant" val="False" valType="bool"/>
