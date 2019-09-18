@@ -1365,7 +1365,7 @@
         <Param name="allowedKeys" updates="constant" val="'left','right',&quot;escape&quot;,&quot;n&quot;" valType="code"/>
         <Param name="correctAns" updates="constant" val="$corr_ans" valType="str"/>
         <Param name="disabled" updates="None" val="False" valType="bool"/>
-        <Param name="discard previous" updates="constant" val="True" valType="bool"/>
+        <Param name="discard previous" updates="constant" val="False" valType="bool"/>
         <Param name="durationEstim" updates="None" val="3.5" valType="code"/>
         <Param name="forceEndRoutine" updates="constant" val="True" valType="bool"/>
         <Param name="name" updates="None" val="sym_resp_trial" valType="code"/>
@@ -1590,7 +1590,7 @@
         <Param name="End Experiment" updates="constant" val="" valType="extendedCode"/>
         <Param name="End JS Experiment" updates="constant" val="" valType="extendedCode"/>
         <Param name="End JS Routine" updates="constant" val="" valType="extendedCode"/>
-        <Param name="End Routine" updates="constant" val="thisExp.addData('task', &quot;AMP_prac&quot;)&amp;#10;thisExp.addData('keypress', resp_AMP.keys)&amp;#10;thisExp.addData('RT', resp_AMP.rt)&amp;#10;thisExp.addData('exp_time', globalClock.getTime())&amp;#10;thisExp.addData('prime_dur', prime_dur)" valType="extendedCode"/>
+        <Param name="End Routine" updates="constant" val="thisExp.addData('task', &quot;AMP_prac&quot;)&amp;#10;thisExp.addData('keypress', resp_AMP_trials.keys)&amp;#10;thisExp.addData('RT', resp_AMP_trials.rt)&amp;#10;thisExp.addData('exp_time', globalClock.getTime())&amp;#10;thisExp.addData('prime_dur', prime_dur)" valType="extendedCode"/>
         <Param name="disabled" updates="None" val="False" valType="bool"/>
         <Param name="name" updates="None" val="code_12" valType="code"/>
       </CodeComponent>
@@ -1914,7 +1914,7 @@
         <Param name="allowedKeys" updates="constant" val="'left','right','escape'" valType="code"/>
         <Param name="correctAns" updates="constant" val="$corr_ans" valType="str"/>
         <Param name="disabled" updates="None" val="False" valType="bool"/>
-        <Param name="discard previous" updates="constant" val="True" valType="bool"/>
+        <Param name="discard previous" updates="constant" val="False" valType="bool"/>
         <Param name="durationEstim" updates="None" val="2.9" valType="code"/>
         <Param name="forceEndRoutine" updates="constant" val="True" valType="bool"/>
         <Param name="name" updates="None" val="resp_memtask" valType="code"/>
@@ -2907,7 +2907,7 @@
         <Param name="End Experiment" updates="constant" val="" valType="extendedCode"/>
         <Param name="End JS Experiment" updates="constant" val="" valType="extendedCode"/>
         <Param name="End JS Routine" updates="constant" val="" valType="extendedCode"/>
-        <Param name="End Routine" updates="constant" val="thisExp.addData('task', &quot;LDT_prac&quot;)&amp;#10;thisExp.addData('keypress', resp_LDT_prac.keys)&amp;#10;thisExp.addData('RT', resp_LDT_prac.rt)&amp;#10;thisExp.addData('corr', resp_LDT_prac.corr)&amp;#10;thisExp.addData('exp_time', globalClock.getTime())" valType="extendedCode"/>
+        <Param name="End Routine" updates="constant" val="thisExp.addData('task', &quot;LDT_prac&quot;)&amp;#10;thisExp.addData('keypress', resp_LDT_prac.keys)&amp;#10;thisExp.addData('RT', resp_LDT_trial.rt)&amp;#10;thisExp.addData('corr', resp_LDT_trial.corr)&amp;#10;thisExp.addData('exp_time', globalClock.getTime())" valType="extendedCode"/>
         <Param name="disabled" updates="None" val="False" valType="bool"/>
         <Param name="name" updates="None" val="code" valType="code"/>
       </CodeComponent>

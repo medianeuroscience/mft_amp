@@ -1,8 +1,8 @@
-﻿#!/usr/bin/env python
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy3 Experiment Builder (v3.2.0),
-    on Fri Sep  6 10:47:01 2019
+    on Wed Sep 18 10:04:54 2019
 If you publish work using this script the most relevant publication is:
 
     Peirce J, Gray JR, Simpson S, MacAskill M, Höchenberger R, Sogo H, Kastman E, Lindeløv JK. (2019) 
@@ -2543,8 +2543,8 @@ for thisLDT_trials_cond2 in LDT_trials_cond2:
         LDT_trials_1.addData('resp_LDT_trial.stopped', resp_LDT_trial.tStopRefresh)
         thisExp.addData('task', "LDT_prac")
         thisExp.addData('keypress', resp_LDT_prac.keys)
-        thisExp.addData('RT', resp_LDT_prac.rt)
-        thisExp.addData('corr', resp_LDT_prac.corr)
+        thisExp.addData('RT', resp_LDT_trial.rt)
+        thisExp.addData('corr', resp_LDT_trial.corr)
         thisExp.addData('exp_time', globalClock.getTime())
         LDT_trials_1.addData('key_reminder.started', key_reminder.tStartRefresh)
         LDT_trials_1.addData('key_reminder.stopped', key_reminder.tStopRefresh)
@@ -3307,7 +3307,6 @@ for thisLogo_trial in logo_trials:
             # keyboard checking is just starting
             waitOnFlip = True
             win.callOnFlip(sym_resp_trial.clock.reset)  # t=0 on next screen flip
-            win.callOnFlip(sym_resp_trial.clearEvents, eventType='keyboard')  # clear events on next screen flip
         if sym_resp_trial.status == STARTED and not waitOnFlip:
             theseKeys = sym_resp_trial.getKeys(keyList=['left', 'right', 'escape', 'n'], waitRelease=False)
             if len(theseKeys):
@@ -4440,8 +4439,8 @@ for thisTrials_loop in trials_loop:
         AMP_trials.addData('resp_AMP_trials.started', resp_AMP_trials.tStartRefresh)
         AMP_trials.addData('resp_AMP_trials.stopped', resp_AMP_trials.tStopRefresh)
         thisExp.addData('task', "AMP_prac")
-        thisExp.addData('keypress', resp_AMP.keys)
-        thisExp.addData('RT', resp_AMP.rt)
+        thisExp.addData('keypress', resp_AMP_trials.keys)
+        thisExp.addData('RT', resp_AMP_trials.rt)
         thisExp.addData('exp_time', globalClock.getTime())
         thisExp.addData('prime_dur', prime_dur)
         # the Routine "AMP_target_trials" was not non-slip safe, so reset the non-slip timer
@@ -4584,7 +4583,7 @@ while continueRoutine:
     frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
     # update/draw components on each frame
     # *AMP_nonword_rating* updates
-    if AMP_nonword_rating.status == NOT_STARTED and t >= 10-frameTolerance:
+    if AMP_nonword_rating.status == NOT_STARTED and AMP_feedback_instr.status==FINISHED:
         # keep track of start time/frame for later
         AMP_nonword_rating.frameNStart = frameN  # exact frame index
         AMP_nonword_rating.tStart = t  # local t and not account for scr refresh
@@ -4600,7 +4599,7 @@ while continueRoutine:
         win.timeOnFlip(AMP_word_rating, 'tStartRefresh')  # time at next scr refresh
         AMP_word_rating.setAutoDraw(True)
     # *AMP_random_rating* updates
-    if AMP_random_rating.status == NOT_STARTED and t >= AMP_word_rating.status==FINISHED-frameTolerance:
+    if AMP_random_rating.status == NOT_STARTED and AMP_word_rating.status==FINISHED:
         # keep track of start time/frame for later
         AMP_random_rating.frameNStart = frameN  # exact frame index
         AMP_random_rating.tStart = t  # local t and not account for scr refresh
@@ -4941,7 +4940,6 @@ for thisMemtask_trial in memtask_trials:
             # keyboard checking is just starting
             waitOnFlip = True
             win.callOnFlip(resp_memtask.clock.reset)  # t=0 on next screen flip
-            win.callOnFlip(resp_memtask.clearEvents, eventType='keyboard')  # clear events on next screen flip
         if resp_memtask.status == STARTED and not waitOnFlip:
             theseKeys = resp_memtask.getKeys(keyList=['left', 'right', 'escape'], waitRelease=False)
             if len(theseKeys):
@@ -5949,8 +5947,8 @@ for thisLDT_cond1 in LDT_cond1:
         LDT_trials.addData('resp_LDT_trial.stopped', resp_LDT_trial.tStopRefresh)
         thisExp.addData('task', "LDT_prac")
         thisExp.addData('keypress', resp_LDT_prac.keys)
-        thisExp.addData('RT', resp_LDT_prac.rt)
-        thisExp.addData('corr', resp_LDT_prac.corr)
+        thisExp.addData('RT', resp_LDT_trial.rt)
+        thisExp.addData('corr', resp_LDT_trial.corr)
         thisExp.addData('exp_time', globalClock.getTime())
         LDT_trials.addData('key_reminder.started', key_reminder.tStartRefresh)
         LDT_trials.addData('key_reminder.stopped', key_reminder.tStopRefresh)
