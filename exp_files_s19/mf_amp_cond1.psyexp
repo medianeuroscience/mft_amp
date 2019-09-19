@@ -1026,7 +1026,7 @@
         <Param name="Begin Experiment" updates="constant" val="" valType="extendedCode"/>
         <Param name="Begin JS Experiment" updates="constant" val="" valType="extendedCode"/>
         <Param name="Begin JS Routine" updates="constant" val="" valType="extendedCode"/>
-        <Param name="Begin Routine" updates="constant" val="rand_duration = random.randint(1000, 2000)/1000" valType="extendedCode"/>
+        <Param name="Begin Routine" updates="constant" val="" valType="extendedCode"/>
         <Param name="Code Type" updates="None" val="Py" valType="str"/>
         <Param name="Each Frame" updates="constant" val="" valType="extendedCode"/>
         <Param name="Each JS Frame" updates="constant" val="" valType="extendedCode"/>
@@ -1957,7 +1957,7 @@
         <Param name="Begin Experiment" updates="constant" val="" valType="extendedCode"/>
         <Param name="Begin JS Experiment" updates="constant" val="" valType="extendedCode"/>
         <Param name="Begin JS Routine" updates="constant" val="" valType="extendedCode"/>
-        <Param name="Begin Routine" updates="constant" val="keys = []&amp;#10;ldt_dur = random.randint(20, 100)/1000" valType="extendedCode"/>
+        <Param name="Begin Routine" updates="constant" val="keys = []&amp;#10;" valType="extendedCode"/>
         <Param name="Code Type" updates="None" val="Py" valType="str"/>
         <Param name="Each Frame" updates="constant" val="keys = event.getKeys()&amp;#10;if 'j' in keys:&amp;#10;        continueRoutine = False &amp;#10;        memtask_trials.finished = True" valType="extendedCode"/>
         <Param name="Each JS Frame" updates="constant" val="" valType="extendedCode"/>
@@ -2907,7 +2907,7 @@
         <Param name="End Experiment" updates="constant" val="" valType="extendedCode"/>
         <Param name="End JS Experiment" updates="constant" val="" valType="extendedCode"/>
         <Param name="End JS Routine" updates="constant" val="" valType="extendedCode"/>
-        <Param name="End Routine" updates="constant" val="thisExp.addData('task', &quot;LDT_prac&quot;)&amp;#10;thisExp.addData('keypress', resp_LDT_prac.keys)&amp;#10;thisExp.addData('RT', resp_LDT_trial.rt)&amp;#10;thisExp.addData('corr', resp_LDT_trial.corr)&amp;#10;thisExp.addData('exp_time', globalClock.getTime())" valType="extendedCode"/>
+        <Param name="End Routine" updates="constant" val="thisExp.addData('task', &quot;LDT_prac&quot;)&amp;#10;thisExp.addData('keypress', resp_LDT_trial.keys)&amp;#10;thisExp.addData('LDT_dur', ldt_dur)&amp;#10;thisExp.addData('RT', resp_LDT_trial.rt)&amp;#10;thisExp.addData('corr', resp_LDT_trial.corr)&amp;#10;thisExp.addData('exp_time', globalClock.getTime())" valType="extendedCode"/>
         <Param name="disabled" updates="None" val="False" valType="bool"/>
         <Param name="name" updates="None" val="code" valType="code"/>
       </CodeComponent>
