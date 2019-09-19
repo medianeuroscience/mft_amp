@@ -13,7 +13,8 @@ library(knitr)
 library(tidyverse)
 library(gridExtra)
 library(ggridges)
-setwd('/home/fhopp/github/mf_amp/analysis/')
+# setwd('/home/fhopp/github/mf_amp/analysis/')
+setwd('/Users/Wasp/GitHub/mf_amp/analysis/')
 opts_chunk$set(echo = TRUE, 
                message = FALSE, 
                warning = FALSE, 
@@ -25,61 +26,75 @@ opts_chunk$set(echo = TRUE,
 ```{r importing data and defining functions}
 surveydata = read.csv("amp_sym/surveydata.csv")
 files = list.files(path ="amp_sym", pattern="^10.*.csv$", full.names = TRUE)
-expdata_full = do.call(bind_rows,
-                       lapply(files, function(x) read_csv(x, col_types = cols('img_logo_AMP_trials.stopped'=col_skip(),
-                                                                              'mask_AMP_2.started'=col_skip(), 
-                                                                              'img_logo_prac.stopped'=col_skip(),
-                                                                              'resp_AMP_trials.started'=col_skip(),
-                                                                              'amp_prime_mask.stopped'=col_skip(),
-                                                                              'img_logo_AMP.stopped'=col_skip(),
-                                                                              "img_logo_AMP.started"=col_skip(),
-                                                                              'mask_AMP.started'=col_skip(),
-                                                                              "sym_resp_2.started" = col_skip(),
-                                                                              "resp_AMP.started" = col_skip(),
-                                                                              "AMP_key_reminder.started"=col_skip(),
-                                                                              "instr_sym11.started"=col_skip(),
-                                                                              'sym_layout_reminder.stopped'=col_skip(),
-                                                                              'AMP_key_reminder_2.started'=col_skip(),
-                                                                              'img_logo_AMP.stopped'=col_skip(),
-                                                                              "mask_logo_prac.started"=col_skip(),
-                                                                              "img_logo_AMP_trials.started"=col_skip(),
-                                                                              "img_logo_trial.stopped"=col_skip(), 
-                                                                              "mask_logo_trial.started"=col_skip()))))
+expdata_full = do.call(bind_rows, lapply(files, function(x) read_csv(x,
+                                        col_types = cols('img_logo_AMP_trials.stopped'=col_skip(),
+                                                         'LDT_cond1.thisN' = col_skip(),
+                                                         'LDT_cond1.thisIndex' = col_skip(),
+                                                         'mask_AMP_2.started'=col_skip(),
+                                                         'img_logo_prac.stopped'=col_skip(),
+                                                          'resp_AMP_trials.started'=col_skip(),
+                                                          'amp_prime_mask.stopped'=col_skip(),
+                                                          'img_logo_AMP.stopped'=col_skip(),
+                                                          "img_logo_AMP.started"=col_skip(),
+                                                          'mask_AMP.started'=col_skip(),
+                                                          'LDT_cond1.thisTrialN' = col_skip(),
+                                                          'LDT_cond1.thisRepN' = col_skip(),
+                                                          "sym_resp_2.started" = col_skip(),
+                                                          "resp_AMP.started" = col_skip(),
+                                                          "AMP_key_reminder.started"=col_skip(),
+                                                          "instr_sym11.started"=col_skip(),
+                                                          'sym_layout_reminder.stopped'=col_skip(),
+                                                          'AMP_key_reminder_2.started'=col_skip(),
+                                                          'img_logo_AMP.stopped'=col_skip(),
+                                                          "mask_logo_prac.started"=col_skip(),
+                                                          "img_logo_AMP_trials.started"=col_skip(),
+                                                          "img_logo_trial.stopped"=col_skip(), 
+                                                          "mask_logo_trial.started"=col_skip()))))
                                                     
 
 
 # participant is participant ID in new data
 expdata <- expdata_full %>%
-  select(`participant ID`,
-         words,
-         mask,
-         corr_ans,
-         category,
-         task,
-         symbols,
-         keypress,
-         RT,
-         corr)
-#          participant, 
-#          AMP_nonword_rating.response,	
-#          AMP_word_rating.response,	
-#          AMP_random_rating.response,	
-#          LDT_rating.response,
-#          AMP_loop.thisN,
-#          AMP_trials.thisN)
-# 
-# # This function will check to see whether an observation is 
-# # an outlier based on median absolute deviation (MAD)
-# 
-# out_mad <- function(x, thres = 3, na.rm = TRUE) {
-#   abs(x - median(x, na.rm = na.rm)) >= thres * mad(x, na.rm = na.rm)
-# }
-# 
-# out_replace = function(dataframe, cols, rows, newValue = NA) {
-#     if (any(rows)) {
-#         set(dataframe, rows, cols, newValue)
-#     }
-# }
+  select(`participant ID`, # participant ID
+         words, # words that are being shown
+         corr_ans, # correct response for AMP and MEM, corrected for LDT below! 
+         category, # category of the word (e.g., fairness.vice)
+         task, # e.g., AMP, LDT, memory, ... 
+         resp_AMP_trials.keys, # Which key was pressed during AMP?
+         resp_AMP_trials.rt, # RT for keypress during AMP?
+         resp_LDT_trial.keys, # Which key pressed during LDT
+         resp_LDT_trial.rt, # RT for LDT
+         resp_memtask.keys, # which key was pressed during memory task 
+         resp_memtask.rt, # reponse time for memory task 
+         resp_memtask.corr, # was the response for memtask correct? 
+         AMP_word_rating.response,	
+         AMP_random_rating.response,
+         LDT_rating.response)
+
+# Drop practise round words
+prac_words <- c('keyboard', 'bisebell', 'banana', 'car', 'keyboard', 'scarf')
+expdata <- expdata[ ! expdata$words %in% prac_words, ]
+
+# Rename correct answers for LDT 
+# Nonword = left 
+# Word = right
+expdata <- within(expdata, corr_ans[corr_ans == 'left' & category != 'nonword' & task == 'LDT_prac'] <- 'right') 
+
+expdata <- within(expdata, task[task == 'AMP_prac'] <- 'AMP')
+expdata <- within(expdata, task[task == 'LDT_prac'] <- 'LDT')
+  
+# This function will check to see whether an observation is
+# an outlier based on median absolute deviation (MAD)
+
+out_mad <- function(x, thres = 3, na.rm = TRUE) {
+  abs(x - median(x, na.rm = na.rm)) >= thres * mad(x, na.rm = na.rm)
+}
+
+out_replace = function(dataframe, cols, rows, newValue = NA) {
+    if (any(rows)) {
+        set(dataframe, rows, cols, newValue)
+    }
+}
 
 ```
 
@@ -88,7 +103,7 @@ expdata <- expdata_full %>%
 Let's do some recoding and variable manipulation. 
 
 - For some reason PsychoPy records correct as 0 and incorrect as 1, so let's switch those. 
-- We'll add a new variable caled "wordcat" that tells us whether the word is moral, nonmoral, or a nonword.
+- We'll add a new variable called "wordcat" that tells us whether the word is moral, nonmoral, or a nonword.
 - We'll split up the category variable into "foundation" and "valence" in case we are interested in the two things separately at any point.
 - Looks like I accidentally named the AMP different things in condition 1 and condition 2. To remedy this, we'll coalesce the 'AMP_loop.thisN` and `AMP_trials.thisN` variables together into one column.
 
@@ -108,11 +123,9 @@ expdata_w <- expdata_w %>%
                                         ifelse(valence == "virtue", "positive",
                                                ifelse(valence == "vice", "negative", NA))))))
 
-expdata_w <- expdata_w %>% 
-  mutate(trialnum = coalesce(AMP_loop.thisN, AMP_trials.thisN))
 
 expdata_w <- expdata_w %>%
-  mutate_at(vars(participant), funs(as.factor))
+  mutate_at(vars(`participant ID`), funs(as.factor))
 
 ```
 
