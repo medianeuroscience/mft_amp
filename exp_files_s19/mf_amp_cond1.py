@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy3 Experiment Builder (v3.2.0),
-    on Fri Sep  6 08:56:03 2019
+    on Wed Sep 18 09:58:22 2019
 If you publish work using this script the most relevant publication is:
 
     Peirce J, Gray JR, Simpson S, MacAskill M, Höchenberger R, Sogo H, Kastman E, Lindeløv JK. (2019) 
@@ -2492,6 +2492,11 @@ for thisLDT_trials_cond2 in LDT_trials_cond2:
                         endExpNow = True
                     resp_LDT_trial.keys = theseKeys.name  # just the last key pressed
                     resp_LDT_trial.rt = theseKeys.rt
+                    # was this 'correct'?
+                    if (resp_LDT_trial.keys == str(corr_ans)) or (resp_LDT_trial.keys == corr_ans):
+                        resp_LDT_trial.corr = 1
+                    else:
+                        resp_LDT_trial.corr = 0
                     # a response ends the routine
                     continueRoutine = False
             keys = event.getKeys()
@@ -2536,14 +2541,21 @@ for thisLDT_trials_cond2 in LDT_trials_cond2:
         # check responses
         if resp_LDT_trial.keys in ['', [], None]:  # No response was made
             resp_LDT_trial.keys = None
+            # was no response the correct answer?!
+            if str(corr_ans).lower() == 'none':
+               resp_LDT_trial.corr = 1;  # correct non-response
+            else:
+               resp_LDT_trial.corr = 0;  # failed to respond (incorrectly)
+        # store data for LDT_trials_1 (TrialHandler)
         LDT_trials_1.addData('resp_LDT_trial.keys',resp_LDT_trial.keys)
+        LDT_trials_1.addData('resp_LDT_trial.corr', resp_LDT_trial.corr)
         if resp_LDT_trial.keys != None:  # we had a response
             LDT_trials_1.addData('resp_LDT_trial.rt', resp_LDT_trial.rt)
         LDT_trials_1.addData('resp_LDT_trial.started', resp_LDT_trial.tStartRefresh)
         LDT_trials_1.addData('resp_LDT_trial.stopped', resp_LDT_trial.tStopRefresh)
-        thisExp.addData('task', "LDT_prac")
-        thisExp.addData('keypress', resp_LDT_prac.keys)
-        thisExp.addData('RT', resp_LDT_prac.rt)
+        thisExp.addData('task', "LDT")
+        thisExp.addData('keypress', resp_LDT_trial.keys)
+        thisExp.addData('RT', resp_LDT_trial.rt)
         thisExp.addData('corr', resp_LDT_prac.corr)
         thisExp.addData('exp_time', globalClock.getTime())
         LDT_trials_1.addData('key_reminder.started', key_reminder.tStartRefresh)
@@ -3307,7 +3319,6 @@ for thisLogo_trial in logo_trials:
             # keyboard checking is just starting
             waitOnFlip = True
             win.callOnFlip(sym_resp_trial.clock.reset)  # t=0 on next screen flip
-            win.callOnFlip(sym_resp_trial.clearEvents, eventType='keyboard')  # clear events on next screen flip
         if sym_resp_trial.status == STARTED and not waitOnFlip:
             theseKeys = sym_resp_trial.getKeys(keyList=['left', 'right', 'escape', 'n'], waitRelease=False)
             if len(theseKeys):
@@ -4439,9 +4450,9 @@ for thisTrials_loop in trials_loop:
             AMP_trials.addData('resp_AMP_trials.rt', resp_AMP_trials.rt)
         AMP_trials.addData('resp_AMP_trials.started', resp_AMP_trials.tStartRefresh)
         AMP_trials.addData('resp_AMP_trials.stopped', resp_AMP_trials.tStopRefresh)
-        thisExp.addData('task', "AMP_prac")
-        thisExp.addData('keypress', resp_AMP.keys)
-        thisExp.addData('RT', resp_AMP.rt)
+        thisExp.addData('task', "AMP")
+        thisExp.addData('keypress', resp_AMP_trials.keys)
+        thisExp.addData('RT', resp_AMP_trials.rt)
         thisExp.addData('exp_time', globalClock.getTime())
         thisExp.addData('prime_dur', prime_dur)
         # the Routine "AMP_target_trials" was not non-slip safe, so reset the non-slip timer
@@ -4584,7 +4595,7 @@ while continueRoutine:
     frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
     # update/draw components on each frame
     # *AMP_nonword_rating* updates
-    if AMP_nonword_rating.status == NOT_STARTED and t >= 10-frameTolerance:
+    if AMP_nonword_rating.status == NOT_STARTED and AMP_random_rating.status==FINISHED:
         # keep track of start time/frame for later
         AMP_nonword_rating.frameNStart = frameN  # exact frame index
         AMP_nonword_rating.tStart = t  # local t and not account for scr refresh
@@ -4941,7 +4952,6 @@ for thisMemtask_trial in memtask_trials:
             # keyboard checking is just starting
             waitOnFlip = True
             win.callOnFlip(resp_memtask.clock.reset)  # t=0 on next screen flip
-            win.callOnFlip(resp_memtask.clearEvents, eventType='keyboard')  # clear events on next screen flip
         if resp_memtask.status == STARTED and not waitOnFlip:
             theseKeys = resp_memtask.getKeys(keyList=['left', 'right', 'escape'], waitRelease=False)
             if len(theseKeys):
@@ -5898,6 +5908,11 @@ for thisLDT_cond1 in LDT_cond1:
                         endExpNow = True
                     resp_LDT_trial.keys = theseKeys.name  # just the last key pressed
                     resp_LDT_trial.rt = theseKeys.rt
+                    # was this 'correct'?
+                    if (resp_LDT_trial.keys == str(corr_ans)) or (resp_LDT_trial.keys == corr_ans):
+                        resp_LDT_trial.corr = 1
+                    else:
+                        resp_LDT_trial.corr = 0
                     # a response ends the routine
                     continueRoutine = False
             keys = event.getKeys()
@@ -5942,14 +5957,21 @@ for thisLDT_cond1 in LDT_cond1:
         # check responses
         if resp_LDT_trial.keys in ['', [], None]:  # No response was made
             resp_LDT_trial.keys = None
+            # was no response the correct answer?!
+            if str(corr_ans).lower() == 'none':
+               resp_LDT_trial.corr = 1;  # correct non-response
+            else:
+               resp_LDT_trial.corr = 0;  # failed to respond (incorrectly)
+        # store data for LDT_trials (TrialHandler)
         LDT_trials.addData('resp_LDT_trial.keys',resp_LDT_trial.keys)
+        LDT_trials.addData('resp_LDT_trial.corr', resp_LDT_trial.corr)
         if resp_LDT_trial.keys != None:  # we had a response
             LDT_trials.addData('resp_LDT_trial.rt', resp_LDT_trial.rt)
         LDT_trials.addData('resp_LDT_trial.started', resp_LDT_trial.tStartRefresh)
         LDT_trials.addData('resp_LDT_trial.stopped', resp_LDT_trial.tStopRefresh)
-        thisExp.addData('task', "LDT_prac")
-        thisExp.addData('keypress', resp_LDT_prac.keys)
-        thisExp.addData('RT', resp_LDT_prac.rt)
+        thisExp.addData('task', "LDT")
+        thisExp.addData('keypress', resp_LDT_trial.keys)
+        thisExp.addData('RT', resp_LDT_trial.rt)
         thisExp.addData('corr', resp_LDT_prac.corr)
         thisExp.addData('exp_time', globalClock.getTime())
         LDT_trials.addData('key_reminder.started', key_reminder.tStartRefresh)
