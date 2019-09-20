@@ -13,8 +13,8 @@ library(knitr)
 library(tidyverse)
 library(gridExtra)
 library(ggridges)
-# setwd('/home/fhopp/github/mf_amp/analysis/')
-setwd('/Users/Wasp/GitHub/mf_amp/analysis/')
+setwd('/home/fhopp/github/mf_amp/analysis/')
+#setwd('/Users/Wasp/GitHub/mf_amp/analysis/')
 opts_chunk$set(echo = TRUE, 
                message = FALSE, 
                warning = FALSE, 
@@ -60,6 +60,7 @@ expdata <- expdata_full %>%
          corr_ans, # correct response for AMP and MEM, corrected for LDT below! 
          category, # category of the word (e.g., fairness.vice)
          task, # e.g., AMP, LDT, memory, ... 
+         prime_dur, # The condition for the AMP -- 
          resp_AMP_trials.keys, # Which key was pressed during AMP?
          resp_AMP_trials.rt, # RT for keypress during AMP?
          resp_LDT_trial.keys, # Which key pressed during LDT
@@ -67,8 +68,9 @@ expdata <- expdata_full %>%
          resp_memtask.keys, # which key was pressed during memory task 
          resp_memtask.rt, # reponse time for memory task 
          resp_memtask.corr, # was the response for memtask correct? 
-         AMP_word_rating.response,	
-         AMP_random_rating.response,
+         AMP_word_rating.response, # Degree to which participants rated the word
+         AMP_nonword_rating.response, # Degree to which participants rated the symbol
+         AMP_random_rating.response, # Degree to which participants responded randomly
          LDT_rating.response)
 
 # Drop practise round words
@@ -82,7 +84,22 @@ expdata <- within(expdata, corr_ans[corr_ans == 'left' & category != 'nonword' &
 
 expdata <- within(expdata, task[task == 'AMP_prac'] <- 'AMP')
 expdata <- within(expdata, task[task == 'LDT_prac'] <- 'LDT')
-  
+
+# Rename 'participant ID' to participant 
+names(expdata)[names(expdata) == 'participant ID'] <- 'participant'
+
+# Drop NAs
+#expdata <- expdata[!is.na(expdata$category), ]
+
+# Determine Correct and False Responses
+expdata["AMP_task.corr"] <- 0
+expdata["LDT_task.corr"] <- 0
+
+expdata <- expdata %>%
+  mutate(AMP_task.corr = ifelse(corr_ans == resp_AMP_trials.keys, 1, 0))  %>%
+  mutate(LDT_task.corr = ifelse(corr_ans == resp_LDT_trial.keys, 1, 0))
+
+
 # This function will check to see whether an observation is
 # an outlier based on median absolute deviation (MAD)
 
@@ -102,16 +119,12 @@ out_replace = function(dataframe, cols, rows, newValue = NA) {
 
 Let's do some recoding and variable manipulation. 
 
-- For some reason PsychoPy records correct as 0 and incorrect as 1, so let's switch those. 
 - We'll add a new variable called "wordcat" that tells us whether the word is moral, nonmoral, or a nonword.
 - We'll split up the category variable into "foundation" and "valence" in case we are interested in the two things separately at any point.
-- Looks like I accidentally named the AMP different things in condition 1 and condition 2. To remedy this, we'll coalesce the 'AMP_loop.thisN` and `AMP_trials.thisN` variables together into one column.
 
 ```{r}
 expdata_w <- expdata %>% 
-  mutate(corr = ifelse(corr == 1, 0,
-                       ifelse(corr == 0, 1, NA)),
-         wordcat = ifelse(category == "neutral", "neutral",
+  mutate(wordcat = ifelse(category == "neutral", "neutral",
                           ifelse(category == "nonword", "nonword",
                                  ifelse(!is.na(category), "moralword", NA))))
 
@@ -125,7 +138,7 @@ expdata_w <- expdata_w %>%
 
 
 expdata_w <- expdata_w %>%
-  mutate_at(vars(`participant ID`), funs(as.factor))
+  mutate_at(vars(participant), funs(as.factor))
 
 ```
 
@@ -139,7 +152,7 @@ AMP_trials %>% group_by(participant) %>% summarize(n = n())
 LDT_trials %>% group_by(participant) %>% summarize(n = n())
 ```
 
-Looks like it's all there. 
+Looks like a bunch of subjects are missing the LDT. 
 
 Now we need to do a little bit of cleaning to try our best to get rid of outlying STRTs as well as those who didn't actually try in the task(s). I'm going to look at a few things: a) who they self-reported random responses, b) chance accuracy in the LDT, c) distributions of response times, d) the participants that the RA's called out as not paying attention
 
@@ -148,92 +161,63 @@ First, lets look at self-reported ratings. These are going to be fairly interest
 ```{r rating responses}
 
 df <- expdata_w %>% 
-  select(participant, 
-         AMP_nonword_rating.response,	
+  select(participant, prime_dur,
          AMP_word_rating.response,	
-         AMP_random_rating.response,	
-         LDT_rating.response) %>% 
+         AMP_random_rating.response,
+         AMP_nonword_rating.response) %>% 
   group_by(participant) %>%
-  summarize(AMP_word = mean(AMP_word_rating.response, na.rm=TRUE), 
-            AMP_nonword = mean(AMP_nonword_rating.response, na.rm=TRUE), 
-            AMP_random = mean(AMP_random_rating.response, na.rm=TRUE), 
-            LDT_random = mean(LDT_rating.response, na.rm=TRUE))
+  summarize(AMP_word = mean(AMP_word_rating.response, na.rm=TRUE),
+            AMP_symbol = mean(AMP_nonword_rating.response, na.rm=TRUE),
+            AMP_random = mean(AMP_random_rating.response, na.rm=TRUE),
+            AMP_cond = mean(prime_dur, na.rm=TRUE))
 
-plot_data <- df %>% gather("task", "response", -participant)
+plot_data <- df %>% gather("task", "response", -c(AMP_cond, participant))
 
-ggplot(plot_data, aes(x = response, y = ..count..)) + 
-  geom_bar(position = "dodge") + 
+ggplot(plot_data, aes(x = response, y = ..count..)) +
+  geom_bar(position = "dodge") +
   scale_x_continuous(breaks=1:7,labels=c("not at all",
                                          "","",
                                          "somewhat",
                                          "","",
-                                         "completely")) + 
+                                         "completely")) +
   scale_fill_discrete(labels=c("AMP judgment based on targets",
                                "AMP judgment based on primes",
-                               "AMP responded randomly", 
-                               "LDT responded randomly")) + 
-  labs(title = "Post-task Responses") + facet_wrap(. ~ task)
+                               "AMP responded randomly")) +
+  labs(title = "Post-task Responses") + facet_wrap(.~ AMP_cond * task)
 
-df %>% 
-  select(participant, LDT_random, AMP_random) %>% 
-  filter(AMP_random == 7 | LDT_random == 7)
+df %>%
+  select(participant, AMP_random) %>%
+  filter(AMP_random == 7)
+
+ggplot(plot_data, aes(x = response)) + geom_density(aes(fill = as.factor(AMP_cond), color = as.factor(AMP_cond)), alpha = 0.7) + facet_wrap(.~task)
 
 ```
 
-Looks like people were more willing to admit they responded randomly in the LDT (1001,1013,1023,1029,1032,1063) than the AMP (1032, 1038, 1080). Let's look at button presses in the AMP and the LDT.
+Additional pointrange plots
+```{r}
+
+plt_data <- df %>% group_by(AMP_cond) %>% summarize(n = n(), se_word = (sd(AMP_word)/sqrt(n)), mean_word=mean(AMP_word), se_symbol = (sd(AMP_symbol)/sqrt(n)), mean_symbol=mean(AMP_symbol), se_random = (sd(AMP_random)/sqrt(n)), mean_random=mean(AMP_random))
+
+ggplot(plt_data, aes(x = AMP_cond, y = mean_word)) + geom_pointrange(aes(ymin = mean_word-se_word, ymax = mean_word+se_word))
+
+```
+
+
+Looks like people were more willing to admit they responded randomly in the LDT (1001,1013,1023,1029,1032,1063) than the AMP (1032, 1038, 1080). Let's look at button presses in the AMP.
 
 ```{r press proportions}
 
-df1 <- expdata_w %>% filter(task == "LDT" | task == "AMP") %>% 
-  group_by(participant, task, keypress) %>%  
+df1 <- expdata_w %>% filter(task == "AMP") %>% 
+  group_by(participant, task, resp_AMP_trials.keys) %>%  
   summarize(n = n())
 
-df1 <- df1 %>% spread(keypress, n) %>% 
+df1 <- df1 %>% spread(resp_AMP_trials.keys, n) %>% 
   summarize(ratio = left/right)
 
 median(df1$ratio) + 3 * sd(df1$ratio)
 
 ```
 
-There are a few clear outliers here. 1031 and 1074. 1074 was one of the ones called out by the RA's as not trying at all. Would probably be worth filtering if they pop up again. 
-
-```{r LDT accuracy}
-
-LDT_trials <- expdata_w %>% 
-  group_by(participant) %>% 
-  mutate(LDT_random = mean(LDT_rating.response, na.rm=TRUE)) %>%
-  ungroup() %>%
-  filter(task == "LDT") %>%
-  group_by(participant) %>% 
-  summarize(corr = mean(corr, na.rm=TRUE))
-  
-#Let's see if there are any participants who are correctness outliers.
-
-df_indouts <- LDT_trials %>% 
-  select(participant, corr) %>% 
-  mutate_if(is.numeric, funs(mad = out_mad))
-
-table(df_indouts$mad)
-
-```
-
-Doesn't look like it. Let's look at this based on words. Should be interesting but I don't know if we have enough data for strong conclusions here yet. 
-
-```{r}
-LDT_trials <- expdata_w %>% 
-  group_by(words) %>% 
-  filter(task == "LDT") %>%
-  summarize(corr = mean(corr, na.rm=TRUE))
-
-df <- LDT_trials %>% group_by(words) %>% summarize(corr = mean(corr), n = n())
-
-df_wordouts <- df %>% 
-  select(words, corr, n) %>% 
-  mutate_if(is.numeric, funs(mad = out_mad))
-
-table(df_wordouts$corr_mad)
-
-```
 
 Only two words are outliers, the non-word "ammessment," and the non-word "tove" Only 28% of people got ammessment and only 27% got tove correct.
 
@@ -243,9 +227,9 @@ Now let's looks at reaction times in the AMP and the LDT. I'm not sure that we a
 
 ```{r reaction times}
 
-df <- expdata_w %>% filter(task == "AMP" | task == "LDT")
+df <- expdata_w %>% filter(task == "AMP")
 
-ggplot(df, aes(x = RT)) + geom_histogram()
+ggplot(df, aes(x = resp_AMP_trials.rt)) + geom_histogram()
 
 ```
 
