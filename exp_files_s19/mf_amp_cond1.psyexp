@@ -4,7 +4,7 @@
     <Param name="Completed URL" updates="None" val="" valType="str"/>
     <Param name="Data filename" updates="None" val="u'data/%s_%s_%s' % (expInfo['participant ID'], expName, expInfo['date'])" valType="code"/>
     <Param name="Enable Escape" updates="None" val="True" valType="bool"/>
-    <Param name="Experiment info" updates="None" val="{'participant ID': ''}" valType="code"/>
+    <Param name="Experiment info" updates="None" val="{'participant ID': '', 'condition': ''}" valType="code"/>
     <Param name="Force stereo" updates="None" val="False" valType="bool"/>
     <Param name="Full-screen window" updates="None" val="True" valType="bool"/>
     <Param name="HTML path" updates="None" val="html" valType="str"/>
@@ -1026,7 +1026,7 @@
         <Param name="Begin Experiment" updates="constant" val="" valType="extendedCode"/>
         <Param name="Begin JS Experiment" updates="constant" val="" valType="extendedCode"/>
         <Param name="Begin JS Routine" updates="constant" val="" valType="extendedCode"/>
-        <Param name="Begin Routine" updates="constant" val="rand_duration = random.randint(1000, 2000)/1000" valType="extendedCode"/>
+        <Param name="Begin Routine" updates="constant" val="" valType="extendedCode"/>
         <Param name="Code Type" updates="None" val="Py" valType="str"/>
         <Param name="Each Frame" updates="constant" val="" valType="extendedCode"/>
         <Param name="Each JS Frame" updates="constant" val="" valType="extendedCode"/>
@@ -1054,13 +1054,13 @@
         <Param name="name" updates="None" val="AMP_nonword_rating" valType="code"/>
         <Param name="pos" updates="constant" val="0, 0" valType="str"/>
         <Param name="saveStartStop" updates="None" val="True" valType="bool"/>
-        <Param name="scaleDescription" updates="constant" val="To what extent did you base your ratings on the nonsense words?" valType="str"/>
+        <Param name="scaleDescription" updates="constant" val="To what extent did you base your ratings on the symbols that you saw?" valType="str"/>
         <Param name="showAccept" updates="constant" val="False" valType="bool"/>
         <Param name="singleClick" updates="constant" val="False" valType="bool"/>
         <Param name="size" updates="constant" val="2.0" valType="code"/>
         <Param name="startEstim" updates="None" val="" valType="code"/>
         <Param name="startType" updates="None" val="condition" valType="str"/>
-        <Param name="startVal" updates="None" val="$AMP_random_rating.status==FINISHED" valType="code"/>
+        <Param name="startVal" updates="None" val="$AMP_feedback_instr.status==FINISHED" valType="code"/>
         <Param name="stopType" updates="None" val="condition" valType="str"/>
         <Param name="stopVal" updates="constant" val="" valType="code"/>
         <Param name="storeHistory" updates="constant" val="False" valType="bool"/>
@@ -1121,7 +1121,7 @@
         <Param name="singleClick" updates="constant" val="False" valType="bool"/>
         <Param name="size" updates="constant" val="2.0" valType="code"/>
         <Param name="startEstim" updates="None" val="" valType="code"/>
-        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="startType" updates="None" val="condition" valType="str"/>
         <Param name="startVal" updates="None" val="$AMP_word_rating.status==FINISHED" valType="code"/>
         <Param name="stopType" updates="None" val="condition" valType="str"/>
         <Param name="stopVal" updates="constant" val="" valType="code"/>
@@ -1590,7 +1590,7 @@
         <Param name="End Experiment" updates="constant" val="" valType="extendedCode"/>
         <Param name="End JS Experiment" updates="constant" val="" valType="extendedCode"/>
         <Param name="End JS Routine" updates="constant" val="" valType="extendedCode"/>
-        <Param name="End Routine" updates="constant" val="thisExp.addData('task', &quot;AMP&quot;)&amp;#10;thisExp.addData('keypress', resp_AMP_trials.keys)&amp;#10;thisExp.addData('RT', resp_AMP_trials.rt)&amp;#10;thisExp.addData('exp_time', globalClock.getTime())&amp;#10;thisExp.addData('prime_dur', prime_dur)" valType="extendedCode"/>
+        <Param name="End Routine" updates="constant" val="thisExp.addData('task', &quot;AMP_prac&quot;)&amp;#10;thisExp.addData('keypress', resp_AMP_trials.keys)&amp;#10;thisExp.addData('RT', resp_AMP_trials.rt)&amp;#10;thisExp.addData('exp_time', globalClock.getTime())&amp;#10;thisExp.addData('prime_dur', prime_dur)" valType="extendedCode"/>
         <Param name="disabled" updates="None" val="False" valType="bool"/>
         <Param name="name" updates="None" val="code_12" valType="code"/>
       </CodeComponent>
@@ -1957,7 +1957,7 @@
         <Param name="Begin Experiment" updates="constant" val="" valType="extendedCode"/>
         <Param name="Begin JS Experiment" updates="constant" val="" valType="extendedCode"/>
         <Param name="Begin JS Routine" updates="constant" val="" valType="extendedCode"/>
-        <Param name="Begin Routine" updates="constant" val="keys = []&amp;#10;ldt_dur = random.randint(20, 100)/1000" valType="extendedCode"/>
+        <Param name="Begin Routine" updates="constant" val="keys = []&amp;#10;" valType="extendedCode"/>
         <Param name="Code Type" updates="None" val="Py" valType="str"/>
         <Param name="Each Frame" updates="constant" val="keys = event.getKeys()&amp;#10;if 'j' in keys:&amp;#10;        continueRoutine = False &amp;#10;        memtask_trials.finished = True" valType="extendedCode"/>
         <Param name="Each JS Frame" updates="constant" val="" valType="extendedCode"/>
@@ -2893,7 +2893,7 @@
         <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
         <Param name="stopVal" updates="constant" val="" valType="code"/>
         <Param name="store" updates="constant" val="last key" valType="str"/>
-        <Param name="storeCorrect" updates="constant" val="True" valType="bool"/>
+        <Param name="storeCorrect" updates="constant" val="False" valType="bool"/>
         <Param name="syncScreenRefresh" updates="constant" val="True" valType="bool"/>
       </KeyboardComponent>
       <CodeComponent name="code">
@@ -2907,7 +2907,7 @@
         <Param name="End Experiment" updates="constant" val="" valType="extendedCode"/>
         <Param name="End JS Experiment" updates="constant" val="" valType="extendedCode"/>
         <Param name="End JS Routine" updates="constant" val="" valType="extendedCode"/>
-        <Param name="End Routine" updates="constant" val="thisExp.addData('task', &quot;LDT&quot;)&amp;#10;thisExp.addData('keypress', resp_LDT_trial.keys)&amp;#10;thisExp.addData('RT', resp_LDT_trial.rt)&amp;#10;thisExp.addData('corr', resp_LDT_prac.corr)&amp;#10;thisExp.addData('exp_time', globalClock.getTime())" valType="extendedCode"/>
+        <Param name="End Routine" updates="constant" val="thisExp.addData('task', &quot;LDT_prac&quot;)&amp;#10;thisExp.addData('keypress', resp_LDT_trial.keys)&amp;#10;thisExp.addData('LDT_dur', ldt_dur)&amp;#10;thisExp.addData('RT', resp_LDT_trial.rt)&amp;#10;thisExp.addData('corr', resp_LDT_trial.corr)&amp;#10;thisExp.addData('exp_time', globalClock.getTime())" valType="extendedCode"/>
         <Param name="disabled" updates="None" val="False" valType="bool"/>
         <Param name="name" updates="None" val="code" valType="code"/>
       </CodeComponent>
@@ -2948,7 +2948,7 @@
       <Param name="endPoints" updates="None" val="[0, 1]" valType="num"/>
       <Param name="isTrials" updates="None" val="True" valType="bool"/>
       <Param name="loopType" updates="None" val="random" valType="str"/>
-      <Param name="nReps" updates="None" val="int(expInfo['participant ID']) % 2 == 1" valType="code"/>
+      <Param name="nReps" updates="None" val="int(expInfo['condition']) % 2 == 1" valType="code"/>
       <Param name="name" updates="None" val="LDT_trials_cond2" valType="code"/>
       <Param name="random seed" updates="None" val="" valType="code"/>
     </LoopInitiator>
@@ -3066,7 +3066,7 @@
       <Param name="endPoints" updates="None" val="[0, 1]" valType="num"/>
       <Param name="isTrials" updates="None" val="True" valType="bool"/>
       <Param name="loopType" updates="None" val="random" valType="str"/>
-      <Param name="nReps" updates="None" val="int(expInfo['participant ID']) % 2 == 0" valType="code"/>
+      <Param name="nReps" updates="None" val="int(expInfo['condition']) % 2 == 0" valType="code"/>
       <Param name="name" updates="None" val="LDT_cond1" valType="code"/>
       <Param name="random seed" updates="None" val="" valType="code"/>
     </LoopInitiator>
