@@ -6,5 +6,4 @@ There are currently two iterations of these experiments. [Experiment 1](experime
 
 The overall goal of this project is to create an open-sourced and reproducible version of the AMP and the LDT that addresses some salient concerns about each of the protocols. For a full rationale see the manuscript submitted to the 2019 Meeting of the National Communication Association \(file [here](https://github.com/medianeuroscience/mf_amp/.gitbook/assets/nca-amp-sub.pdf)\).
 
-
-
+A thorough description of the protocol for each experiment can be found [here](https://osf.io/3mqsz/)
