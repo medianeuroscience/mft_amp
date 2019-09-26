@@ -1,8 +1,0 @@
-#
-####### example-requirements.txt #######
-#
-###### Requirements without Version Specifiers ######
-sphinxcontrib-blockdiag
-sphinxcontrib-fulltoc
-sphinx_rtd_theme
-#
