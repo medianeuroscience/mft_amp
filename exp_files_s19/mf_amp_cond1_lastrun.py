@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy3 Experiment Builder (v3.2.0),
-    on Wed Sep  4 08:53:44 2019
+    on Sun Oct  6 13:11:39 2019
 If you publish work using this script the most relevant publication is:
 
     Peirce J, Gray JR, Simpson S, MacAskill M, Höchenberger R, Sogo H, Kastman E, Lindeløv JK. (2019) 
@@ -39,7 +39,7 @@ os.chdir(_thisDir)
 # Store info about the experiment session
 psychopyVersion = '3.2.0'
 expName = 'mf_amp_cond1'  # from the Builder filename that created this script
-expInfo = {'participant ID': ''}
+expInfo = {'participant ID': '', 'condition': ''}
 dlg = gui.DlgFromDict(dictionary=expInfo, sortKeys=False, title=expName)
 if dlg.OK == False:
     core.quit()  # user pressed cancel
@@ -1619,7 +1619,7 @@ thisExp.addData('exp_time', globalClock.getTime())
 routineTimer.reset()
 
 # set up handler to look after randomisation of conditions etc
-LDT_trials_cond2 = data.TrialHandler(nReps=int(expInfo['participant ID']) % 2 == 1, method='random', 
+LDT_trials_cond2 = data.TrialHandler(nReps=int(expInfo['condition']) % 2 == 1, method='random', 
     extraInfo=expInfo, originPath=-1,
     trialList=[None],
     seed=None, name='LDT_trials_cond2')
@@ -1949,7 +1949,6 @@ for thisLDT_trials_cond2 in LDT_trials_cond2:
         
         # ------Prepare to start Routine "fix"-------
         # update component parameters for each repeat
-        rand_duration = random.randint(1000, 2000)/1000
         # keep track of which components have finished
         fixComponents = [LDT_fix_cross]
         for thisComponent in fixComponents:
@@ -2026,6 +2025,7 @@ for thisLDT_trials_cond2 in LDT_trials_cond2:
         resp_LDT_prac.rt = []
         keys = []
         ldt_dur = random.randint(1, 6)
+        ldt_mask_dur = 2 * ldt_dur
         # keep track of which components have finished
         LDT_pracComponents = [LDT_word_prac, LDT_mask_prac, resp_LDT_prac, key_reminder_3]
         for thisComponent in LDT_pracComponents:
@@ -2068,13 +2068,20 @@ for thisLDT_trials_cond2 in LDT_trials_cond2:
                     LDT_word_prac.setAutoDraw(False)
             
             # *LDT_mask_prac* updates
-            if LDT_mask_prac.status == NOT_STARTED and frameN >= ldt_dur:
+            if LDT_mask_prac.status == NOT_STARTED and LDT_word_prac.status==FINISHED:
                 # keep track of start time/frame for later
                 LDT_mask_prac.frameNStart = frameN  # exact frame index
                 LDT_mask_prac.tStart = t  # local t and not account for scr refresh
                 LDT_mask_prac.tStartRefresh = tThisFlipGlobal  # on global time
                 win.timeOnFlip(LDT_mask_prac, 'tStartRefresh')  # time at next scr refresh
                 LDT_mask_prac.setAutoDraw(True)
+            if LDT_mask_prac.status == STARTED:
+                if frameN >= (LDT_mask_prac.frameNStart + ldt_mask_dur):
+                    # keep track of stop time/frame for later
+                    LDT_mask_prac.tStop = t  # not accounting for scr refresh
+                    LDT_mask_prac.frameNStop = frameN  # exact frame index
+                    win.timeOnFlip(LDT_mask_prac, 'tStopRefresh')  # time at next scr refresh
+                    LDT_mask_prac.setAutoDraw(False)
             
             # *resp_LDT_prac* updates
             waitOnFlip = False
@@ -2150,9 +2157,11 @@ for thisLDT_trials_cond2 in LDT_trials_cond2:
         LDT_pracs_1.addData('resp_LDT_prac.stopped', resp_LDT_prac.tStopRefresh)
         thisExp.addData('task', "LDT_prac")
         thisExp.addData('keypress', resp_LDT_prac.keys)
+        thisExp.addData('LDT_dur', ldt_dur)
         thisExp.addData('RT', resp_LDT_prac.rt)
         thisExp.addData('corr', resp_LDT_prac.corr)
         thisExp.addData('exp_time', globalClock.getTime())
+        
         LDT_pracs_1.addData('key_reminder_3.started', key_reminder_3.tStartRefresh)
         LDT_pracs_1.addData('key_reminder_3.stopped', key_reminder_3.tStopRefresh)
         # the Routine "LDT_prac" was not non-slip safe, so reset the non-slip timer
@@ -2324,7 +2333,7 @@ for thisLDT_trials_cond2 in LDT_trials_cond2:
     # set up handler to look after randomisation of conditions etc
     LDT_trials_1 = data.TrialHandler(nReps=1, method='random', 
         extraInfo=expInfo, originPath=-1,
-        trialList=[None],
+        trialList=data.importConditions('condition_files/LDT_conditions.csv'),
         seed=None, name='LDT_trials_1')
     thisExp.addLoop(LDT_trials_1)  # add the loop to the experiment
     thisLDT_trial_1 = LDT_trials_1.trialList[0]  # so we can initialise stimuli with some values
@@ -2342,7 +2351,6 @@ for thisLDT_trials_cond2 in LDT_trials_cond2:
         
         # ------Prepare to start Routine "fix"-------
         # update component parameters for each repeat
-        rand_duration = random.randint(1000, 2000)/1000
         # keep track of which components have finished
         fixComponents = [LDT_fix_cross]
         for thisComponent in fixComponents:
@@ -2461,13 +2469,20 @@ for thisLDT_trials_cond2 in LDT_trials_cond2:
                     LDT_word_trial.setAutoDraw(False)
             
             # *LDT_mask_trial* updates
-            if LDT_mask_trial.status == NOT_STARTED and frameN >= ldt_dur:
+            if LDT_mask_trial.status == NOT_STARTED and frameN >= LDT_word_trial.status==FINISHED:
                 # keep track of start time/frame for later
                 LDT_mask_trial.frameNStart = frameN  # exact frame index
                 LDT_mask_trial.tStart = t  # local t and not account for scr refresh
                 LDT_mask_trial.tStartRefresh = tThisFlipGlobal  # on global time
                 win.timeOnFlip(LDT_mask_trial, 'tStartRefresh')  # time at next scr refresh
                 LDT_mask_trial.setAutoDraw(True)
+            if LDT_mask_trial.status == STARTED:
+                if frameN >= (LDT_mask_trial.frameNStart + ldt_mask_dur):
+                    # keep track of stop time/frame for later
+                    LDT_mask_trial.tStop = t  # not accounting for scr refresh
+                    LDT_mask_trial.frameNStop = frameN  # exact frame index
+                    win.timeOnFlip(LDT_mask_trial, 'tStopRefresh')  # time at next scr refresh
+                    LDT_mask_trial.setAutoDraw(False)
             
             # *resp_LDT_trial* updates
             waitOnFlip = False
@@ -2541,10 +2556,11 @@ for thisLDT_trials_cond2 in LDT_trials_cond2:
             LDT_trials_1.addData('resp_LDT_trial.rt', resp_LDT_trial.rt)
         LDT_trials_1.addData('resp_LDT_trial.started', resp_LDT_trial.tStartRefresh)
         LDT_trials_1.addData('resp_LDT_trial.stopped', resp_LDT_trial.tStopRefresh)
-        thisExp.addData('task', "LDT_prac")
-        thisExp.addData('keypress', resp_LDT_prac.keys)
-        thisExp.addData('RT', resp_LDT_prac.rt)
-        thisExp.addData('corr', resp_LDT_prac.corr)
+        thisExp.addData('task', "LDT")
+        thisExp.addData('keypress', resp_LDT_trial.keys)
+        thisExp.addData('LDT_dur', ldt_dur)
+        thisExp.addData('RT', resp_LDT_trial.rt)
+        thisExp.addData('corr', resp_LDT_trial.corr)
         thisExp.addData('exp_time', globalClock.getTime())
         LDT_trials_1.addData('key_reminder.started', key_reminder.tStartRefresh)
         LDT_trials_1.addData('key_reminder.stopped', key_reminder.tStopRefresh)
@@ -2640,11 +2656,13 @@ for thisLDT_trials_cond2 in LDT_trials_cond2:
     LDT_trials_cond2.addData('LDT_rating.stopped', LDT_rating.tStop)
     LDT_trials_cond2.addData('LDT_feedback_inst.started', LDT_feedback_inst.tStartRefresh)
     LDT_trials_cond2.addData('LDT_feedback_inst.stopped', LDT_feedback_inst.tStopRefresh)
+    thisExp.addData("task", "LDT_feedback")
+    thisExp.addData("LDT_rating", LDT_rating.response)
     # the Routine "LDT_feedback" was not non-slip safe, so reset the non-slip timer
     routineTimer.reset()
     thisExp.nextEntry()
     
-# completed int(expInfo['participant ID']) % 2 == 1 repeats of 'LDT_trials_cond2'
+# completed int(expInfo['condition']) % 2 == 1 repeats of 'LDT_trials_cond2'
 
 
 # ------Prepare to start Routine "instr_symbol"-------
@@ -3307,7 +3325,6 @@ for thisLogo_trial in logo_trials:
             # keyboard checking is just starting
             waitOnFlip = True
             win.callOnFlip(sym_resp_trial.clock.reset)  # t=0 on next screen flip
-            win.callOnFlip(sym_resp_trial.clearEvents, eventType='keyboard')  # clear events on next screen flip
         if sym_resp_trial.status == STARTED and not waitOnFlip:
             theseKeys = sym_resp_trial.getKeys(keyList=['left', 'right', 'escape', 'n'], waitRelease=False)
             if len(theseKeys):
@@ -3362,6 +3379,9 @@ for thisLogo_trial in logo_trials:
     logo_trials.addData('sym_resp_trial.started', sym_resp_trial.tStartRefresh)
     logo_trials.addData('sym_resp_trial.stopped', sym_resp_trial.tStopRefresh)
     thisExp.addData('symbol_index', index)
+    thisExp.addData('keypress', sym_resp_trial.keys)
+    thisExp.addData('RT', sym_resp_trial.rt)
+    thisExp.addData('task', "symbols")
     # the Routine "logo_trial" was not non-slip safe, so reset the non-slip timer
     routineTimer.reset()
 # completed 1 repeats of 'logo_trials'
@@ -4439,9 +4459,9 @@ for thisTrials_loop in trials_loop:
             AMP_trials.addData('resp_AMP_trials.rt', resp_AMP_trials.rt)
         AMP_trials.addData('resp_AMP_trials.started', resp_AMP_trials.tStartRefresh)
         AMP_trials.addData('resp_AMP_trials.stopped', resp_AMP_trials.tStopRefresh)
-        thisExp.addData('task', "AMP_prac")
-        thisExp.addData('keypress', resp_AMP.keys)
-        thisExp.addData('RT', resp_AMP.rt)
+        thisExp.addData('task', "AMP")
+        thisExp.addData('keypress', resp_AMP_trials.keys)
+        thisExp.addData('RT', resp_AMP_trials.rt)
         thisExp.addData('exp_time', globalClock.getTime())
         thisExp.addData('prime_dur', prime_dur)
         # the Routine "AMP_target_trials" was not non-slip safe, so reset the non-slip timer
@@ -4584,7 +4604,7 @@ while continueRoutine:
     frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
     # update/draw components on each frame
     # *AMP_nonword_rating* updates
-    if AMP_nonword_rating.status == NOT_STARTED and t >= 10-frameTolerance:
+    if AMP_nonword_rating.status == NOT_STARTED and AMP_feedback_instr.status==FINISHED:
         # keep track of start time/frame for later
         AMP_nonword_rating.frameNStart = frameN  # exact frame index
         AMP_nonword_rating.tStart = t  # local t and not account for scr refresh
@@ -4600,7 +4620,7 @@ while continueRoutine:
         win.timeOnFlip(AMP_word_rating, 'tStartRefresh')  # time at next scr refresh
         AMP_word_rating.setAutoDraw(True)
     # *AMP_random_rating* updates
-    if AMP_random_rating.status == NOT_STARTED and t >= AMP_word_rating.status==FINISHED-frameTolerance:
+    if AMP_random_rating.status == NOT_STARTED and AMP_word_rating.status==FINISHED:
         # keep track of start time/frame for later
         AMP_random_rating.frameNStart = frameN  # exact frame index
         AMP_random_rating.tStart = t  # local t and not account for scr refresh
@@ -4669,6 +4689,12 @@ thisExp.addData('AMP_random_rating.started', AMP_random_rating.tStart)
 thisExp.addData('AMP_random_rating.stopped', AMP_random_rating.tStop)
 thisExp.addData('AMP_feedback_instr.started', AMP_feedback_instr.tStartRefresh)
 thisExp.addData('AMP_feedback_instr.stopped', AMP_feedback_instr.tStopRefresh)
+thisExp.addData('task', "AMP_feedback")
+thisExp.add_data('AMP_symbol_rating', AMP_nonword_rating.response)
+thisExp.add_data('AMP_word_rating', AMP_word_rating.response)
+thisExp.add_data('AMP_random_rating', AMP_random_rating.response)
+
+
 # the Routine "AMP_feedback" was not non-slip safe, so reset the non-slip timer
 routineTimer.reset()
 
@@ -4894,7 +4920,7 @@ for thisMemtask_trial in memtask_trials:
     resp_memtask.keys = []
     resp_memtask.rt = []
     keys = []
-    ldt_dur = random.randint(20, 100)/1000
+    
     # keep track of which components have finished
     memtaskComponents = [memtask_word, resp_memtask, memtask_layout_reminder]
     for thisComponent in memtaskComponents:
@@ -4941,7 +4967,6 @@ for thisMemtask_trial in memtask_trials:
             # keyboard checking is just starting
             waitOnFlip = True
             win.callOnFlip(resp_memtask.clock.reset)  # t=0 on next screen flip
-            win.callOnFlip(resp_memtask.clearEvents, eventType='keyboard')  # clear events on next screen flip
         if resp_memtask.status == STARTED and not waitOnFlip:
             theseKeys = resp_memtask.getKeys(keyList=['left', 'right', 'escape'], waitRelease=False)
             if len(theseKeys):
@@ -5025,7 +5050,7 @@ for thisMemtask_trial in memtask_trials:
 
 
 # set up handler to look after randomisation of conditions etc
-LDT_cond1 = data.TrialHandler(nReps=int(expInfo['participant ID']) % 2 == 0, method='random', 
+LDT_cond1 = data.TrialHandler(nReps=int(expInfo['condition']) % 2 == 0, method='random', 
     extraInfo=expInfo, originPath=-1,
     trialList=[None],
     seed=None, name='LDT_cond1')
@@ -5355,7 +5380,6 @@ for thisLDT_cond1 in LDT_cond1:
         
         # ------Prepare to start Routine "fix"-------
         # update component parameters for each repeat
-        rand_duration = random.randint(1000, 2000)/1000
         # keep track of which components have finished
         fixComponents = [LDT_fix_cross]
         for thisComponent in fixComponents:
@@ -5432,6 +5456,7 @@ for thisLDT_cond1 in LDT_cond1:
         resp_LDT_prac.rt = []
         keys = []
         ldt_dur = random.randint(1, 6)
+        ldt_mask_dur = 2 * ldt_dur
         # keep track of which components have finished
         LDT_pracComponents = [LDT_word_prac, LDT_mask_prac, resp_LDT_prac, key_reminder_3]
         for thisComponent in LDT_pracComponents:
@@ -5474,13 +5499,20 @@ for thisLDT_cond1 in LDT_cond1:
                     LDT_word_prac.setAutoDraw(False)
             
             # *LDT_mask_prac* updates
-            if LDT_mask_prac.status == NOT_STARTED and frameN >= ldt_dur:
+            if LDT_mask_prac.status == NOT_STARTED and LDT_word_prac.status==FINISHED:
                 # keep track of start time/frame for later
                 LDT_mask_prac.frameNStart = frameN  # exact frame index
                 LDT_mask_prac.tStart = t  # local t and not account for scr refresh
                 LDT_mask_prac.tStartRefresh = tThisFlipGlobal  # on global time
                 win.timeOnFlip(LDT_mask_prac, 'tStartRefresh')  # time at next scr refresh
                 LDT_mask_prac.setAutoDraw(True)
+            if LDT_mask_prac.status == STARTED:
+                if frameN >= (LDT_mask_prac.frameNStart + ldt_mask_dur):
+                    # keep track of stop time/frame for later
+                    LDT_mask_prac.tStop = t  # not accounting for scr refresh
+                    LDT_mask_prac.frameNStop = frameN  # exact frame index
+                    win.timeOnFlip(LDT_mask_prac, 'tStopRefresh')  # time at next scr refresh
+                    LDT_mask_prac.setAutoDraw(False)
             
             # *resp_LDT_prac* updates
             waitOnFlip = False
@@ -5556,9 +5588,11 @@ for thisLDT_cond1 in LDT_cond1:
         LDT_pracs.addData('resp_LDT_prac.stopped', resp_LDT_prac.tStopRefresh)
         thisExp.addData('task', "LDT_prac")
         thisExp.addData('keypress', resp_LDT_prac.keys)
+        thisExp.addData('LDT_dur', ldt_dur)
         thisExp.addData('RT', resp_LDT_prac.rt)
         thisExp.addData('corr', resp_LDT_prac.corr)
         thisExp.addData('exp_time', globalClock.getTime())
+        
         LDT_pracs.addData('key_reminder_3.started', key_reminder_3.tStartRefresh)
         LDT_pracs.addData('key_reminder_3.stopped', key_reminder_3.tStopRefresh)
         # the Routine "LDT_prac" was not non-slip safe, so reset the non-slip timer
@@ -5748,7 +5782,6 @@ for thisLDT_cond1 in LDT_cond1:
         
         # ------Prepare to start Routine "fix"-------
         # update component parameters for each repeat
-        rand_duration = random.randint(1000, 2000)/1000
         # keep track of which components have finished
         fixComponents = [LDT_fix_cross]
         for thisComponent in fixComponents:
@@ -5867,13 +5900,20 @@ for thisLDT_cond1 in LDT_cond1:
                     LDT_word_trial.setAutoDraw(False)
             
             # *LDT_mask_trial* updates
-            if LDT_mask_trial.status == NOT_STARTED and frameN >= ldt_dur:
+            if LDT_mask_trial.status == NOT_STARTED and frameN >= LDT_word_trial.status==FINISHED:
                 # keep track of start time/frame for later
                 LDT_mask_trial.frameNStart = frameN  # exact frame index
                 LDT_mask_trial.tStart = t  # local t and not account for scr refresh
                 LDT_mask_trial.tStartRefresh = tThisFlipGlobal  # on global time
                 win.timeOnFlip(LDT_mask_trial, 'tStartRefresh')  # time at next scr refresh
                 LDT_mask_trial.setAutoDraw(True)
+            if LDT_mask_trial.status == STARTED:
+                if frameN >= (LDT_mask_trial.frameNStart + ldt_mask_dur):
+                    # keep track of stop time/frame for later
+                    LDT_mask_trial.tStop = t  # not accounting for scr refresh
+                    LDT_mask_trial.frameNStop = frameN  # exact frame index
+                    win.timeOnFlip(LDT_mask_trial, 'tStopRefresh')  # time at next scr refresh
+                    LDT_mask_trial.setAutoDraw(False)
             
             # *resp_LDT_trial* updates
             waitOnFlip = False
@@ -5947,10 +5987,11 @@ for thisLDT_cond1 in LDT_cond1:
             LDT_trials.addData('resp_LDT_trial.rt', resp_LDT_trial.rt)
         LDT_trials.addData('resp_LDT_trial.started', resp_LDT_trial.tStartRefresh)
         LDT_trials.addData('resp_LDT_trial.stopped', resp_LDT_trial.tStopRefresh)
-        thisExp.addData('task', "LDT_prac")
-        thisExp.addData('keypress', resp_LDT_prac.keys)
-        thisExp.addData('RT', resp_LDT_prac.rt)
-        thisExp.addData('corr', resp_LDT_prac.corr)
+        thisExp.addData('task', "LDT")
+        thisExp.addData('keypress', resp_LDT_trial.keys)
+        thisExp.addData('LDT_dur', ldt_dur)
+        thisExp.addData('RT', resp_LDT_trial.rt)
+        thisExp.addData('corr', resp_LDT_trial.corr)
         thisExp.addData('exp_time', globalClock.getTime())
         LDT_trials.addData('key_reminder.started', key_reminder.tStartRefresh)
         LDT_trials.addData('key_reminder.stopped', key_reminder.tStopRefresh)
@@ -6046,11 +6087,13 @@ for thisLDT_cond1 in LDT_cond1:
     LDT_cond1.addData('LDT_rating.stopped', LDT_rating.tStop)
     LDT_cond1.addData('LDT_feedback_inst.started', LDT_feedback_inst.tStartRefresh)
     LDT_cond1.addData('LDT_feedback_inst.stopped', LDT_feedback_inst.tStopRefresh)
+    thisExp.addData("task", "LDT_feedback")
+    thisExp.addData("LDT_rating", LDT_rating.response)
     # the Routine "LDT_feedback" was not non-slip safe, so reset the non-slip timer
     routineTimer.reset()
     thisExp.nextEntry()
     
-# completed int(expInfo['participant ID']) % 2 == 0 repeats of 'LDT_cond1'
+# completed int(expInfo['condition']) % 2 == 0 repeats of 'LDT_cond1'
 
 
 # ------Prepare to start Routine "end"-------
@@ -6124,7 +6167,6 @@ for thisComponent in endComponents:
         thisComponent.setAutoDraw(False)
 thisExp.addData('instr_end.started', instr_end.tStartRefresh)
 thisExp.addData('instr_end.stopped', instr_end.tStopRefresh)
-webbrowser.open('http://google.com')
 
 # Flip one final time so any remaining win.callOnFlip() 
 # and win.timeOnFlip() tasks get executed before quitting
