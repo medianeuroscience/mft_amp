@@ -1,0 +1,5 @@
+words,masks,symbols
+car,&&&,images/symbols/symbol_9.png
+banana,&&&&&&,images/symbols/symbol_68.png
+keyboard,&&&&&&&&,images/symbols/symbol_40.png
+scarf,&&&&&,images/symbols/symbol_54.png
