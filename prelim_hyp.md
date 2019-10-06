@@ -19,4 +19,4 @@
 ## Person-based hypotheses
 - People who are high in MFQ-salience for a particular foundation will respond more quickly/consistently to primes of higher weight within a particular foundation than those who are low MFQ-salience for that foundation.
 - Democrats will respond more quickly/consistently to words that load highly on individualizing foundations whereas republicans will respond more quickly/consistently to words that load highly on binding foundations
-  - This should be moderated bu their strength of affiliation
+  - This should be moderated by their strength of affiliation
