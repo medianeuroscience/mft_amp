@@ -4,7 +4,7 @@
     <Param name="Completed URL" updates="None" val="" valType="str"/>
     <Param name="Data filename" updates="None" val="u'data/%s_%s_%s' % (expInfo['participant ID'], expName, expInfo['date'])" valType="code"/>
     <Param name="Enable Escape" updates="None" val="True" valType="bool"/>
-    <Param name="Experiment info" updates="None" val="{'participant ID': '', 'condition': ''}" valType="code"/>
+    <Param name="Experiment info" updates="None" val="{'participant ID': ''}" valType="code"/>
     <Param name="Force stereo" updates="None" val="False" valType="bool"/>
     <Param name="Full-screen window" updates="None" val="True" valType="bool"/>
     <Param name="HTML path" updates="None" val="html" valType="str"/>
@@ -981,7 +981,7 @@
         <Param name="syncScreenRefresh" updates="constant" val="True" valType="bool"/>
       </KeyboardComponent>
       <CodeComponent name="code_01">
-        <Param name="Begin Experiment" updates="constant" val="import random &amp;#10;import pandas as pd&amp;#10;import numpy as np&amp;#10;import webbrowser&amp;#10;&amp;#10;globalClock = core.Clock()&amp;#10;routineClock = core.Clock()&amp;#10;&amp;#10;# Reading in the CSVs&amp;#10;&amp;#10;words = pd.read_csv(&quot;condition_files/words4exp.csv&quot;)&amp;#10;symbols = pd.read_csv(&quot;condition_files/symbols.csv&quot;)&amp;#10;memtask_words = pd.read_csv(&quot;condition_files/mem_task_words.csv&quot;)&amp;#10;&amp;#10;# Generating word lists&amp;#10;&amp;#10;unique_cats = {k:None for k in words.category.unique()} &amp;#10;&amp;#10;for k,v in unique_cats.items():&amp;#10;    unique_cats[k] = list(words[words.category == k].index.values)&amp;#10;&amp;#10;full_amp_words = {k:None for k in unique_cats.keys() if k != &quot;neutral&quot;} &amp;#10;full_ldt_words = {k:None for k in unique_cats.keys()} &amp;#10;&amp;#10;for k,v in unique_cats.items():&amp;#10;    if &quot;.&quot; in str(k):&amp;#10;        full_amp_words[k] = random.sample(unique_cats[k],7)&amp;#10;        full_ldt_words[k] = [x for x in unique_cats[k] if x not in full_amp_words[k]]&amp;#10;    if k == &quot;nonword&quot;:&amp;#10;        full_amp_words[k] = random.sample(unique_cats[k],10)&amp;#10;        full_ldt_words[k] = [x for x in unique_cats[k] if x not in full_amp_words[k]]&amp;#10;    if k ==&quot;control&quot;:&amp;#10;        full_amp_words[k] = unique_cats[k]&amp;#10;    if k == &quot;neutral&quot;:&amp;#10;        full_ldt_words[k] = unique_cats[k]&amp;#10;&amp;#10;amp_primes = [] &amp;#10;amp_symbols = range(0,82) &amp;#10;&amp;#10;for k,v in full_amp_words.items():     &amp;#10;    for i in v:&amp;#10;        amp_primes.append(i)&amp;#10;&amp;#10;# Pulling the words, correct answers, and categories for all of the indices for our moral words plus our ten nonword controls &amp;#10;&amp;#10;AMP_words = words.loc[amp_primes].words.values &amp;#10;AMP_corr_ans = words.loc[amp_primes].correct_amp.values &amp;#10;AMP_category = words.loc[amp_primes].category.values&amp;#10;AMP_masks = words.loc[amp_primes].masks.values&amp;#10;&amp;#10;#pulling the nonwords and masks for our targets that weren't selected to be included in the prime &amp;#10;&amp;#10;AMP_symbols = symbols.loc[amp_symbols].symbol.values&amp;#10;&amp;#10;# df1 is the words that will be used as primes and their associated categories and correct answers  &amp;#10;&amp;#10;df1 = pd.DataFrame(&amp;#10;    {'words': AMP_words.tolist(),&amp;#10;    'corr_ans': AMP_corr_ans.tolist(),&amp;#10;    'category': AMP_category.tolist(),&amp;#10;    'masks': AMP_masks.tolist()&amp;#10;    })&amp;#10;&amp;#10;# df2 is the nonwords that will be used as targets and their associated masks  &amp;#10;&amp;#10;df2 = pd.DataFrame(&amp;#10;    {'symbols': AMP_symbols.tolist()&amp;#10;    })  &amp;#10;&amp;#10;# Shuffling the words once and then generating four   &amp;#10;&amp;#10;primes_rep1 = df1.sample(frac=1).reset_index(drop=True) &amp;#10;targets_rep1 = df2.sample(frac=1).reset_index(drop=True)  &amp;#10;primes_rep2 = df1.sample(frac=1).reset_index(drop=True) &amp;#10;targets_rep2 = df2.sample(frac=1).reset_index(drop=True)  &amp;#10;primes_rep3 = df1.sample(frac=1).reset_index(drop=True) &amp;#10;targets_rep3 = df2.sample(frac=1).reset_index(drop=True)  &amp;#10;primes_rep4 = df1.sample(frac=1).reset_index(drop=True) &amp;#10;targets_rep4 = df2.sample(frac=1).reset_index(drop=True)  &amp;#10;&amp;#10;# Concatenating all of the primes and targets and writing them to condition files.&amp;#10;&amp;#10;rep1 = pd.concat([primes_rep1,targets_rep1], axis = 1)&amp;#10;rep1.to_csv(&quot;condition_files/AMP_rep1.csv&quot;)&amp;#10;&amp;#10;rep2 = pd.concat([primes_rep2,targets_rep2], axis = 1)&amp;#10;rep1.to_csv(&quot;condition_files/AMP_rep2.csv&quot;)&amp;#10;&amp;#10;rep3 = pd.concat([primes_rep3,targets_rep3], axis = 1)&amp;#10;rep1.to_csv(&quot;condition_files/AMP_rep3.csv&quot;)&amp;#10;&amp;#10;rep4 = pd.concat([primes_rep4,targets_rep4], axis = 1)&amp;#10;rep1.to_csv(&quot;condition_files/AMP_rep4.csv&quot;) &amp;#10;&amp;#10;# Concatenating all of the reps horizontally  &amp;#10;&amp;#10;df_full = pd.concat([rep1,rep2,rep3,rep4], axis = 0)&amp;#10;&amp;#10;# Writing AMP conditions to CSV&amp;#10;&amp;#10;df_full.reset_index(inplace=True, drop=True)&amp;#10;df_full.to_csv(&quot;condition_files/AMP_conditions.csv&quot;)&amp;#10;&amp;#10;# Generating LDT word list&amp;#10;&amp;#10;ldt_wordlist = [] &amp;#10;&amp;#10;for k,v in full_ldt_words.items():&amp;#10;    if k != &quot;control&quot;:&amp;#10;        for i in v:&amp;#10;            ldt_wordlist.append(i)&amp;#10;&amp;#10;# Pulling the words, correct answers, categories, &amp; masks for all of the indices for our words &amp;#10;&amp;#10;LDT_words = words.loc[ldt_wordlist].words.values &amp;#10;LDT_corr = words.loc[ldt_wordlist].correct_ldt.values &amp;#10;LDT_category = words.loc[ldt_wordlist].category.values &amp;#10;LDT_masklist = words.loc[ldt_wordlist].masks.values&amp;#10;&amp;#10;df_ldt = pd.DataFrame(&amp;#10;    {'words': LDT_words.tolist(),&amp;#10;    'corr_ans': LDT_corr.tolist(),&amp;#10;    'category': LDT_category.tolist(),&amp;#10;    'mask': LDT_masklist.tolist()     })&amp;#10;&amp;#10;df_ldt.to_csv(&quot;condition_files/LDT_conditions.csv&quot;)&amp;#10;&amp;#10;# Creating the list for the memory task&amp;#10;&amp;#10;memtask_wordlist = memtask_words.words.values&amp;#10;memtask_cats = memtask_words.category.values&amp;#10;seen = pd.DataFrame(&amp;#10;    {'words': AMP_words.tolist(),&amp;#10;     'corr_ans': ['right'] * 82,&amp;#10;     'category': AMP_category.tolist()&amp;#10;    })&amp;#10;&amp;#10;unseen = pd.DataFrame(&amp;#10;    {'words': memtask_wordlist.tolist(),&amp;#10;     'corr_ans': ['left'] * 50,&amp;#10;     'category': memtask_cats.tolist()&amp;#10;    })&amp;#10;&amp;#10;seen_selection = seen.sample(n=50)&amp;#10;memtask_final = pd.concat([seen_selection,unseen], axis = 0)&amp;#10;memtask_final = memtask_final.sample(frac=1).reset_index(drop=True)&amp;#10;&amp;#10;memtask_final.to_csv(&quot;condition_files/memtask_conditions.csv&quot;)" valType="extendedCode"/>
+        <Param name="Begin Experiment" updates="constant" val="import random &amp;#10;import pandas as pd&amp;#10;import numpy as np&amp;#10;import webbrowser&amp;#10;&amp;#10;globalClock = core.Clock()&amp;#10;routineClock = core.Clock()&amp;#10;&amp;#10;# Reading in the CSVs&amp;#10;&amp;#10;words = pd.read_csv(&quot;condition_files/words4exp.csv&quot;)&amp;#10;symbols = pd.read_csv(&quot;condition_files/symbols.csv&quot;)&amp;#10;memtask_words = pd.read_csv(&quot;condition_files/mem_task_words.csv&quot;)&amp;#10;&amp;#10;# Generating word lists&amp;#10;&amp;#10;unique_cats = {k:None for k in words.category.unique()} &amp;#10;&amp;#10;for k,v in unique_cats.items():&amp;#10;    unique_cats[k] = list(words[words.category == k].index.values)&amp;#10;&amp;#10;full_amp_words = {k:None for k in unique_cats.keys() if k != &quot;neutral&quot;} &amp;#10;full_ldt_words = {k:None for k in unique_cats.keys()} &amp;#10;&amp;#10;for k,v in unique_cats.items():&amp;#10;    if &quot;.&quot; in str(k):&amp;#10;        full_amp_words[k] = random.sample(unique_cats[k],7)&amp;#10;        full_ldt_words[k] = [x for x in unique_cats[k] if x not in full_amp_words[k]]&amp;#10;    if k == &quot;nonword&quot;:&amp;#10;        full_amp_words[k] = random.sample(unique_cats[k],10)&amp;#10;        full_ldt_words[k] = [x for x in unique_cats[k] if x not in full_amp_words[k]]&amp;#10;    if k ==&quot;control&quot;:&amp;#10;        full_amp_words[k] = unique_cats[k]&amp;#10;    if k == &quot;neutral&quot;:&amp;#10;        full_ldt_words[k] = unique_cats[k]&amp;#10;&amp;#10;amp_primes = [] &amp;#10;amp_symbols = range(0,82) &amp;#10;&amp;#10;for k,v in full_amp_words.items():     &amp;#10;    for i in v:&amp;#10;        amp_primes.append(i)&amp;#10;&amp;#10;# Pulling the words, correct answers, and categories for all of the indices for our moral words plus our ten nonword controls &amp;#10;&amp;#10;AMP_words = words.loc[amp_primes].words.values &amp;#10;AMP_corr_ans = words.loc[amp_primes].correct_amp.values &amp;#10;AMP_category = words.loc[amp_primes].category.values&amp;#10;AMP_masks = words.loc[amp_primes].masks.values&amp;#10;&amp;#10;#pulling the nonwords and masks for our targets that weren't selected to be included in the prime &amp;#10;&amp;#10;AMP_symbols = symbols.loc[amp_symbols].symbol.values&amp;#10;&amp;#10;# df1 is the words that will be used as primes and their associated categories and correct answers  &amp;#10;&amp;#10;df1 = pd.DataFrame(&amp;#10;    {'words': AMP_words.tolist(),&amp;#10;    'corr_ans': AMP_corr_ans.tolist(),&amp;#10;    'category': AMP_category.tolist(),&amp;#10;    'masks': AMP_masks.tolist()&amp;#10;    })&amp;#10;&amp;#10;# df2 is the nonwords that will be used as targets and their associated masks  &amp;#10;&amp;#10;df2 = pd.DataFrame(&amp;#10;    {'symbols': AMP_symbols.tolist()&amp;#10;    })  &amp;#10;&amp;#10;# Shuffling the words once and then generating four   &amp;#10;&amp;#10;primes_rep1 = df1.sample(frac=1).reset_index(drop=True) &amp;#10;targets_rep1 = df2.sample(frac=1).reset_index(drop=True)  &amp;#10;primes_rep2 = df1.sample(frac=1).reset_index(drop=True) &amp;#10;targets_rep2 = df2.sample(frac=1).reset_index(drop=True)  &amp;#10;primes_rep3 = df1.sample(frac=1).reset_index(drop=True) &amp;#10;targets_rep3 = df2.sample(frac=1).reset_index(drop=True)  &amp;#10;primes_rep4 = df1.sample(frac=1).reset_index(drop=True) &amp;#10;targets_rep4 = df2.sample(frac=1).reset_index(drop=True)  &amp;#10;&amp;#10;# Concatenating all of the primes and targets and writing them to condition files.&amp;#10;&amp;#10;rep1 = pd.concat([primes_rep1,targets_rep1], axis = 1)&amp;#10;rep1.to_csv(&quot;condition_files/AMP_rep1.csv&quot;)&amp;#10;&amp;#10;rep2 = pd.concat([primes_rep2,targets_rep2], axis = 1)&amp;#10;rep2.to_csv(&quot;condition_files/AMP_rep2.csv&quot;)&amp;#10;&amp;#10;rep3 = pd.concat([primes_rep3,targets_rep3], axis = 1)&amp;#10;rep3.to_csv(&quot;condition_files/AMP_rep3.csv&quot;)&amp;#10;&amp;#10;rep4 = pd.concat([primes_rep4,targets_rep4], axis = 1)&amp;#10;rep4.to_csv(&quot;condition_files/AMP_rep4.csv&quot;) &amp;#10;&amp;#10;# Concatenating all of the reps horizontally  &amp;#10;&amp;#10;df_full = pd.concat([rep1,rep2,rep3,rep4], axis = 0)&amp;#10;&amp;#10;# Writing AMP conditions to CSV&amp;#10;&amp;#10;df_full.reset_index(inplace=True, drop=True)&amp;#10;df_full.to_csv(&quot;condition_files/AMP_conditions.csv&quot;)&amp;#10;&amp;#10;# Generating LDT word list&amp;#10;&amp;#10;ldt_wordlist = [] &amp;#10;&amp;#10;for k,v in full_ldt_words.items():&amp;#10;    if k != &quot;control&quot;:&amp;#10;        for i in v:&amp;#10;            ldt_wordlist.append(i)&amp;#10;&amp;#10;# Pulling the words, correct answers, categories, &amp; masks for all of the indices for our words &amp;#10;&amp;#10;LDT_words = words.loc[ldt_wordlist].words.values &amp;#10;LDT_corr = words.loc[ldt_wordlist].correct_ldt.values &amp;#10;LDT_category = words.loc[ldt_wordlist].category.values &amp;#10;LDT_masklist = words.loc[ldt_wordlist].masks.values&amp;#10;&amp;#10;df_ldt = pd.DataFrame(&amp;#10;    {'words': LDT_words.tolist(),&amp;#10;    'corr_ans': LDT_corr.tolist(),&amp;#10;    'category': LDT_category.tolist(),&amp;#10;    'mask': LDT_masklist.tolist()     })&amp;#10;&amp;#10;df_ldt.to_csv(&quot;condition_files/LDT_conditions.csv&quot;)&amp;#10;&amp;#10;# Creating the list for the memory task&amp;#10;&amp;#10;memtask_wordlist = memtask_words.words.values&amp;#10;memtask_cats = memtask_words.category.values&amp;#10;seen = pd.DataFrame(&amp;#10;    {'words': AMP_words.tolist(),&amp;#10;     'corr_ans': ['right'] * 82,&amp;#10;     'category': AMP_category.tolist()&amp;#10;    })&amp;#10;&amp;#10;unseen = pd.DataFrame(&amp;#10;    {'words': memtask_wordlist.tolist(),&amp;#10;     'corr_ans': ['left'] * 50,&amp;#10;     'category': memtask_cats.tolist()&amp;#10;    })&amp;#10;&amp;#10;seen_selection = seen.sample(n=50)&amp;#10;memtask_final = pd.concat([seen_selection,unseen], axis = 0)&amp;#10;memtask_final = memtask_final.sample(frac=1).reset_index(drop=True)&amp;#10;&amp;#10;memtask_final.to_csv(&quot;condition_files/memtask_conditions.csv&quot;)" valType="extendedCode"/>
         <Param name="Begin JS Experiment" updates="constant" val="" valType="extendedCode"/>
         <Param name="Begin JS Routine" updates="constant" val="" valType="extendedCode"/>
         <Param name="Begin Routine" updates="constant" val="" valType="extendedCode"/>
@@ -1016,7 +1016,7 @@
         <Param name="startEstim" updates="None" val="" valType="code"/>
         <Param name="startType" updates="None" val="time (s)" valType="str"/>
         <Param name="startVal" updates="None" val="0.0" valType="code"/>
-        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
+        <Param name="stopType" updates="None" val="duration (frames)" valType="str"/>
         <Param name="stopVal" updates="constant" val="$rand_duration" valType="code"/>
         <Param name="syncScreenRefresh" updates="None" val="True" valType="bool"/>
         <Param name="texture resolution" updates="constant" val="128" valType="code"/>
@@ -1026,7 +1026,7 @@
         <Param name="Begin Experiment" updates="constant" val="" valType="extendedCode"/>
         <Param name="Begin JS Experiment" updates="constant" val="" valType="extendedCode"/>
         <Param name="Begin JS Routine" updates="constant" val="" valType="extendedCode"/>
-        <Param name="Begin Routine" updates="constant" val="" valType="extendedCode"/>
+        <Param name="Begin Routine" updates="constant" val="rand_duration = random.randint(6, 18)" valType="extendedCode"/>
         <Param name="Code Type" updates="None" val="Py" valType="str"/>
         <Param name="Each Frame" updates="constant" val="" valType="extendedCode"/>
         <Param name="Each JS Frame" updates="constant" val="" valType="extendedCode"/>
@@ -1167,7 +1167,7 @@
         <Param name="End Experiment" updates="constant" val="" valType="extendedCode"/>
         <Param name="End JS Experiment" updates="constant" val="" valType="extendedCode"/>
         <Param name="End JS Routine" updates="constant" val="" valType="extendedCode"/>
-        <Param name="End Routine" updates="constant" val="thisExp.addData('task', &quot;AMP_feedback&quot;)&amp;#10;thisExp.add_data('AMP_symbol_rating', AMP_nonword_rating.response)&amp;#10;thisExp.add_data('AMP_word_rating', AMP_word_rating.response)&amp;#10;thisExp.add_data('AMP_random_rating', AMP_random_rating.response)&amp;#10;&amp;#10;" valType="extendedCode"/>
+        <Param name="End Routine" updates="constant" val="thisExp.addData('task', &quot;AMP_feedback&quot;)&amp;#10;&amp;#10;" valType="extendedCode"/>
         <Param name="disabled" updates="None" val="False" valType="bool"/>
         <Param name="name" updates="None" val="code_13" valType="code"/>
       </CodeComponent>
@@ -1239,7 +1239,7 @@
         <Param name="End Experiment" updates="constant" val="" valType="extendedCode"/>
         <Param name="End JS Experiment" updates="constant" val="" valType="extendedCode"/>
         <Param name="End JS Routine" updates="constant" val="" valType="extendedCode"/>
-        <Param name="End Routine" updates="constant" val="thisExp.addData(&quot;task&quot;, &quot;LDT_feedback&quot;)&amp;#10;thisExp.addData(&quot;LDT_rating&quot;, LDT_rating.response)" valType="extendedCode"/>
+        <Param name="End Routine" updates="constant" val="thisExp.addData(&quot;task&quot;, &quot;LDT_feedback&quot;)" valType="extendedCode"/>
         <Param name="disabled" updates="None" val="False" valType="bool"/>
         <Param name="name" updates="None" val="code_26" valType="code"/>
       </CodeComponent>
@@ -1365,7 +1365,7 @@
         <Param name="allowedKeys" updates="constant" val="'left','right',&quot;escape&quot;,&quot;n&quot;" valType="code"/>
         <Param name="correctAns" updates="constant" val="$corr_ans" valType="str"/>
         <Param name="disabled" updates="None" val="False" valType="bool"/>
-        <Param name="discard previous" updates="constant" val="False" valType="bool"/>
+        <Param name="discard previous" updates="constant" val="True" valType="bool"/>
         <Param name="durationEstim" updates="None" val="3.5" valType="code"/>
         <Param name="forceEndRoutine" updates="constant" val="True" valType="bool"/>
         <Param name="name" updates="None" val="sym_resp_trial" valType="code"/>
@@ -1383,14 +1383,14 @@
         <Param name="Begin Experiment" updates="constant" val="" valType="extendedCode"/>
         <Param name="Begin JS Experiment" updates="constant" val="" valType="extendedCode"/>
         <Param name="Begin JS Routine" updates="constant" val="" valType="extendedCode"/>
-        <Param name="Begin Routine" updates="constant" val="" valType="extendedCode"/>
+        <Param name="Begin Routine" updates="constant" val="keys = []&amp;#10;sym_id = symbol.split(&quot;_&quot;)[1].split(&quot;.&quot;)[0]" valType="extendedCode"/>
         <Param name="Code Type" updates="None" val="Py" valType="str"/>
         <Param name="Each Frame" updates="constant" val="keys = event.getKeys()&amp;#10;if 'j' in keys:&amp;#10;        continueRoutine = False&amp;#10;        logo_trials.finished = True" valType="extendedCode"/>
         <Param name="Each JS Frame" updates="constant" val="" valType="extendedCode"/>
         <Param name="End Experiment" updates="constant" val="" valType="extendedCode"/>
         <Param name="End JS Experiment" updates="constant" val="" valType="extendedCode"/>
         <Param name="End JS Routine" updates="constant" val="" valType="extendedCode"/>
-        <Param name="End Routine" updates="constant" val="thisExp.addData('symbol_index', index)&amp;#10;thisExp.addData('keypress', sym_resp_trial.keys)&amp;#10;thisExp.addData('RT', sym_resp_trial.rt)&amp;#10;thisExp.addData('task', &quot;symbols&quot;)" valType="extendedCode"/>
+        <Param name="End Routine" updates="constant" val="thisExp.addData('symbol_id', sym_id)&amp;#10;thisExp.addData('keypress', sym_resp_trial.keys)&amp;#10;thisExp.addData('RT', sym_resp_trial.rt)&amp;#10;thisExp.addData('task', &quot;symbols&quot;)" valType="extendedCode"/>
         <Param name="disabled" updates="None" val="False" valType="bool"/>
         <Param name="name" updates="None" val="code_04" valType="code"/>
       </CodeComponent>
@@ -1417,30 +1417,6 @@
         <Param name="stopVal" updates="constant" val="$prime_dur" valType="code"/>
         <Param name="syncScreenRefresh" updates="None" val="True" valType="bool"/>
         <Param name="text" updates="set every repeat" val="$words" valType="str"/>
-        <Param name="units" updates="None" val="from exp settings" valType="str"/>
-        <Param name="wrapWidth" updates="constant" val="" valType="code"/>
-      </TextComponent>
-      <TextComponent name="amp_prime_mask">
-        <Param name="color" updates="constant" val="black" valType="str"/>
-        <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
-        <Param name="disabled" updates="None" val="False" valType="bool"/>
-        <Param name="durationEstim" updates="None" val="" valType="code"/>
-        <Param name="flip" updates="constant" val="" valType="str"/>
-        <Param name="font" updates="constant" val="Verdana" valType="str"/>
-        <Param name="languageStyle" updates="None" val="LTR" valType="str"/>
-        <Param name="letterHeight" updates="constant" val="0.05" valType="code"/>
-        <Param name="name" updates="None" val="amp_prime_mask" valType="code"/>
-        <Param name="opacity" updates="constant" val="1" valType="code"/>
-        <Param name="ori" updates="constant" val="0" valType="code"/>
-        <Param name="pos" updates="constant" val="(0, 0)" valType="code"/>
-        <Param name="saveStartStop" updates="None" val="True" valType="bool"/>
-        <Param name="startEstim" updates="None" val="" valType="code"/>
-        <Param name="startType" updates="None" val="frame N" valType="str"/>
-        <Param name="startVal" updates="None" val="$prime_dur" valType="code"/>
-        <Param name="stopType" updates="None" val="duration (frames)" valType="str"/>
-        <Param name="stopVal" updates="constant" val="$prime_dur" valType="code"/>
-        <Param name="syncScreenRefresh" updates="None" val="True" valType="bool"/>
-        <Param name="text" updates="set every repeat" val="$masks" valType="str"/>
         <Param name="units" updates="None" val="from exp settings" valType="str"/>
         <Param name="wrapWidth" updates="constant" val="" valType="code"/>
       </TextComponent>
@@ -1583,14 +1559,14 @@
         <Param name="Begin Experiment" updates="constant" val="" valType="extendedCode"/>
         <Param name="Begin JS Experiment" updates="constant" val="" valType="extendedCode"/>
         <Param name="Begin JS Routine" updates="constant" val="" valType="extendedCode"/>
-        <Param name="Begin Routine" updates="constant" val="keys = []" valType="extendedCode"/>
+        <Param name="Begin Routine" updates="constant" val="keys = []&amp;#10;sym_id = symbols.split(&quot;_&quot;)[1].split(&quot;.&quot;)[0]" valType="extendedCode"/>
         <Param name="Code Type" updates="None" val="Py" valType="str"/>
         <Param name="Each Frame" updates="constant" val="keys = event.getKeys()&amp;#10;if 'j' in keys:&amp;#10;        continueRoutine = False&amp;#10;        AMP_trials.finished = True" valType="extendedCode"/>
         <Param name="Each JS Frame" updates="constant" val="" valType="extendedCode"/>
         <Param name="End Experiment" updates="constant" val="" valType="extendedCode"/>
         <Param name="End JS Experiment" updates="constant" val="" valType="extendedCode"/>
         <Param name="End JS Routine" updates="constant" val="" valType="extendedCode"/>
-        <Param name="End Routine" updates="constant" val="thisExp.addData('task', &quot;AMP&quot;)&amp;#10;thisExp.addData('keypress', resp_AMP_trials.keys)&amp;#10;thisExp.addData('RT', resp_AMP_trials.rt)&amp;#10;thisExp.addData('exp_time', globalClock.getTime())&amp;#10;thisExp.addData('prime_dur', prime_dur)" valType="extendedCode"/>
+        <Param name="End Routine" updates="constant" val="thisExp.addData('task', &quot;AMP&quot;)&amp;#10;thisExp.addData('symbol_id', sym_id)&amp;#10;thisExp.addData('keypress', resp_AMP_trials.keys)&amp;#10;thisExp.addData('RT', resp_AMP_trials.rt)&amp;#10;thisExp.addData('exp_time', globalClock.getTime())&amp;#10;thisExp.addData('prime_dur', prime_dur)" valType="extendedCode"/>
         <Param name="disabled" updates="None" val="False" valType="bool"/>
         <Param name="name" updates="None" val="code_12" valType="code"/>
       </CodeComponent>
@@ -2794,7 +2770,7 @@
         <Param name="Begin JS Routine" updates="constant" val="" valType="extendedCode"/>
         <Param name="Begin Routine" updates="constant" val="keys = []&amp;#10;ldt_dur = random.randint(1, 6)&amp;#10;ldt_mask_dur = 2 * ldt_dur" valType="extendedCode"/>
         <Param name="Code Type" updates="None" val="Py" valType="str"/>
-        <Param name="Each Frame" updates="constant" val="keys = event.getKeys()&amp;#10;if 'j' in keys:&amp;#10;        continueRoutine = False&amp;#10;        LDT_pracs_1.finished = True" valType="extendedCode"/>
+        <Param name="Each Frame" updates="constant" val="keys = event.getKeys()&amp;#10;if 'j' in keys:&amp;#10;        continueRoutine = False&amp;#10;        try:&amp;#10;            LDT_pracs_1.finished = True&amp;#10;        except:&amp;#10;            LDT_pracs.finished = True" valType="extendedCode"/>
         <Param name="Each JS Frame" updates="constant" val="" valType="extendedCode"/>
         <Param name="End Experiment" updates="constant" val="" valType="extendedCode"/>
         <Param name="End JS Experiment" updates="constant" val="" valType="extendedCode"/>
@@ -2872,7 +2848,7 @@
         <Param name="startType" updates="None" val="frame N" valType="str"/>
         <Param name="startVal" updates="None" val="$LDT_word_trial.status==FINISHED" valType="code"/>
         <Param name="stopType" updates="None" val="duration (frames)" valType="str"/>
-        <Param name="stopVal" updates="constant" val="ldt_mask_dur" valType="code"/>
+        <Param name="stopVal" updates="constant" val="" valType="code"/>
         <Param name="syncScreenRefresh" updates="None" val="True" valType="bool"/>
         <Param name="text" updates="set every repeat" val="$mask" valType="str"/>
         <Param name="units" updates="None" val="from exp settings" valType="str"/>
@@ -2893,7 +2869,7 @@
         <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
         <Param name="stopVal" updates="constant" val="" valType="code"/>
         <Param name="store" updates="constant" val="last key" valType="str"/>
-        <Param name="storeCorrect" updates="constant" val="False" valType="bool"/>
+        <Param name="storeCorrect" updates="constant" val="True" valType="bool"/>
         <Param name="syncScreenRefresh" updates="constant" val="True" valType="bool"/>
       </KeyboardComponent>
       <CodeComponent name="code">
@@ -2902,7 +2878,7 @@
         <Param name="Begin JS Routine" updates="constant" val="" valType="extendedCode"/>
         <Param name="Begin Routine" updates="constant" val="keys = []&amp;#10;ldt_dur = random.randint(1, 6)" valType="extendedCode"/>
         <Param name="Code Type" updates="None" val="Py" valType="str"/>
-        <Param name="Each Frame" updates="constant" val="keys = event.getKeys()&amp;#10;if 'j' in keys:&amp;#10;        continueRoutine = False&amp;#10;        LDT_trials_1.finished = True" valType="extendedCode"/>
+        <Param name="Each Frame" updates="constant" val="keys = event.getKeys()&amp;#10;if 'j' in keys:&amp;#10;        continueRoutine = False&amp;#10;        try:&amp;#10;            LDT_trials_1.finished = True&amp;#10;        except: &amp;#10;            LDT_trials.finished = True " valType="extendedCode"/>
         <Param name="Each JS Frame" updates="constant" val="" valType="extendedCode"/>
         <Param name="End Experiment" updates="constant" val="" valType="extendedCode"/>
         <Param name="End JS Experiment" updates="constant" val="" valType="extendedCode"/>
@@ -2948,7 +2924,7 @@
       <Param name="endPoints" updates="None" val="[0, 1]" valType="num"/>
       <Param name="isTrials" updates="None" val="True" valType="bool"/>
       <Param name="loopType" updates="None" val="random" valType="str"/>
-      <Param name="nReps" updates="None" val="int(expInfo['condition']) % 2 == 1" valType="code"/>
+      <Param name="nReps" updates="None" val="int(expInfo['participant ID']) % 2 == 1" valType="code"/>
       <Param name="name" updates="None" val="LDT_trials_cond2" valType="code"/>
       <Param name="random seed" updates="None" val="" valType="code"/>
     </LoopInitiator>
@@ -2992,7 +2968,7 @@
       <Param name="conditions" updates="None" val="[OrderedDict([('symbol', 'images/symbols/symbol_1.png')]), OrderedDict([('symbol', 'images/symbols/symbol_76.png')]), OrderedDict([('symbol', 'images/symbols/symbol_62.png')]), OrderedDict([('symbol', 'images/symbols/symbol_63.png')]), OrderedDict([('symbol', 'images/symbols/symbol_77.png')]), OrderedDict([('symbol', 'images/symbols/symbol_2.png')]), OrderedDict([('symbol', 'images/symbols/symbol_49.png')]), OrderedDict([('symbol', 'images/symbols/symbol_61.png')]), OrderedDict([('symbol', 'images/symbols/symbol_75.png')]), OrderedDict([('symbol', 'images/symbols/symbol_74.png')]), OrderedDict([('symbol', 'images/symbols/symbol_60.png')]), OrderedDict([('symbol', 'images/symbols/symbol_48.png')]), OrderedDict([('symbol', 'images/symbols/symbol_3.png')]), OrderedDict([('symbol', 'images/symbols/symbol_7.png')]), OrderedDict([('symbol', 'images/symbols/symbol_64.png')]), OrderedDict([('symbol', 'images/symbols/symbol_70.png')]), OrderedDict([('symbol', 'images/symbols/symbol_58.png')]), OrderedDict([('symbol', 'images/symbols/symbol_59.png')]), OrderedDict([('symbol', 'images/symbols/symbol_71.png')]), OrderedDict([('symbol', 'images/symbols/symbol_65.png')]), OrderedDict([('symbol', 'images/symbols/symbol_6.png')]), OrderedDict([('symbol', 'images/symbols/symbol_4.png')]), OrderedDict([('symbol', 'images/symbols/symbol_73.png')]), OrderedDict([('symbol', 'images/symbols/symbol_67.png')]), OrderedDict([('symbol', 'images/symbols/symbol_66.png')]), OrderedDict([('symbol', 'images/symbols/symbol_72.png')]), OrderedDict([('symbol', 'images/symbols/symbol_5.png')]), OrderedDict([('symbol', 'images/symbols/symbol_29.png')]), OrderedDict([('symbol', 'images/symbols/symbol_15.png')]), OrderedDict([('symbol', 'images/symbols/symbol_14.png')]), OrderedDict([('symbol', 'images/symbols/symbol_28.png')]), OrderedDict([('symbol', 'images/symbols/symbol_16.png')]), OrderedDict([('symbol', 'images/symbols/symbol_17.png')]), OrderedDict([('symbol', 'images/symbols/symbol_13.png')]), OrderedDict([('symbol', 'images/symbols/symbol_12.png')]), OrderedDict([('symbol', 'images/symbols/symbol_10.png')]), OrderedDict([('symbol', 'images/symbols/symbol_38.png')]), OrderedDict([('symbol', 'images/symbols/symbol_39.png')]), OrderedDict([('symbol', 'images/symbols/symbol_11.png')]), OrderedDict([('symbol', 'images/symbols/symbol_34.png')]), OrderedDict([('symbol', 'images/symbols/symbol_20.png')]), OrderedDict([('symbol', 'images/symbols/symbol_21.png')]), OrderedDict([('symbol', 'images/symbols/symbol_35.png')]), OrderedDict([('symbol', 'images/symbols/symbol_23.png')]), OrderedDict([('symbol', 'images/symbols/symbol_37.png')]), OrderedDict([('symbol', 'images/symbols/symbol_36.png')]), OrderedDict([('symbol', 'images/symbols/symbol_22.png')]), OrderedDict([('symbol', 'images/symbols/symbol_26.png')]), OrderedDict([('symbol', 'images/symbols/symbol_32.png')]), OrderedDict([('symbol', 'images/symbols/symbol_33.png')]), OrderedDict([('symbol', 'images/symbols/symbol_27.png')]), OrderedDict([('symbol', 'images/symbols/symbol_31.png')]), OrderedDict([('symbol', 'images/symbols/symbol_25.png')]), OrderedDict([('symbol', 'images/symbols/symbol_19.png')]), OrderedDict([('symbol', 'images/symbols/symbol_18.png')]), OrderedDict([('symbol', 'images/symbols/symbol_24.png')]), OrderedDict([('symbol', 'images/symbols/symbol_30.png')]), OrderedDict([('symbol', 'images/symbols/symbol_8.png')]), OrderedDict([('symbol', 'images/symbols/symbol_80.png')]), OrderedDict([('symbol', 'images/symbols/symbol_57.png')]), OrderedDict([('symbol', 'images/symbols/symbol_43.png')]), OrderedDict([('symbol', 'images/symbols/symbol_42.png')]), OrderedDict([('symbol', 'images/symbols/symbol_56.png')]), OrderedDict([('symbol', 'images/symbols/symbol_81.png')]), OrderedDict([('symbol', 'images/symbols/symbol_9.png')]), OrderedDict([('symbol', 'images/symbols/symbol_68.png')]), OrderedDict([('symbol', 'images/symbols/symbol_40.png')]), OrderedDict([('symbol', 'images/symbols/symbol_54.png')]), OrderedDict([('symbol', 'images/symbols/symbol_55.png')]), OrderedDict([('symbol', 'images/symbols/symbol_41.png')]), OrderedDict([('symbol', 'images/symbols/symbol_69.png')]), OrderedDict([('symbol', 'images/symbols/symbol_82.png')]), OrderedDict([('symbol', 'images/symbols/symbol_45.png')]), OrderedDict([('symbol', 'images/symbols/symbol_51.png')]), OrderedDict([('symbol', 'images/symbols/symbol_79.png')]), OrderedDict([('symbol', 'images/symbols/symbol_78.png')]), OrderedDict([('symbol', 'images/symbols/symbol_50.png')]), OrderedDict([('symbol', 'images/symbols/symbol_44.png')]), OrderedDict([('symbol', 'images/symbols/symbol_52.png')]), OrderedDict([('symbol', 'images/symbols/symbol_46.png')]), OrderedDict([('symbol', 'images/symbols/symbol_47.png')]), OrderedDict([('symbol', 'images/symbols/symbol_53.png')])]" valType="str"/>
       <Param name="conditionsFile" updates="None" val="condition_files/symbols.csv" valType="str"/>
       <Param name="endPoints" updates="None" val="[0, 1]" valType="num"/>
-      <Param name="isTrials" updates="None" val="False" valType="bool"/>
+      <Param name="isTrials" updates="None" val="True" valType="bool"/>
       <Param name="loopType" updates="None" val="random" valType="str"/>
       <Param name="nReps" updates="None" val="1" valType="code"/>
       <Param name="name" updates="None" val="logo_trials" valType="code"/>
@@ -3066,7 +3042,7 @@
       <Param name="endPoints" updates="None" val="[0, 1]" valType="num"/>
       <Param name="isTrials" updates="None" val="True" valType="bool"/>
       <Param name="loopType" updates="None" val="random" valType="str"/>
-      <Param name="nReps" updates="None" val="int(expInfo['condition']) % 2 == 0" valType="code"/>
+      <Param name="nReps" updates="None" val="int(expInfo['participant ID']) % 2 == 0" valType="code"/>
       <Param name="name" updates="None" val="LDT_cond1" valType="code"/>
       <Param name="random seed" updates="None" val="" valType="code"/>
     </LoopInitiator>
