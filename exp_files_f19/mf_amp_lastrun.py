@@ -1,8 +1,8 @@
 ﻿#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-This experiment was created using PsychoPy3 Experiment Builder (v3.2.0),
-    on Sun Oct  6 14:40:10 2019
+This experiment was created using PsychoPy3 Experiment Builder (v3.2.4),
+    on Fri Jan 10 11:08:48 2020
 If you publish work using this script the most relevant publication is:
 
     Peirce J, Gray JR, Simpson S, MacAskill M, Höchenberger R, Sogo H, Kastman E, Lindeløv JK. (2019) 
@@ -37,7 +37,7 @@ _thisDir = os.path.dirname(os.path.abspath(__file__))
 os.chdir(_thisDir)
 
 # Store info about the experiment session
-psychopyVersion = '3.2.0'
+psychopyVersion = '3.2.4'
 expName = 'mf_amp'  # from the Builder filename that created this script
 expInfo = {'participant ID': ''}
 dlg = gui.DlgFromDict(dictionary=expInfo, sortKeys=False, title=expName)
@@ -53,7 +53,7 @@ filename = _thisDir + os.sep + u'data/%s_%s_%s' % (expInfo['participant ID'], ex
 # An ExperimentHandler isn't essential but helps with data saving
 thisExp = data.ExperimentHandler(name=expName, version='',
     extraInfo=expInfo, runtimeInfo=None,
-    originPath='/Users/jtf/projects/inprogress/mf_amp/exp_files_f19/mf_amp_lastrun.py',
+    originPath='/Users/jacobtfisher/Dropbox/projects/inprogress/mf_amp/exp_files_f19/mf_amp_lastrun.py',
     savePickle=True, saveWideText=True,
     dataFileName=filename)
 # save a log file for detail verbose info
@@ -781,7 +781,8 @@ AMP_key_reminder_1 = visual.ImageStim(
     flipHoriz=False, flipVert=False,
     texRes=128, interpolate=True, depth=-1.0)
 prime_durs = [1, 3, 6]
-prime_dur = np.random.choice(prime_durs)
+#prime_dur = np.random.choice(prime_durs)
+prime_dur = 6
 mask_dur = 2 * prime_dur
 
 # Initialize components for Routine "AMP_target_prac"
@@ -873,7 +874,8 @@ AMP_key_reminder_1 = visual.ImageStim(
     flipHoriz=False, flipVert=False,
     texRes=128, interpolate=True, depth=-1.0)
 prime_durs = [1, 3, 6]
-prime_dur = np.random.choice(prime_durs)
+#prime_dur = np.random.choice(prime_durs)
+prime_dur = 6
 mask_dur = 2 * prime_dur
 
 # Initialize components for Routine "AMP_target_trials"
