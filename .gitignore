@@ -5,5 +5,7 @@ misc/*
 analysis/*
 exp_files_s19/data*
 exp_files_w19/data*
-mf_amp.Rproj
+exp_files_f19/data*
+exp_files_w20/data*
+mf_amp.Rproj 
 .Rproj.user
